@@ -1,0 +1,114 @@
+---
+name: evidence-discipline
+description: Evidence-based development discipline + context integrity. Prevents vibe coding, enforces proof before action, detects context drift. Use for ALL code tasks.
+allowed-tools: Read, Glob, Grep
+version: 1.0
+priority: HIGH
+---
+
+# Evidence Discipline + Context Integrity
+
+> **CORE RULE:** No action without evidence. No conclusion without proof.
+
+---
+
+## Evidence Gates (MANDATORY)
+
+Before taking action, **prove** the need:
+
+| Action | Required Evidence | ❌ Without Evidence |
+|--------|-------------------|---------------------|
+| **Fix bug** | Reproduced error + stack trace | "I think this might fix it" |
+| **Refactor** | Measured problem (perf, complexity, duplication) | "This looks messy" |
+| **Add dependency** | Compared 2+ alternatives with trade-offs | "Let's just use X" |
+| **Deploy** | All tests pass + manual verification | "Should be fine" |
+| **Delete code** | Confirmed no references (grep/search) | "Nobody uses this" |
+| **Change architecture** | ADR with pros/cons documented | "Let's switch to Y" |
+| **Optimize** | Benchmark before + target metric | "This feels slow" |
+
+### Evidence Format
+
+```
+📋 Evidence: [What I verified]
+📊 Result: [Concrete data/output]
+✅ Action: [What I'll do based on evidence]
+```
+
+---
+
+## Context Integrity (Self-Check)
+
+### Drift Detection Rules
+
+Every **5 turns** (or when switching files), verify:
+
+| Check | Question | If Drift Detected |
+|-------|----------|--------------------|
+| **Goal alignment** | Am I still solving the original request? | STOP → Re-read original request |
+| **Scope creep** | Am I changing files not in the request? | STOP → Ask user before proceeding |
+| **Rabbit hole** | Am I 3+ levels deep in a tangent? | STOP → Checkpoint current work |
+| **File coherence** | Does this edit break other files? | Check imports + dependents first |
+
+### Intent Declaration
+
+At the start of complex tasks, state:
+
+```
+🎯 Intent: [What I'm doing]
+📂 Scope: [Files I'll touch]
+⏱️ Estimate: [How many steps]
+```
+
+> If scope changes mid-task → **re-declare** before continuing.
+
+---
+
+## Verification Checkpoints
+
+### Before Completing ANY Task
+
+| Phase | Checkpoint |
+|-------|------------|
+| **Debug** | Bug reproduced → Root cause found → Fix verified → Regression test |
+| **Feature** | Spec confirmed → Code written → Tests pass → No broken imports |
+| **Refactor** | Before metrics → After metrics → All tests pass → Behavior unchanged |
+| **Deploy** | Tests pass → Build succeeds → Config verified → Rollback plan exists |
+
+---
+
+## Anti-Patterns (NEVER DO)
+
+| ❌ Anti-Pattern | ✅ Evidence-Based Alternative |
+|-----------------|-------------------------------|
+| "Maybe if I change this..." | Reproduce first, then hypothesize |
+| "This should work" | Run it, show output |
+| "I'll fix this while I'm here" | Log it, stay focused on original task |
+| "Let me restructure everything" | Measure problem, propose minimal fix |
+| "It works on my end" | Show test output + edge cases |
+| Auto-fixing without asking | Present evidence → Ask → Then fix |
+
+---
+
+## Token Optimization
+
+This skill is **read-once, apply-always**:
+- ✅ Internalize rules → Apply silently
+- ❌ Do NOT repeat rules in output
+- ❌ Do NOT add verbose evidence headers for simple tasks
+- ✅ For **complex tasks only**: show Evidence Format block
+- ✅ For **simple fixes**: just verify and apply
+
+> **Rule of thumb:** Evidence overhead should be proportional to task complexity.
+> Simple rename? Just do it. Architecture change? Full evidence gate.
+
+---
+
+## Integration Points
+
+| Workflow | How This Skill Helps |
+|----------|---------------------|
+| `/debug` | Enforce reproduce → isolate → understand → fix |
+| `/code` | Verify spec before coding, test after |
+| `/refactor` | Measure before/after, no blind restructuring |
+| `/deploy` | All gates must pass before deploy |
+| `/audit` | Evidence-based security findings |

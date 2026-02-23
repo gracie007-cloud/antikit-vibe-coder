@@ -4,6 +4,73 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.9.3] - 2026-02-23
+
+### 🎯 Multi-Agent Format Clarification — Flexible SUPPORT Count
+
+Clarified multi-agent rules: PRIMARY is always exactly 1 agent, SUPPORT supports 1+ agents with clear escalation rules.
+
+### Changed
+- **Identity Visibility** (all 4 languages × 2 installers):
+  - Format now shows `@[agent2], @[...]` for multiple SUPPORTs
+  - PRIMARY = always 1. If ≥3 domains → PRIMARY = `orchestrator`
+  - SUPPORT = always ≥1. If ≥3 domains → multiple SUPPORTs
+
+---
+
+## [1.9.2] - 2026-02-23
+
+### 🤖 Multi-Agent Identity Enforcement — Always PRIMARY + SUPPORT
+
+Fixed: Identity Visibility rule now **enforces** multi-agent display at GEMINI.md level. Previously, workflows only showed 1 agent despite the Multi-Agent Protocol requiring minimum 2.
+
+### Changed
+
+#### Identity Visibility Rule (All 4 Languages × 2 Installers)
+- **Before:** `> 🆔 **Agent:** [Name] | 🛠️ **Skills:** [List]` — only showed 1 agent
+- **After:** `> 🤖 **PRIMARY:** @[agent] | **SUPPORT:** @[agent2] | 🛠️ **Skills:** [list]` — enforces 2+ agents
+- New rule: "ALWAYS have a SUPPORT, never just 1 agent"
+- PRIMARY from workflow `> **Context:**` or AGENT INDEX keyword match
+- SUPPORT from AGENT INDEX keyword match on request
+
+### Benefits
+- Multi-Agent Protocol is now enforced at the highest priority level (GEMINI.md)
+- AI cannot skip SUPPORT agent selection even when workflow specifies only 1 Context
+- Consistent multi-perspective output in every response
+
+---
+
+## [1.9.1] - 2026-02-23
+
+### 🔬 Evidence Discipline + Context Integrity — No Vibe Coding
+
+New skill that enforces evidence-based development and prevents context drift. Inspired by [HiveMind](https://github.com/shynlee04/hivemind-plugin) governance patterns, optimized for AntiKit's rule-based system.
+
+### Added
+
+#### New Skill: `evidence-discipline`
+- **Evidence Gates** — Mandatory proof before action (reproduce bugs, benchmark before optimize, compare before adding dependencies)
+- **Context Integrity** — Self-check rules to detect drift: goal alignment, scope creep, rabbit holes, file coherence
+- **Intent Declaration** — State goal/scope/estimate at start of complex tasks
+- **Verification Checkpoints** — Phase-specific checklist (Debug, Feature, Refactor, Deploy)
+- **Token Optimization** — Read-once, apply-always; evidence overhead proportional to task complexity
+
+### Changed
+- **7 agents** now include `evidence-discipline` in their skills:
+  - `orchestrator`, `debugger`, `backend-specialist`, `frontend-specialist`
+  - `code-archaeologist`, `test-engineer`, `explorer-agent`
+- **`install.sh`** — Added `evidence-discipline` to SKILLS array
+- **`install.ps1`** — Added `evidence-discipline` to $Skills array
+
+### Benefits
+- Prevents "maybe if I change this..." random fixes
+- Forces bug reproduction before attempting fixes
+- Catches scope creep and context drift mid-task
+- Zero token overhead for simple tasks; full evidence gates for complex ones
+- Integrates with existing workflows (`/debug`, `/code`, `/refactor`, `/deploy`, `/audit`)
+
+---
+
 ## [1.9.0] - 2026-02-23
 
 ### 🤖 Multi-Agent Task Protocol — Dynamic Agent Selection
