@@ -4,6 +4,19 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.9.8] - 2026-02-23
+
+### 🗣️ Dialect & Regional Language Detection
+
+AI now detects local speech patterns (miền Nam/Bắc, Gen Z, Kansai, 繁體/简体, casual English) to calibrate formality.
+
+### Added
+- **Dialect signal matrix** — 10 regional patterns across 4 languages
+- **Critical rules** — RECOGNIZE dialect but NEVER mimic (AI stays professional)
+- **Examples** — miền Nam casual, miền Bắc polite, Gen Z energy matching
+
+---
+
 ## [1.9.7] - 2026-02-23
 
 ### 🌏 Cultural Adaptation — AI Speaks Your Culture
