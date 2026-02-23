@@ -2,10 +2,10 @@
 
 # AntiKit 🚀
 
-**Antigravity AI 的 "Vibe Coding" 伴侣。**
-*凭感觉写代码。逻辑交给 AI。* 🧘‍♂️✨
+**Antigravity 的 "Vibe Coding" 伴侣。**
+*凭感觉写代码，让AI处理逻辑。* 🧘‍♂️✨
 
-[![Version](https://img.shields.io/badge/Version-1.6.0-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/Version-1.9.3-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/Docs-Read%20Manual-orange?style=for-the-badge)](https://antikit.pages.dev/docs)
 [![Website](https://img.shields.io/badge/Website-antikit.pages.dev-purple?style=for-the-badge)](https://antikit.pages.dev)
@@ -17,51 +17,68 @@
 
 ---
 
-## 🤔 为什么选择 AntiKit?
+## 🤔 为什么需要 AntiKit？
 
-你拥有 **Google Antigravity**，目前最强大的 AI 编程代理。但有时感觉...
-- 😥 **太技术化:** "Contexts", "Schemas", "Prompts"... 头都大了！
-- 🇺🇸 **全是英语:** 你问中文，它回英文（或者奇怪的翻译腔）。
-- 😨 **太危险:** 万一它删了我的 `C:\Windows` 文件夹怎么办？
-- 😵 **太混乱:** 谁在说话？程序员？测试员？
+你拥有 **Google Antigravity**，最强大的AI编程代理。但有时候感觉...
+- 😥 **太技术化：** "上下文"、"Schema"、"提示词"...让人头疼！
+- 🎲 **太随机：** 你要一个功能，它给你一堂课。
+- 😨 **太冒险：** 万一它删了 `C:\Windows` 怎么办？
+- 😵 **太混乱：** 正在和谁对话？开发者？测试员？
 
-**AntiKit** 解决了这一切。它将 Antigravity 的原始引擎变成了一辆谁都能开的 **豪华跑车**。
+**AntiKit** 解决一切问题。它将 Antigravity 的原始引擎变成了任何人都能驾驶的**豪华跑车**。
 
 ---
 
-## ✨ "Vibe Coding" 的四大支柱
+## ✨ "Vibe Coding" 六大支柱
 
-### 1. 🌏 母语流利 (说你的语言)
-不再有 "Chinglish"。AntiKit 强制 AI 100% 使用这中文 **思考和回答**。
-> *不再是: "Here is your code" -> 现在是: "代码好了，老板！"*
+### 1. 🌏 严格语言控制（无语言漂移）
+Antigravity 总爱默认英语。AntiKit 强制AI **100%使用你选择的语言**（中文、越南语、日语等）。
+> *再也不会中途切换语言了。*
 
-### 2. 🛡️ 零恐惧安全 (沙盒模式)
-安心写代码。我们安装了 **数字力场**:
-- 🚫 **阻止破坏性命令:** 禁止 `rm -rf` 或 `format`。
-- 🔒 **项目锁定:** AI 不能触碰项目文件夹以外的任何东西。
-- 🧱 **系统保护:** 你的操作系统文件是不可触碰的。
+### 2. 🛡️ 零恐惧安全（沙盒模式）
+安心编程。我们安装了**数字力场**：
+- 🚫 **阻止破坏性命令：** 禁止 `rm -rf`。
+- 🔒 **项目锁定：** AI 不能触碰项目文件夹以外的任何东西。
+- 🧱 **系统保护：** 你的OS文件不可侵犯。
 
-### 3. 🆔 清晰徽章 (了解你的团队)
-AntiKit 给每个 AI 代理都挂了名牌。你永远知道谁在为你工作。
-> `> 🆔 Agent: @architect (架构师) | 🛠️ Skills: 规划, 设计`
+### 3. 🤖 多代理协作（2+大脑，1个任务）`新功能`
+每个任务现在有**多个AI代理**协作 — PRIMARY 专家主导，SUPPORT 代理提供跨领域知识。
+> `> 🤖 PRIMARY: @backend | SUPPORT: @security, @database | 🛠️ Skills: api-patterns, vulnerability-scanner`
 
-### 4. 🧠 监督大脑 (自动修正)
-我们给 AI 植入了一个 "良心"。在它给你代码之前，它会偷偷问自己:
-> *"等等，这代码够好吗？高级开发人员会批准吗？"*
-它会在你看到之前 **自动修复** 自己的错误。
+不再有单一视角的答案。每次请求都获得**多专家输出**。
+
+### 4. 🔬 证据纪律（无感觉Bug）`新功能`
+永远消灭"凭感觉写代码"的Bug。AI在动你的代码之前，必须证明需求：
+- 🐛 **修复Bug？** → 必须先复现。
+- ⚡ **优化？** → 必须有前后基准测试。
+- 📦 **添加依赖？** → 必须比较2+替代方案。
+- 🚀 **部署？** → 所有测试必须通过。
+
+> *不再有"也许改一下这个就行..."的随机修复。*
+
+### 5. 🧠 监督大脑（自动纠正）
+我们给AI植入了"良心"。在给你代码之前，它会自问：
+> *"等等，这代码够好吗？高级开发者会批准吗？"*
+在你看到之前**就自动修正**错误。
+
+### 6. 🎯 上下文完整性（防漂移）
+AI每隔几轮自我检查：*"我还在解决原来的请求吗？"*
+- 在**范围蔓延**扩散之前就捕获。
+- 检测**兔子洞**并自我拉回。
+- 确保编辑全程的**文件一致性**。
 
 ---
 
 ## 🚀 一键安装
 
-你不需要是技术大神。只需打开终端并粘贴此 **魔法咒语**:
+无需技术专家。打开终端，粘贴这个**魔法咒语**：
 
 ### 🪟 Windows (PowerShell)
 ```powershell
 # 中文
 iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex -Language zh
 
-# 英文 (默认)
+# 英语（默认）
 iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
 ```
 
@@ -70,60 +87,69 @@ iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | 
 # 中文
 curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang zh
 
-# 英文 (默认)
+# 英语（默认）
 curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
-> **💡 提示:** 随时更改语言: `/config language [en|vi|ja|zh]`
+> **💡 提示：** 随时用 `/config language [en|vi|ja|zh]` 更改语言
 
 ---
 
-## 🎮 如何 "Vibe"?
+## 🎮 如何 "Vibe"？
 
-安装后，只需在聊天中输入这些 `/slash` 命令即可召唤专家:
+安装完成后，在聊天中输入斜杠命令召唤专家：
 
 | 命令 | 召唤... | 当你感觉... |
 | :--- | :--- | :--- |
-| `/brainstorm` | 💡 **创意大师** | "我有想法，但不知道从哪里开始..." |
-| `/plan` | 📝 **架构师** | "编码前我需要一个可靠的计划。" |
-| `/visualize` | 🎨 **设计师** | "我想要它看起来很漂亮。" |
-| `/code` | 💻 **高级开发** | "直接帮我写代码，我懒得动。" |
-| `/deploy` | 🚀 **DevOps** | "把这东西发布到网上！" |
+| `/brainstorm` | 💡 **创意大师** | "有想法但不知道从哪开始..." |
+| `/plan` | 📝 **架构师** | "编码前需要一个靠谱的计划。" |
+| `/visualize` | 🎨 **设计师** | "想要漂亮的界面。" |
+| `/code` | 💻 **高级开发** | "帮我写代码。" |
+| `/deploy` | 🚀 **运维** | "把这个东西上线！" |
 | `/audit` | 🏥 **医生** | "我的代码健康吗？安全吗？" |
-| `/recap` | 🧠 **秘书** | "提醒我一下，我们刚才做到哪了？" |
+| `/recap` | 🧠 **秘书** | "刷新一下记忆，我们在做什么？" |
 
 ---
 
-## 🛠️ 也适合技术专家 (PRO) ⚡
+## 🛠️ 也适合专业人士 ⚡
 
-以为 AntiKit 只是给新手用的？ **再想一想。** 它是高级开发人员的外骨骼：
+认为 AntiKit 只适合初学者？**大错特错。** 这是高级开发者的外骨骼装甲：
 
-1.  **⚡ 极速效率:** 在 1 秒内自动化那些无聊的事情（设置、配置、样板代码）。
-2.  **🧠 44个专家技能:** 我们的代理预装了深厚的知识：
-    *   **技术:** Next.js, React, Node.js, Python, Rust, Docker, Cloudflare.
-    *   **方法论:** TDD, Clean Code, DDD, 安全模式.
-    *   **专长:** SEO, UX/UI, 性能分析, 移动端, 游戏开发.
-3.  **⚡ 力量模式标志:** 用简单的标志解锁专家代理：
-    *   `/code --mobile` → React Native技能的移动端专家
-    *   `/audit --pentest` → MITRE ATT&CK的渗透测试员
-    *   `/deploy --docker` → Docker技能的DevOps专家
-4.  **👮 强制执行:** 在整个团队中强制执行 **Linting、测试和安全** 规则。
-5.  **🧘 深度心流:** 让AI在后台安全地处理脏活累活。
-
----
-
-## 📦 盒子里有什么?
-
--   **20个专业代理:** 前端, 后端, 安全, SEO, 移动端, 游戏开发...
--   **29个工作流:** 4种语言的斜杠命令，带有**力量模式标志**。
--   **44个技能:** 按需加载的专业知识模块。
--   **全局记忆 (GEMINI.md):** 强制执行安全、语言和路由的“大脑”。
+1.  **⚡ 极速效率：** 1秒自动化无聊工作（设置、配置、模板代码）。
+2.  **🧠 45项专家技能：** 代理预装深度知识：
+    *   **技术：** Next.js、React、Node.js、Python、Rust、Docker、Cloudflare。
+    *   **方法论：** TDD、Clean Code、DDD、Evidence Discipline、安全模式。
+    *   **专项：** SEO、UX/UI、性能优化、移动端、游戏开发。
+3.  **🤖 多代理协议：** 每个任务 **2+代理** 协作：
+    *   PRIMARY（领域专家）+ SUPPORT（跨领域审查）
+    *   从20个代理的 AGENT INDEX 自动选择
+    *   构建/创建任务强制交叉审查
+4.  **⚡ 强力模式标志：** 用简单标志解锁专家代理：
+    *   `/code --mobile` → React Native 移动端专家
+    *   `/audit --pentest` → MITRE ATT&CK 渗透测试员
+    *   `/deploy --docker` → Docker DevOps 专家
+5.  **🔬 证据门：** 不再有"在我这里能跑"：
+    *   修复Bug需要复现步骤
+    *   重构需要前后指标
+    *   部署需要测试通过
+6.  **🧘 深度心流：** 保持在心流区，代理安全处理杂务。
 
 ---
 
-## 🤝 致谢 (Credits)
+## 📦 里面有什么？
 
-本项目参考了 [TUAN130294](https://github.com/TUAN130294) 的 [AWF (Antigravity Workflow Framework)](https://github.com/TUAN130294/awf)。
+-   **20个专家代理：** 前端、后端、安全、SEO、移动端、游戏开发...
+-   **29个工作流：** 4种语言优化的斜杠命令，带**强力模式标志**。
+-   **45项技能：** 按需加载的深度知识模块。
+-   **多代理协议：** 每个任务自动选择 PRIMARY + SUPPORT 代理。
+-   **证据纪律：** 基于证据的开发，无感觉Bug。
+-   **全局记忆（GEMINI.md）：** 管理安全、语言和路由的"大脑"。
+
+---
+
+## 🤝 致谢
+
+本项目参考了 [AWF (Antigravity Workflow Framework)](https://github.com/TUAN130294/awf) by [TUAN130294](https://github.com/TUAN130294)。
 
 ---
 

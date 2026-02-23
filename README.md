@@ -5,7 +5,7 @@
 **The "Vibe Coding" Companion for Antigravity.**
 *Code by feeling. Let AI handle the logic.* 🧘‍♂️✨
 
-[![Version](https://img.shields.io/badge/Version-1.6.0-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/Version-1.9.3-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/Docs-Read%20Manual-orange?style=for-the-badge)](https://antikit.pages.dev/docs)
 [![Website](https://img.shields.io/badge/Website-antikit.pages.dev-purple?style=for-the-badge)](https://antikit.pages.dev)
@@ -22,14 +22,14 @@
 You have **Google Antigravity**, the most powerful AI coding agent. But sometimes it feels...
 - 😥 **Too Technical:** "Contexts", "Schemas", "Prompts"... confusing!
 - 🎲 **Too Random:** You ask for a feature, it gives you a lecture.
-- 😨 **Too Risky:** What if it deletes my `C:\Windows` folder?
+- 😨 **Too Risky:** What if it deletes your `C:\Windows` folder?
 - 😵 **Too Chaotic:** Who is talking? The coder? The tester?
 
 **AntiKit** fixes all of that. It turns the raw engine of Antigravity into a **Luxury Sports Car** that anyone can drive.
 
 ---
 
-## ✨ The 4 Pillars of "Vibe Coding"
+## ✨ The 6 Pillars of "Vibe Coding"
 
 ### 1. 🌏 Strict Language Enforcement (No Language Drift)
 Antigravity loves to default to English. AntiKit forces it to **stick to your preferred language** (Vietnamese, Japanese, Chinese, etc.) 100% of the time.
@@ -41,14 +41,31 @@ Code with total peace of mind. We installed a **Digital Force Field**:
 - 🔒 **Project Lockdown:** AI cannot touch anything outside your project folder.
 - 🧱 **System Protection:** Your OS files are untouchable.
 
-### 3. 🆔 Clarity Badges (Know Your Team)
-AntiKit gives every AI agent a name tag. You always know who is working for you.
-> `> 🆔 Agent: @architect (Architect) | 🛠️ Skills: Planning, Design`
+### 3. 🤖 Multi-Agent Collaboration (2+ Brains, 1 Task) `NEW`
+Every task now uses **multiple AI agents** working together — a PRIMARY expert leads, and SUPPORT agents provide cross-domain knowledge.
+> `> 🤖 PRIMARY: @backend | SUPPORT: @security, @database | 🛠️ Skills: api-patterns, vulnerability-scanner`
 
-### 4. 🧠 Supervisor Brain (Auto-Correction)
+No more single-perspective answers. You get **multi-expert output** on every request.
+
+### 4. 🔬 Evidence Discipline (No Vibe Bugs) `NEW`
+We killed "vibe coding" bugs forever. Before AI touches your code, it must prove the need:
+- 🐛 **Fix bug?** → Must reproduce it first.
+- ⚡ **Optimize?** → Must benchmark before and after.
+- 📦 **Add dependency?** → Must compare 2+ alternatives.
+- 🚀 **Deploy?** → All tests must pass first.
+
+> *No more "maybe if I change this..." random fixes.*
+
+### 5. 🧠 Supervisor Brain (Auto-Correction)
 We implanted a "Conscience" into the AI. Before it gives you code, it secretly asks itself:
 > *"Wait, is this code good enough? Would a Senior Dev approve this?"*
 It fixes its own mistakes **before** you even see them.
+
+### 6. 🎯 Context Integrity (Anti-Drift)
+AI checks itself every few turns: *"Am I still solving the original request?"*
+- Catches **scope creep** before it spreads.
+- Detects **rabbit holes** and pulls itself back.
+- Ensures **file coherence** across edits.
 
 ---
 
@@ -99,16 +116,23 @@ Once installed, just type these slash commands in your chat to summon experts:
 Think AntiKit is just for beginners? **Think again.** It's an exoskeleton for Senior Devs:
 
 1.  **⚡ Blazing Efficiency:** Automate the boring stuff (setup, config, boilerplate) in 1 second.
-2.  **🧠 44 Expert Skills:** Our agents come pre-loaded with deep knowledge in:
+2.  **🧠 45 Expert Skills:** Our agents come pre-loaded with deep knowledge in:
     *   **Tech:** Next.js, React, Node.js, Python, Rust, Docker, Cloudflare.
-    *   **Methodology:** TDD, Clean Code, DDD, Security Patterns.
+    *   **Methodology:** TDD, Clean Code, DDD, Security Patterns, Evidence Discipline.
     *   **Specialty:** SEO, UX/UI, Performance Profiling, Mobile, Game Dev.
-3.  **⚡ Power Mode Flags:** Unlock specialist agents with simple flags:
+3.  **🤖 Multi-Agent Protocol:** Every task gets **2+ agents** collaborating:
+    *   PRIMARY (domain expert) + SUPPORT (cross-domain review)
+    *   Automatic agent selection from 20-agent AGENT INDEX
+    *   Mandatory cross-review on build/create tasks
+4.  **⚡ Power Mode Flags:** Unlock specialist agents with simple flags:
     *   `/code --mobile` → Mobile expert with React Native skills
     *   `/audit --pentest` → Penetration tester with MITRE ATT&CK
     *   `/deploy --docker` → DevOps expert with Docker skills
-4.  **👮 Enforcement:** Use AntiKit to enforce **Linting, Testing, and Safety** rules across your team.
-5.  **🧘 Deep Flow:** Stay in the zone while the Agent handles the grunt work safely.
+5.  **🔬 Evidence Gates:** No more "works on my machine":
+    *   Bug fixes require reproduction steps
+    *   Refactors require before/after metrics
+    *   Deploys require passing tests
+6.  **🧘 Deep Flow:** Stay in the zone while the Agent handles the grunt work safely.
 
 ---
 
@@ -116,7 +140,9 @@ Think AntiKit is just for beginners? **Think again.** It's an exoskeleton for Se
 
 -   **20 Specialist Agents:** Frontend, Backend, Security, SEO, Mobile, Game Dev...
 -   **29 Workflows:** Optimized slash commands in 4 languages with **Power Mode flags**.
--   **44 Skills:** Deep knowledge modules loaded on-demand.
+-   **45 Skills:** Deep knowledge modules loaded on-demand.
+-   **Multi-Agent Protocol:** Auto-select PRIMARY + SUPPORT agents per task.
+-   **Evidence Discipline:** Proof-first development, no vibe bugs.
 -   **Global Memory (GEMINI.md):** The "Brain" that enforces safety, language, and routing.
 
 ---
