@@ -4,7 +4,22 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
-## [1.13.1] - 2026-02-23
+## [1.13.2] - 2026-02-24
+
+### 🛡️ GEMINI.md Protection & Installer Fixes
+
+### Added
+- **Auto-Backup** — GEMINI.md auto-backed up before every update (keeps 3 most recent)
+- **Custom Content Detection** — Detects and reports user custom rules outside markers
+- **Update Report** — Shows summary after GEMINI.md update (backup path, lines updated, custom rules preserved)
+
+### Fixed
+- **awk crash** — Replaced broken `awk -v` multiline approach with `sed` + temp file (fixes GEMINI.md becoming empty)
+- **Skill Index fallback** — Skills without YAML frontmatter now indexed using directory name + description line
+- Both `install.sh` and `install.ps1` updated
+
+---
+
 
 ### 🔧 Orphan Workflow Fix + Full save_brain Translation
 

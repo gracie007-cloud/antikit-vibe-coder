@@ -351,9 +351,10 @@ foreach ($skill in $Skills) {
     if (-not (Test-Path $skillFile)) { continue }
     $sName = ""; $sDesc = ""
     $inFm = $false
+    $hasFm = $false
     foreach ($line in (Get-Content $skillFile)) {
         if ($line -eq "---") {
-            if (-not $inFm) { $inFm = $true; continue } else { break }
+            if (-not $inFm) { $inFm = $true; $hasFm = $true; continue } else { break }
         }
         if ($inFm -and $line -match '^(\w+):\s*(.+)$') {
             switch ($Matches[1]) {
@@ -361,6 +362,12 @@ foreach ($skill in $Skills) {
                 'description' { $sDesc = $Matches[2] }
             }
         }
+    }
+    # Fallback: no frontmatter -> use directory name + first > line
+    if (-not $sName) {
+        $sName = $skill
+        $descLine = Get-Content $skillFile | Where-Object { $_ -match '^>' } | Select-Object -First 1
+        if ($descLine) { $sDesc = ($descLine -replace '^>\s*', '').Trim() }
     }
     if ($sDesc.Length -gt 100) { $sDesc = $sDesc.Substring(0, 100) + "..." }
     if ($sName) { $SkillIndexRows += "| $sName | $sDesc |" }
@@ -438,6 +445,23 @@ $StartMarker = "<!-- ANTIKIT_START -->"
 $EndMarker = "<!-- ANTIKIT_END -->"
 $FullContent = "$StartMarker`n$AntiKitInstructions`n$EndMarker"
 
+# ── AUTO-BACKUP ──────────────────────────────────────────────
+$BackupCreated = ""
+if (Test-Path $GeminiMd) {
+    $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+    $BackupFile = "${GeminiMd}.backup.${timestamp}"
+    Copy-Item $GeminiMd $BackupFile -Force
+    $BackupCreated = $BackupFile
+    Write-Host "[BACKUP] $(Split-Path $BackupFile -Leaf)" -ForegroundColor Green
+
+    # Keep only 3 most recent backups
+    $backups = Get-ChildItem "${GeminiMd}.backup.*" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending
+    if ($backups.Count -gt 3) {
+        $backups | Select-Object -Skip 3 | Remove-Item -Force
+    }
+}
+
+# ── UPDATE GEMINI.MD ─────────────────────────────────────────
 if (-not (Test-Path $GeminiMd)) {
     [System.IO.File]::WriteAllText($GeminiMd, $FullContent, [System.Text.Encoding]::UTF8)
     Write-Host "[OK] Created Global Rules (GEMINI.md)" -ForegroundColor Green
@@ -455,7 +479,6 @@ else {
     }
     else {
         # Scenario B: Legacy Header or Fresh Install
-        # Remove old AntiKit or AWF section if found (Legacy Migration)
         $antiKitMarker = "# AntiKit - Enhancement Kit for Antigravity"
         $awfMarker = "# AWF - Antigravity Workflow Framework"
         
@@ -472,6 +495,42 @@ else {
         [System.IO.File]::WriteAllText($GeminiMd, $content, [System.Text.Encoding]::UTF8)
         Write-Host "[OK] Updated Global Rules (GEMINI.md) - Migrated/Appended" -ForegroundColor Green
     }
+}
+
+# ── DETECT CUSTOM CONTENT ───────────────────────────────────
+$CustomBefore = 0
+$CustomAfter = 0
+$AntiKitLineCount = 0
+
+if (Test-Path $GeminiMd) {
+    $allContent = Get-Content $GeminiMd -Raw -ErrorAction SilentlyContinue
+    if ($allContent -and $allContent.Contains($StartMarker) -and $allContent.Contains($EndMarker)) {
+        $startIdx = $allContent.IndexOf($StartMarker)
+        $endIdx = $allContent.IndexOf($EndMarker) + $EndMarker.Length
+        $beforeContent = if ($startIdx -gt 0) { $allContent.Substring(0, $startIdx).Trim() } else { "" }
+        $afterContent = if ($endIdx -lt $allContent.Length) { $allContent.Substring($endIdx).Trim() } else { "" }
+        $antiKitContent = $allContent.Substring($startIdx, $endIdx - $startIdx)
+        if ($beforeContent) { $CustomBefore = ($beforeContent -split "`n" | Where-Object { $_.Trim() }).Count }
+        if ($afterContent) { $CustomAfter = ($afterContent -split "`n" | Where-Object { $_.Trim() }).Count }
+        $AntiKitLineCount = ($antiKitContent -split "`n").Count
+    }
+}
+
+Write-Host ""
+Write-Host "[REPORT] GEMINI.md UPDATE REPORT:" -ForegroundColor Cyan
+if ($BackupCreated) {
+    Write-Host "   [BACKUP] $(Split-Path $BackupCreated -Leaf)" -ForegroundColor Green
+}
+Write-Host "   [UPDATE] AntiKit rules: Updated ($AntiKitLineCount lines)" -ForegroundColor Green
+if ($CustomBefore -gt 0) {
+    Write-Host "   [CUSTOM] Rules before markers: $CustomBefore lines - preserved" -ForegroundColor Green
+}
+if ($CustomAfter -gt 0) {
+    Write-Host "   [CUSTOM] Rules after markers: $CustomAfter lines - preserved" -ForegroundColor Green
+}
+if ($CustomBefore -eq 0 -and $CustomAfter -eq 0) {
+    Write-Host "   [CUSTOM] No custom rules detected" -ForegroundColor Yellow
+    Write-Host "   [TIP] Add your custom rules OUTSIDE the markers to preserve them during updates" -ForegroundColor Yellow
 }
 
 # Summary

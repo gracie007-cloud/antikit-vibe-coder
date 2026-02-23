@@ -335,15 +335,22 @@ for skill_dir in "$SKILLS_DIR"/*/; do
     [ -f "$skill_file" ] || continue
     s_name="" s_desc=""
     in_fm=0
+    has_fm=0
+    # Try YAML frontmatter first
     while IFS= read -r line; do
         case "$line" in
-            "---") [ $in_fm -eq 0 ] && in_fm=1 || break ;;
+            "---") [ $in_fm -eq 0 ] && { in_fm=1; has_fm=1; } || break ;;
             *) if [ $in_fm -eq 1 ]; then
                 key="${line%%:*}"; val="${line#*: }"
                 case "$key" in name) s_name="$val";; description) s_desc="$val";; esac
             fi ;;
         esac
     done < "$skill_file"
+    # Fallback: no frontmatter → use directory name + first description line
+    if [ -z "$s_name" ]; then
+        s_name=$(basename "$skill_dir")
+        s_desc=$(grep -m1 '^>' "$skill_file" 2>/dev/null | sed 's/^> *//' || echo "")
+    fi
     # Truncate long descriptions
     [ ${#s_desc} -gt 100 ] && s_desc="${s_desc:0:100}..."
     [ -n "$s_name" ] && SKILL_INDEX="$SKILL_INDEX
@@ -417,43 +424,51 @@ Cross-review format:
 ANTIKIT_INSTRUCTIONS="$ANTIKIT_INSTRUCTIONS
 $MULTI_AGENT_PROTOCOL"
 
+# Write instructions to a temp file (avoids awk multiline variable issues)
+INSTR_TMP="${GEMINI_MD}.instr.tmp"
+printf '%s\n' "$ANTIKIT_INSTRUCTIONS" > "$INSTR_TMP"
+
+START_MARKER="<!-- ANTIKIT_START -->"
+END_MARKER="<!-- ANTIKIT_END -->"
+
+# ── AUTO-BACKUP ──────────────────────────────────────────────
+BACKUP_CREATED=""
+if [ -f "$GEMINI_MD" ]; then
+    BACKUP_FILE="${GEMINI_MD}.backup.$(date +%Y%m%d_%H%M%S)"
+    cp "$GEMINI_MD" "$BACKUP_FILE"
+    BACKUP_CREATED="$BACKUP_FILE"
+    echo -e "${GREEN}💾 Backup: $(basename "$BACKUP_FILE")${NC}"
+
+    # Keep only 3 most recent backups, remove older ones
+    ls -t "${GEMINI_MD}.backup."* 2>/dev/null | tail -n +4 | while read -r old_backup; do
+        rm -f "$old_backup"
+    done
+fi
+
+# ── UPDATE GEMINI.MD ─────────────────────────────────────────
 if [ ! -f "$GEMINI_MD" ]; then
-    echo "<!-- ANTIKIT_START -->" > "$GEMINI_MD"
-    echo "$ANTIKIT_INSTRUCTIONS" >> "$GEMINI_MD"
-    echo "<!-- ANTIKIT_END -->" >> "$GEMINI_MD"
+    echo "$START_MARKER" > "$GEMINI_MD"
+    cat "$INSTR_TMP" >> "$GEMINI_MD"
+    echo "$END_MARKER" >> "$GEMINI_MD"
     echo -e "${GREEN}✅ Created Global Rules (GEMINI.md)${NC}"
 else
-    # Robust update using Markers
-    START_MARKER="<!-- ANTIKIT_START -->"
-    END_MARKER="<!-- ANTIKIT_END -->"
-    
     if grep -q "$START_MARKER" "$GEMINI_MD" && grep -q "$END_MARKER" "$GEMINI_MD"; then
-        # Scenario A: Markers exist - Block Replace using awk to preserve content before/after
-        # Create temp file
+        # Scenario A: Markers exist - Block Replace
+        # Extract content before start marker and after end marker, sandwich new content
         TMP_FILE="${GEMINI_MD}.tmp"
-        
-        # AWK script to replace block
-        awk -v start="$START_MARKER" -v end="$END_MARKER" -v new_content="$ANTIKIT_INSTRUCTIONS" '
-        $0 ~ start {
-            print start
-            print new_content
-            print end
-            skip = 1
-            next
-        }
-        $0 ~ end {
-            skip = 0
-            next
-        }
-        !skip { print }
-        ' "$GEMINI_MD" > "$TMP_FILE"
+        {
+            sed -n "1,/^${START_MARKER}/{ /^${START_MARKER}/!p; }" "$GEMINI_MD"
+            echo "$START_MARKER"
+            cat "$INSTR_TMP"
+            echo "$END_MARKER"
+            sed -n "/^${END_MARKER}/,\${ /^${END_MARKER}/!p; }" "$GEMINI_MD"
+        } > "$TMP_FILE"
         
         mv "$TMP_FILE" "$GEMINI_MD"
         echo -e "${GREEN}✅ Updated Global Rules (GEMINI.md) - Block Replaced${NC}"
         
     else
         # Scenario B: Legacy Header or Fresh Install
-        # Remove old AntiKit or AWF section and replace with new (Legacy Migration)
         if grep -q "AntiKit - Enhancement Kit for Antigravity" "$GEMINI_MD" 2>/dev/null; then
             sed -i.bak '/# AntiKit - Enhancement Kit for Antigravity/,$d' "$GEMINI_MD"
             rm -f "$GEMINI_MD.bak"
@@ -465,11 +480,45 @@ else
         # Append new content with markers
         echo "" >> "$GEMINI_MD"
         echo "$START_MARKER" >> "$GEMINI_MD"
-        echo "$ANTIKIT_INSTRUCTIONS" >> "$GEMINI_MD"
+        cat "$INSTR_TMP" >> "$GEMINI_MD"
         echo "$END_MARKER" >> "$GEMINI_MD"
         echo -e "${GREEN}✅ Updated Global Rules (GEMINI.md) - Migrated/Appended${NC}"
     fi
 fi
+
+# ── DETECT CUSTOM CONTENT ───────────────────────────────────
+CUSTOM_BEFORE=0
+CUSTOM_AFTER=0
+ANTIKIT_LINES=0
+
+if [ -f "$GEMINI_MD" ] && grep -q "$START_MARKER" "$GEMINI_MD" && grep -q "$END_MARKER" "$GEMINI_MD"; then
+    # Count lines before start marker (user's custom rules)
+    CUSTOM_BEFORE=$(sed -n "1,/^${START_MARKER}/{ /^${START_MARKER}/d; /^$/d; p; }" "$GEMINI_MD" | wc -l | tr -d ' ')
+    # Count lines after end marker (user's custom rules)
+    CUSTOM_AFTER=$(sed -n "/^${END_MARKER}/,\${ /^${END_MARKER}/d; /^$/d; p; }" "$GEMINI_MD" | wc -l | tr -d ' ')
+    # Count AntiKit managed lines
+    ANTIKIT_LINES=$(sed -n "/^${START_MARKER}/,/^${END_MARKER}/p" "$GEMINI_MD" | wc -l | tr -d ' ')
+fi
+
+echo ""
+echo -e "${CYAN}📋 GEMINI.md UPDATE REPORT:${NC}"
+if [ -n "$BACKUP_CREATED" ]; then
+    echo -e "   💾 Backup: ${GREEN}$(basename "$BACKUP_CREATED")${NC}"
+fi
+echo -e "   🔄 AntiKit rules: ${GREEN}Updated ($ANTIKIT_LINES lines)${NC}"
+if [ "$CUSTOM_BEFORE" -gt 0 ] 2>/dev/null; then
+    echo -e "   📝 Custom rules (before markers): ${GREEN}$CUSTOM_BEFORE lines ✅ preserved${NC}"
+fi
+if [ "$CUSTOM_AFTER" -gt 0 ] 2>/dev/null; then
+    echo -e "   📝 Custom rules (after markers): ${GREEN}$CUSTOM_AFTER lines ✅ preserved${NC}"
+fi
+if [ "$CUSTOM_BEFORE" -eq 0 ] 2>/dev/null && [ "$CUSTOM_AFTER" -eq 0 ] 2>/dev/null; then
+    echo -e "   📝 Custom rules: ${YELLOW}None detected${NC}"
+    echo -e "   ${YELLOW}💡 Tip: Add your custom rules OUTSIDE the markers to preserve them during updates${NC}"
+fi
+
+# Clean up temp file
+rm -f "$INSTR_TMP"
 
 # Summary
 echo ""
