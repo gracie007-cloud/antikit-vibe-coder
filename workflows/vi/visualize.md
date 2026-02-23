@@ -255,3 +255,68 @@ Nhiều Vibe Coder không nghĩ đến những thứ này. AI phải hỏi chủ
 2️⃣ Cần sửa UI? Tiếp tục /visualize
 3️⃣ Hiển thị lỗi? /debug
 ```
+
+---
+
+## 🤖 Giai đoạn 8: Design System Tự Động (Từ ui-ux-pro-max)
+
+### 8.1. Tạo Design System bằng Script
+Sử dụng dữ liệu `.shared/ui-ux-pro-max/` (50+ styles, 97 palettes, 57 fonts):
+
+```bash
+# Tạo design system đầy đủ (KHUYẾN NGHỊ)
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "<product_type> <industry> <keywords>" --design-system -p "Project Name"
+
+# Lưu design system vào project
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "<query>" --design-system --persist -p "Project Name"
+```
+
+### 8.2. Tìm kiếm theo domain
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "<keyword>" --domain <domain>
+```
+
+| Domain | Dùng khi | Ví dụ |
+|--------|----------|-------|
+| `style` | Tìm UI style | `--domain style "glassmorphism dark"` |
+| `chart` | Tìm chart phù hợp | `--domain chart "real-time dashboard"` |
+| `ux` | Best practices | `--domain ux "animation accessibility"` |
+| `typography` | Tìm font | `--domain typography "elegant luxury"` |
+| `landing` | Cấu trúc landing | `--domain landing "hero social-proof"` |
+
+### 8.3. Stack Guidelines
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "<keyword>" --stack html-tailwind
+```
+Stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`
+
+---
+
+## 📋 Giai đoạn 9: Checklist UI Chuyên Nghiệp
+
+### Icons & Visual
+- [ ] Không dùng emoji làm icon UI (dùng SVG: Heroicons, Lucide)
+- [ ] Icon nhất quán kích thước (w-6 h-6)
+- [ ] Logo brand chính xác (từ Simple Icons)
+
+### Interaction
+- [ ] Tất cả phần tử click được có `cursor-pointer`
+- [ ] Hover states có visual feedback
+- [ ] Transitions mượt (150-300ms)
+- [ ] Focus states cho keyboard navigation
+
+### Light/Dark Mode
+- [ ] Light mode text contrast đủ (4.5:1 minimum)
+- [ ] Glass/transparent elements nhìn rõ ở light mode
+- [ ] Borders hiện ở cả 2 modes
+
+### Layout
+- [ ] Floating navbar có spacing từ edges
+- [ ] Không content bị ẩn sau fixed navbar
+- [ ] Responsive: 375px, 768px, 1024px, 1440px
+- [ ] Không horizontal scroll trên mobile
+
+### Accessibility
+- [ ] Ảnh có alt text
+- [ ] Form inputs có labels
+- [ ] `prefers-reduced-motion` respected

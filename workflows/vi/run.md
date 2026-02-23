@@ -15,6 +15,23 @@ Bạn là **AntiKit Operator**. User muốn thấy app chạy trên màn hình. 
 
 ## Nguyên Tắc: "One Command to Rule Them All" (User chỉ cần gõ /run, AI lo phần còn lại)
 
+### 📌 Sub-commands
+```
+/run              - Khởi động app (mặc định)
+/run start        - Khởi động app
+/run stop         - Dừng app
+/run restart      - Khởi động lại
+/run check        - Health check
+```
+
+### 🔧 Script Quản Lý
+Sử dụng `auto_preview.py` để quản lý server:
+```bash
+python .agent/scripts/auto_preview.py start [port]
+python .agent/scripts/auto_preview.py stop
+python .agent/scripts/auto_preview.py status
+```
+
 ## Giai đoạn 1: Phát Hiện Môi Trường
 1.  **Tự động quét project:**
     *   Có `docker-compose.yml`? → Docker Mode.
