@@ -5,7 +5,7 @@
 ### 把Antigravity变成**赚钱机器。**
 *从"我有个想法" → 开发完成、营销完成、开始赚钱 — 一套工具搞定。*
 
-[![Version](https://img.shields.io/badge/v1.13.1-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.13.2-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/文档-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -102,7 +102,7 @@ curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | 
 
 ---
 
-## 🧠 83项技能 — 不只是代码，是一切
+## 🧠 91项技能 — 不只是代码，是一切
 
 <table>
 <tr>
@@ -210,8 +210,8 @@ AntiKit:
 | 组件 | 数量 | 亮点 |
 |:-----|:-----|:-----|
 | 🤖 Agent | 21 | 每个任务多Agent协作 |
-| 🧠 技能 | 83 | 技术 + 营销 + 安全 + 增长 |
-| ⚡ 工作流 | 30+ | 从头脑风暴到收入 |
+| 🧠 技能 | 91 | 技术 + 营销 + 安全 + 增长 |
+| ⚡ 工作流 | 20 | 从头脑风暴到收入 |
 | 🌍 语言 | 4 | EN, VI, JA, ZH |
 | 🛡️ 安全 | 6层 | 沙盒 + 阻止 + 监督 |
 
@@ -223,7 +223,7 @@ AntiKit:
 |:--------|:---------------|
 | 🌱 **新手** | 安全编码，不怕搞坏，有工作流引导 |
 | 💻 **独立开发者** | Build → Launch → Marketing → Grow **一个工具搞定** |
-| 👨‍💻 **高级开发** | 21 Agent + 83技能 = 效率×10 |
+| 👨‍💻 **高级开发** | 21 Agent + 91技能 = 效率×10 |
 | 🏢 **创业公司** | 全栈 + 营销 + SEO + 增长，从第一天开始 |
 
 ---

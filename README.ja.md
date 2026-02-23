@@ -5,7 +5,7 @@
 ### Antigravityを**マネーマシン**に変える。
 *「アイデアがある」→ 開発、マーケティング、収益化 — ひとつのツールキットで。*
 
-[![Version](https://img.shields.io/badge/v1.13.1-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.13.2-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -102,7 +102,7 @@ curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | 
 
 ---
 
-## 🧠 83スキル — コードだけじゃない、すべて
+## 🧠 91スキル — コードだけじゃない、すべて
 
 <table>
 <tr>
@@ -210,8 +210,8 @@ AntiKit:
 | コンポーネント | 数量 | ハイライト |
 |:--------------|:-----|:-----------|
 | 🤖 エージェント | 21 | 全タスクでマルチエージェント |
-| 🧠 スキル | 83 | 技術 + マーケ + セキュリティ + グロース |
-| ⚡ ワークフロー | 30+ | ブレストから収益まで |
+| 🧠 スキル | 91 | 技術 + マーケ + セキュリティ + グロース |
+| ⚡ ワークフロー | 20 | ブレストから収益まで |
 | 🌍 言語 | 4 | EN, VI, JA, ZH |
 | 🛡️ セキュリティ | 6層 | サンドボックス + ブロック + 監視 |
 
@@ -223,7 +223,7 @@ AntiKit:
 |:-----------|:-------------|
 | 🌱 **初心者** | 安全にコーディング、壊す心配なし |
 | 💻 **個人開発者** | Build → Launch → Marketing → Grow を**1ツールで** |
-| 👨‍💻 **シニアDevr** | 21エージェント + 83スキル = 生産性×10 |
+| 👨‍💻 **シニアDevr** | 21エージェント + 91スキル = 生産性×10 |
 | 🏢 **スタートアップ** | フルスタック + マーケ + SEO + グロースを初日から |
 
 ---

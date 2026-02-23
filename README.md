@@ -5,7 +5,7 @@
 ### Turn Antigravity into a **money-printing machine.**
 *From "I have an idea" → deployed, marketed, and making money — in one toolkit.*
 
-[![Version](https://img.shields.io/badge/v1.13.1-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.13.2-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -102,7 +102,7 @@ Type a command. Get an expert. It's that simple.
 
 ---
 
-## 🧠 83 Skills — Not Just Code, Everything
+## 🧠 91 Skills — Not Just Code, Everything
 
 <table>
 <tr>
@@ -180,10 +180,19 @@ AntiKit:
 | `@devops-engineer` | Docker, CI/CD, Nginx |
 | `@mobile-developer` | React Native, Flutter |
 | `@game-developer` | Unity, Godot, Phaser |
+| `@growth-hacker` | Marketing, launch, pricing, growth |
 | `@performance-optimizer` | Core Web Vitals, profiling |
 | `@test-engineer` | Jest, Playwright, TDD |
-| `@seo-specialist` | Technical SEO, GEO |
-| + 10 more... | |
+| `@seo-specialist` | Technical SEO, GEO, AI SEO |
+| `@debugger` | Systematic debugging, root cause |
+| `@project-planner` | Task breakdown, timeline, phases |
+| `@code-archaeologist` | Legacy code, refactoring, codebase understanding |
+| `@qa-automation-engineer` | Playwright, regression, E2E |
+| `@documentation-writer` | API docs, README, changelogs |
+| `@penetration-tester` | Red team, exploit, attack vectors |
+| `@explorer-agent` | Codebase analysis, architecture |
+| `@product-manager` | Requirements, user stories, roadmap |
+| `@product-owner` | Vision, sprint, acceptance criteria | |
 
 ---
 
@@ -197,6 +206,7 @@ AntiKit:
 | 🧠 **Supervisor Brain** | AI self-corrects before you see mistakes |
 | 🎯 **Anti-Drift** | Catches scope creep automatically |
 | 🔬 **Evidence Gates** | Bug fix? Must reproduce first. Deploy? Tests must pass. |
+| 💾 **Auto-Backup** | GEMINI.md backed up before every update, custom rules preserved |
 
 ---
 
@@ -240,10 +250,10 @@ AntiKit speaks your language natively:
 | Component | Count | Highlights |
 |:----------|:------|:-----------|
 | 🤖 Agents | 21 | Multi-agent collaboration on every task |
-| 🧠 Skills | 83 | Engineering + Marketing + Security + Growth |
-| ⚡ Workflows | 30+ | From brainstorm to revenue |
+| 🧠 Skills | 91 | Engineering + Marketing + Security + Growth |
+| ⚡ Workflows | 20 | From brainstorm to revenue |
 | 🌍 Languages | 4 | EN, VI, JA, ZH |
-| 🛡️ Safety | 6 layers | Sandbox + destructive blocks + supervisor |
+| 🛡️ Safety | 7 layers | Sandbox + backup + destructive blocks + supervisor |
 
 ---
 
