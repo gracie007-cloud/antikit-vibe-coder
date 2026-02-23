@@ -10,22 +10,22 @@ $RepoBase = "https://raw.githubusercontent.com/hasugoii/antikit/main"
 # Workflows - organized by language
 # Note: moderate.md is admin-only, not included in standard install
 $WorkflowsEn = @(
-    "ak-update.md", "audit.md", "brainstorm.md", "browse.md", "cloudflare-tunnel.md",
-    "code.md", "config.md", "contribute.md", "customize.md", "debug.md", "deploy.md",
-    "history.md", "init.md", "install.md", "next.md", "plan.md", "recap.md",
-    "refactor.md", "report.md", "rollback.md", "run.md", "save_brain.md", "scan.md",
-    "test.md", "uninstall.md", "visualize.md"
+    "ak-update.mdt", "audit.mdt", "brainstorm.mdt", "browse.mdt", "cloudflare-tunnel.mdt",
+    "code.mdt", "config.mdt", "contribute.mdt", "customize.mdt", "debug.mdt", "deploy.mdt",
+    "history.mdt", "init.mdt", "install.mdt", "next.mdt", "plan.mdt", "recap.mdt",
+    "refactor.mdt", "report.mdt", "rollback.mdt", "run.mdt", "save_brain.mdt", "scan.mdt",
+    "test.mdt", "uninstall.mdt", "visualize.mdt"
 )
 
 # Agents
 $Agents = @(
-    "backend-specialist.md", "code-archaeologist.md", "database-architect.md",
-    "debugger.md", "devops-engineer.md", "documentation-writer.md",
-    "explorer-agent.md", "frontend-specialist.md", "game-developer.md",
-    "mobile-developer.md", "orchestrator.md", "penetration-tester.md",
-    "performance-optimizer.md", "product-manager.md", "product-owner.md",
-    "project-planner.md", "qa-automation-engineer.md", "security-auditor.md",
-    "seo-specialist.md", "test-engineer.md"
+    "backend-specialist.mdt", "code-archaeologist.mdt", "database-architect.mdt",
+    "debugger.mdt", "devops-engineer.mdt", "documentation-writer.mdt",
+    "explorer-agent.mdt", "frontend-specialist.mdt", "game-developer.mdt",
+    "mobile-developer.mdt", "orchestrator.mdt", "penetration-tester.mdt",
+    "performance-optimizer.mdt", "product-manager.mdt", "product-owner.mdt",
+    "project-planner.mdt", "qa-automation-engineer.mdt", "security-auditor.mdt",
+    "seo-specialist.mdt", "test-engineer.mdt"
 )
 
 # Schemas
@@ -153,13 +153,15 @@ Write-Host ""
 Write-Host "[...] Downloading workflows ($lang)..." -ForegroundColor Cyan
 foreach ($wf in $WorkflowsEn) {
     try {
+        $outName = $wf -replace '\.mdt$', '.md'
         $url = "$RepoBase/workflows/$lang/$wf"
-        Invoke-WebRequest -Uri $url -OutFile "$GlobalWorkflows\$wf" -UseBasicParsing -ErrorAction Stop
-        Write-Host "   [OK] $wf" -ForegroundColor Green
+        Invoke-WebRequest -Uri $url -OutFile "$GlobalWorkflows\$outName" -UseBasicParsing -ErrorAction Stop
+        Write-Host "   [OK] $outName" -ForegroundColor Green
         $success++
     }
     catch {
-        Write-Host "   [X] $wf" -ForegroundColor Red
+        $outName = $wf -replace '\.mdt$', '.md'
+        Write-Host "   [X] $outName" -ForegroundColor Red
         $failed++
     }
 }
@@ -169,13 +171,15 @@ Write-Host ""
 Write-Host "[...] Downloading agents..." -ForegroundColor Cyan
 foreach ($agent in $Agents) {
     try {
+        $outName = $agent -replace '\.mdt$', '.md'
         $url = "$RepoBase/src/agents/$agent"
-        Invoke-WebRequest -Uri $url -OutFile "$AgentsDir\$agent" -UseBasicParsing -ErrorAction Stop
-        Write-Host "   [OK] $agent" -ForegroundColor Green
+        Invoke-WebRequest -Uri $url -OutFile "$AgentsDir\$outName" -UseBasicParsing -ErrorAction Stop
+        Write-Host "   [OK] $outName" -ForegroundColor Green
         $success++
     }
     catch {
-        Write-Host "   [X] $agent" -ForegroundColor Red
+        $outName = $agent -replace '\.mdt$', '.md'
+        Write-Host "   [X] $outName" -ForegroundColor Red
         $failed++
     }
 }
@@ -221,7 +225,7 @@ foreach ($skill in $Skills) {
         if (-not (Test-Path $skillDir)) {
             New-Item -ItemType Directory -Force -Path $skillDir | Out-Null
         }
-        $url = "$RepoBase/src/skills/$skill/SKILL.md"
+        $url = "$RepoBase/src/skills/$skill/SKILL.mdt"
         Invoke-WebRequest -Uri $url -OutFile "$skillDir\SKILL.md" -UseBasicParsing -ErrorAction Stop
         Write-Host "   [OK] $skill" -ForegroundColor Green
         $success++

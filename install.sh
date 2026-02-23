@@ -8,22 +8,22 @@ REPO_BASE="https://raw.githubusercontent.com/hasugoii/antikit/main"
 # Workflows (will use selected language)
 # Note: moderate.md is admin-only, not included in standard install
 WORKFLOWS=(
-    "ak-update.md" "audit.md" "brainstorm.md" "browse.md" "cloudflare-tunnel.md"
-    "code.md" "config.md" "contribute.md" "customize.md" "debug.md" "deploy.md"
-    "history.md" "init.md" "install.md" "next.md" "plan.md" "recap.md"
-    "refactor.md" "report.md" "rollback.md" "run.md" "save_brain.md" "scan.md"
-    "test.md" "uninstall.md" "visualize.md"
+    "ak-update.mdt" "audit.mdt" "brainstorm.mdt" "browse.mdt" "cloudflare-tunnel.mdt"
+    "code.mdt" "config.mdt" "contribute.mdt" "customize.mdt" "debug.mdt" "deploy.mdt"
+    "history.mdt" "init.mdt" "install.mdt" "next.mdt" "plan.mdt" "recap.mdt"
+    "refactor.mdt" "report.mdt" "rollback.mdt" "run.mdt" "save_brain.mdt" "scan.mdt"
+    "test.mdt" "uninstall.mdt" "visualize.mdt"
 )
 
 # Agents
 AGENTS=(
-    "backend-specialist.md" "code-archaeologist.md" "database-architect.md"
-    "debugger.md" "devops-engineer.md" "documentation-writer.md"
-    "explorer-agent.md" "frontend-specialist.md" "game-developer.md"
-    "mobile-developer.md" "orchestrator.md" "penetration-tester.md"
-    "performance-optimizer.md" "product-manager.md" "product-owner.md"
-    "project-planner.md" "qa-automation-engineer.md" "security-auditor.md"
-    "seo-specialist.md" "test-engineer.md"
+    "backend-specialist.mdt" "code-archaeologist.mdt" "database-architect.mdt"
+    "debugger.mdt" "devops-engineer.mdt" "documentation-writer.mdt"
+    "explorer-agent.mdt" "frontend-specialist.mdt" "game-developer.mdt"
+    "mobile-developer.mdt" "orchestrator.mdt" "penetration-tester.mdt"
+    "performance-optimizer.mdt" "product-manager.mdt" "product-owner.mdt"
+    "project-planner.mdt" "qa-automation-engineer.mdt" "security-auditor.mdt"
+    "seo-specialist.mdt" "test-engineer.mdt"
 )
 
 # Schemas
@@ -168,11 +168,12 @@ fi
 echo ""
 echo -e "${CYAN}⏳ Downloading workflows ($LANG)...${NC}"
 for wf in "${WORKFLOWS[@]}"; do
-    if curl -f -s -o "$GLOBAL_WORKFLOWS/$wf" "$REPO_BASE/workflows/$LANG/$wf"; then
-        echo -e "   ${GREEN}✅ $wf${NC}"
+    out_name="${wf%.mdt}.md"
+    if curl -f -s -o "$GLOBAL_WORKFLOWS/$out_name" "$REPO_BASE/workflows/$LANG/$wf"; then
+        echo -e "   ${GREEN}✅ $out_name${NC}"
         ((success++))
     else
-        echo -e "   ${RED}❌ $wf${NC}"
+        echo -e "   ${RED}❌ $out_name${NC}"
         ((failed++))
     fi
 done
@@ -181,11 +182,12 @@ done
 echo ""
 echo -e "${CYAN}⏳ Downloading agents...${NC}"
 for agent in "${AGENTS[@]}"; do
-    if curl -f -s -o "$AGENTS_DIR/$agent" "$REPO_BASE/src/agents/$agent"; then
-        echo -e "   ${GREEN}✅ $agent${NC}"
+    out_name="${agent%.mdt}.md"
+    if curl -f -s -o "$AGENTS_DIR/$out_name" "$REPO_BASE/src/agents/$agent"; then
+        echo -e "   ${GREEN}✅ $out_name${NC}"
         ((success++))
     else
-        echo -e "   ${RED}❌ $agent${NC}"
+        echo -e "   ${RED}❌ $out_name${NC}"
         ((failed++))
     fi
 done
@@ -221,7 +223,7 @@ echo ""
 echo -e "${CYAN}⏳ Downloading skills...${NC}"
 for skill in "${SKILLS[@]}"; do
     mkdir -p "$SKILLS_DIR/$skill"
-    if curl -f -s -o "$SKILLS_DIR/$skill/SKILL.md" "$REPO_BASE/src/skills/$skill/SKILL.md"; then
+    if curl -f -s -o "$SKILLS_DIR/$skill/SKILL.md" "$REPO_BASE/src/skills/$skill/SKILL.mdt"; then
         echo -e "   ${GREEN}✅ $skill${NC}"
         ((success++))
     else

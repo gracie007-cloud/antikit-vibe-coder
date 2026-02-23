@@ -4,6 +4,30 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.8.0] - 2026-02-23
+
+### 🔒 MDT Extension Migration — Anti-Scan Protection
+
+Source files in the repo are now stored with `.mdt` extension instead of `.md` to prevent Antigravity from scanning them as active skills/agents/workflows when users open the antikit workspace.
+
+### Changed
+
+#### File Extension Migration (265 files)
+- **Agents** (`src/agents/`): 20 files renamed `.md` → `.mdt`
+- **Skills** (`src/skills/`): 124 files renamed `.md` → `.mdt`
+- **Workflows** (`workflows/`): 121 files renamed `.md` → `.mdt`
+
+#### Installer Updates
+- **`install.sh`**: Downloads `.mdt` from GitHub, saves as `.md` locally
+- **`install.ps1`**: Same `.mdt` → `.md` conversion during installation
+
+### Benefits
+- No more duplicate skills/agents appearing in slash command autocomplete
+- Cleaner workspace when developing on the antikit repo
+- Zero impact on end-user installation — files are saved as `.md` as before
+
+---
+
 ## [1.5.0] - 2026-02-05
 
 ### 🔄 Living Documentation System
