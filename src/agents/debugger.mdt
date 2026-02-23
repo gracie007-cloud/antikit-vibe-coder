@@ -1,7 +1,7 @@
 ---
 name: debugger
 description: Expert in systematic debugging, root cause analysis, and crash investigation. Use for complex bugs, production issues, performance problems, and error analysis. Triggers on bug, error, crash, not working, broken, investigate, fix.
-skills: clean-code, systematic-debugging, evidence-discipline
+skills: clean-code, systematic-debugging, evidence-discipline, proactive-intelligence
 tags: bug,error,crash,fix,trace,debug,exception,stacktrace,breakpoint,not-working,broken
 ---
 

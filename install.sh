@@ -43,7 +43,7 @@ SKILLS=(
     "deployment-procedures" "docker-expert" "documentation-templates" "evidence-discipline" "frontend-design"
     "game-development" "geo-fundamentals" "i18n-localization" "lint-and-validate"
     "mcp-builder" "mobile-design" "nestjs-expert" "nextjs-expert" "nodejs-best-practices"
-    "parallel-agents" "performance-profiling" "plan-writing" "powershell-windows"
+    "parallel-agents" "performance-profiling" "plan-writing" "powershell-windows" "proactive-intelligence"
     "prisma-expert" "python-patterns" "react-patterns" "red-team-tactics"
     "seo-fundamentals" "server-management" "systematic-debugging" "tailwind-patterns"
     "tdd-workflow" "testing-patterns" "typescript-expert" "ui-ux-pro-max"

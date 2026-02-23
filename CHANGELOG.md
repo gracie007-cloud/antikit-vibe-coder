@@ -4,6 +4,32 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.9.6] - 2026-02-23
+
+### 🧠 Proactive Intelligence — AI Adapts to You
+
+New skill that makes AI adapt its communication to user expertise level, choose smart defaults, and add best practices automatically.
+
+### Added
+
+#### New Skill: `proactive-intelligence` (P0 priority)
+- **🎯 Adaptive Level Detection** — Silently detects fresher/mid/senior from vocabulary and request style
+- **🗣️ Human-First Language** — Translates jargon to plain language for freshers, uses technical terms for seniors
+- **🛡️ Proactive Guardrails** — Gently suggests better alternatives when detecting anti-patterns
+- **⚡ Smart Defaults** — AI picks best default (most popular + lightest), explains in 1 line
+- **📦 Token Budget** — No repetition, references instead of re-explaining, diff-only for updates
+- **🔮 Expert Override** — Adds best practices automatically (error handling, loading states, validation), tags what was added
+- **🤫 Silent Excellence** — Technical decisions made silently, only asks about business logic
+
+### Changed
+- **8 agents** now include `proactive-intelligence`:
+  - `orchestrator`, `frontend-specialist`, `backend-specialist`, `mobile-developer`
+  - `game-developer`, `project-planner`, `explorer-agent`, `debugger`
+- **`install.sh`** — Added `proactive-intelligence` to SKILLS array
+- **`install.ps1`** — Added `proactive-intelligence` to $Skills array
+
+---
+
 ## [1.9.5] - 2026-02-23
 
 ### 📋 Response Formatting Rule — Vertical List Enforcement
