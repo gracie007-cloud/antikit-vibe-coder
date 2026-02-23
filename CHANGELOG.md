@@ -4,6 +4,19 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.9.5] - 2026-02-23
+
+### 📋 Response Formatting Rule — Vertical List Enforcement
+
+Options and menus now always display as vertical lists (one option per line), never as a single horizontal line.
+
+### Added
+- **Response Formatting rule** (all 4 languages × 2 installers):
+  - Choices, next steps, and menus must be vertical lists
+  - Prevents AI from cramming all options on one line
+
+---
+
 ## [1.9.4] - 2026-02-23
 
 ### 📝 README Overhaul — 6 Pillars, Multi-Agent Showcase
