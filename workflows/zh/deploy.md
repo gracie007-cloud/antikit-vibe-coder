@@ -17,6 +17,34 @@ description: 🚀 部署到生产环境
 
 ---
 
+## ⚡ 增强模式 (高级Flags)
+
+```
+/deploy --docker      Docker容器化+部署
+/deploy --server      自托管 (VPS, 裸机)
+/deploy --seo         SEO优先部署 (上线前优化)
+```
+
+| Flag | 激活的Agent + Skill | 说明 |
+|------|-------------------|------|
+| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose, 容器编排 |
+| `--server` | `devops-engineer` + `server-management` | Nginx, PM2, 防火墙, SSL |
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | 部署前SEO审计+修复 |
+
+### 不知道选哪个Flag?
+
+```
+"💡 您想怎么部署？
+
+1️⃣ ☁️ 简单云端 (Vercel, Railway, Render)
+2️⃣ 🐳 Docker (容器化)
+3️⃣ 🖥️ 自托管 (自有VPS)
+4️⃣ 📈 SEO优先 (上线前优化SEO)
+5️⃣ ⏭️ 简单 — 正常继续"
+```
+
+---
+
 ## 阶段 0: 预审计建议
 
 ### 0.1. 先进行安全检查

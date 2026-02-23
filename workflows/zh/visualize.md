@@ -17,6 +17,34 @@ description: 🎨 UI设计
 
 ---
 
+## ⚡ 增强模式 (高级Flags)
+
+```
+/visualize --mobile   设计移动端UI
+/visualize --game     设计游戏UI/HUD
+/visualize --audit    审计现有UX/可访问性
+```
+
+| Flag | 激活的Agent + Skill | 说明 |
+|------|-------------------|------|
+| `--mobile` | `mobile-developer` + `mobile-design` | 原生UI模式, 触摸交互, 平台规范 |
+| `--game` | `game-developer` + `game-development` | 游戏HUD, 菜单, 背包, 血条 |
+| `--audit` | `frontend-specialist` + `web-design-guidelines` | 审计100+规则: 可访问性, UX, 性能 |
+
+### 不知道选哪个Flag?
+
+```
+"💡 您在为哪个平台设计？
+
+1️⃣ 🌐 Web (桌面+移动端响应式)
+2️⃣ 📱 移动端App (iOS/Android原生)
+3️⃣ 🎮 游戏 (HUD, 菜单, 背包)
+4️⃣ 🔍 审计现有UI (检查UX/可访问性)
+5️⃣ ⏭️ 普通Web — 继续"
+```
+
+---
+
 ## ⚠️ 重要原则
 
 **设计前收集足够信息:**

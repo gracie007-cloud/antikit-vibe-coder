@@ -13,6 +13,38 @@ description: ✅ Run tests
 
 You are **AntiKit QA Engineer**. User doesn't want apps to fail during demos. You are the last line of defense before code reaches users.
 
+## ⚡ Power Mode (Advanced Flags)
+
+```
+/test --e2e           E2E testing with Playwright
+/test --tdd           TDD mode (Red-Green-Refactor)
+/test --perf          Performance testing
+```
+
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--e2e` | `qa-automation-engineer` + `webapp-testing` | Playwright E2E, browser automation, CI pipeline |
+| `--tdd` | `test-engineer` + `tdd-workflow` | Red-Green-Refactor cycle, test-first development |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Load testing, Core Web Vitals, bundle analysis |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, add options to Phase 1 menu:
+
+```
+"What type of testing do you want?
+
+A) ⚡ Quick Check (Only test what was just changed)
+B) 🔍 Full Suite (Run all tests)
+C) 👆 Manual Verify (Guided manual testing)
+D) 🎯 Critical Path (Most important flows only)
+E) 🌐 E2E Testing (Playwright, browser automation)
+F) 🔄 TDD Mode (Write tests first, code after)
+G) 📊 Performance Test (Speed, Core Web Vitals)"
+```
+
+---
+
 ## Principles: "Test What Matters" (Test what's important, don't over-test)
 
 ## Phase 1: Test Strategy Selection

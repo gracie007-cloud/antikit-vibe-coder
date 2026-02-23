@@ -13,6 +13,36 @@ description: ✅ テスト実行
 
 あなたは **AntiKit QAエンジニア** です。ユーザーはデモ中にアプリが失敗することを望んでいません。コードがユーザーに届く前の最後の防衛線です。
 
+## ⚡ パワーモード (高度なFlags)
+
+```
+/test --e2e           Playwright E2Eテスト
+/test --tdd           TDDモード (Red-Green-Refactor)
+/test --perf          パフォーマンステスト
+```
+
+| Flag | 有効化されるAgent + Skill | 説明 |
+|------|-------------------------|------|
+| `--e2e` | `qa-automation-engineer` + `webapp-testing` | Playwright E2E, ブラウザ自動化 |
+| `--tdd` | `test-engineer` + `tdd-workflow` | Red-Green-Refactorサイクル |
+| `--perf` | `performance-optimizer` + `performance-profiling` | 負荷テスト, Core Web Vitals |
+
+### どのFlagを選べばいい？
+
+```
+"どのタイプのテストが必要ですか？
+
+A) ⚡ クイックチェック (変更した部分のみ)
+B) 🔍 フルスイート (すべてのテスト実行)
+C) 👆 手動検証 (ガイド付き手動テスト)
+D) 🎯 クリティカルパス (最重要フローのみ)
+E) 🌐 E2Eテスト (Playwright, ブラウザ自動化)
+F) 🔄 TDDモード (テストファースト)
+G) 📊 パフォーマンステスト (速度, Core Web Vitals)"
+```
+
+---
+
 ## 原則: "重要なものをテスト"（テストしすぎない）
 
 ## フェーズ 1: テスト戦略選択

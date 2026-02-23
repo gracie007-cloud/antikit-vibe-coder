@@ -17,6 +17,47 @@ description: 🏥 代码和安全审计
 
 ---
 
+## ⚡ 增强模式 (高级Flags)
+
+```
+/audit --seo          SEO深度审计
+/audit --perf         性能审计 (Core Web Vitals)
+/audit --pentest      渗透测试 (攻击性)
+/audit --docs         文档审计
+/audit --i18n         国际化审计
+/audit --deps         依赖和供应链审计
+/audit --full         运行以上所有审计
+```
+
+| Flag | 激活的Agent + Skill | 说明 |
+|------|-------------------|------|
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | E-E-A-T, Core Web Vitals, GenAI SEO |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Lighthouse, bundle大小, 渲染 |
+| `--pentest` | `penetration-tester` + `red-team-tactics` | MITRE ATT&CK, 攻击模拟 |
+| `--docs` | `documentation-writer` + `documentation-templates` | README, API文档, 内联注释 |
+| `--i18n` | `i18n-localization` | 硬编码字符串, RTL, 语言文件 |
+| `--deps` | `vulnerability-scanner` | 供应链安全, 过时的依赖 |
+| `--full` | 以上所有agents + skills | 全面审计所有方面 |
+
+### 不知道选哪个Flag?
+
+```
+"您想检查哪个范围？
+
+A) 🚀 快速扫描 (5分钟)
+B) 🔍 全面审计 (15-30分钟)
+C) 🔒 安全聚焦
+D) ⚡ 性能聚焦
+E) 📈 SEO审计
+F) 🗡️ 渗透测试
+G) 📝 文档审计
+H) 🌍 国际化审计
+I) 📦 依赖审计
+J) 💪 全功率 (以上所有)"
+```
+
+---
+
 ## 阶段 1: 范围选择
 
 *   "您想检查什么范围?"

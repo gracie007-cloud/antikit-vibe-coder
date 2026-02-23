@@ -17,6 +17,50 @@ description: 💻 按规格写代码
 
 ---
 
+## ⚡ 增强模式 (高级Flags)
+
+```
+/code --mobile        移动端App开发
+/code --api           API/后端开发 (REST, GraphQL)
+/code --nestjs        NestJS开发 (modules, DI, decorators)
+/code --nextjs        Next.js开发 (SSR, RSC, App Router)
+/code --db            数据库开发 (schema, migrations, queries)
+/code --rust          Rust开发
+/code --python        Python开发
+/code --ts            TypeScript严格模式
+```
+
+| Flag | 激活的Agent + Skill | 说明 |
+|------|-------------------|------|
+| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expo, 平台特定代码 |
+| `--api` | `backend-specialist` + `api-patterns` | REST/GraphQL/tRPC设计+实现 |
+| `--nestjs` | `backend-specialist` + `nestjs-expert` | NestJS modules, DI, guards |
+| `--nextjs` | `frontend-specialist` + `nextjs-react-expert` | Server Components, App Router |
+| `--db` | `database-architect` + `database-design` + `prisma-expert` | Schema设计, 迁移, ORM |
+| `--rust` | `rust-pro` | 异步模式, 类型系统, Tokio, axum |
+| `--python` | `python-patterns` | FastAPI, 异步, 类型提示 |
+| `--ts` | `typescript-expert` | 类型级编程, 泛型 |
+
+### 不知道选哪个Flag?
+
+如果用户没有使用flag，AI将**自动检测**项目类型并加载相应skills。
+
+如果无法检测，询问:
+
+```
+"💡 您在哪个平台/框架上编码？
+
+1️⃣ 📱 移动端 (React Native / Expo)
+2️⃣ 🔌 API后端 (NestJS, Express, Fastify)
+3️⃣ 🌐 Web前端 (Next.js, React)
+4️⃣ 🗄️ 数据库 (Schema, migrations, queries)
+5️⃣ 🦀 Rust
+6️⃣ 🐍 Python
+7️⃣ ⏭️ 不需要 — 正常编码"
+```
+
+---
+
 ## 阶段 0: 上下文检测
 
 ### 0.1. 检查阶段输入

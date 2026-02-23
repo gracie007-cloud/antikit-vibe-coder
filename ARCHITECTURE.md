@@ -9,8 +9,8 @@
 Antigravity Kit is a modular system consisting of:
 
 - **20 Specialist Agents** - Role-based AI personas
-- **36 Skills** - Domain-specific knowledge modules
-- **11 Workflows** - Slash command procedures
+- **44 Skills** - Domain-specific knowledge modules
+- **29 Workflows** - Slash command procedures
 
 ---
 
@@ -19,9 +19,10 @@ Antigravity Kit is a modular system consisting of:
 ```plaintext
 .agent/
 ├── ARCHITECTURE.md          # This file
-├── agents/                  # 20 Specialist Agents
-├── skills/                  # 36 Skills
-├── workflows/               # 11 Slash Commands
+├── src/
+│   ├── agents/              # 20 Specialist Agents
+│   └── skills/              # 44 Skills
+├── workflows/               # 29 Slash Commands
 ├── rules/                   # Global Rules
 └── scripts/                 # Master Validation Scripts
 ```
@@ -57,7 +58,7 @@ Specialist AI personas for different domains.
 
 ---
 
-## 🧩 Skills (36)
+## 🧩 Skills (44)
 
 Modular knowledge domains that agents can load on-demand. based on task context.
 
@@ -168,23 +169,63 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 
 ---
 
-## 🔄 Workflows (11)
+## 🔄 Workflows (29)
 
 Slash command procedures. Invoke with `/command`.
 
-| Command          | Description              |
-| ---------------- | ------------------------ |
-| `/brainstorm`    | Socratic discovery       |
-| `/create`        | Create new features      |
-| `/debug`         | Debug issues             |
-| `/deploy`        | Deploy application       |
-| `/enhance`       | Improve existing code    |
-| `/orchestrate`   | Multi-agent coordination |
-| `/plan`          | Task breakdown           |
-| `/preview`       | Preview changes          |
-| `/status`        | Check project status     |
-| `/test`          | Run tests                |
-| `/ui-ux-pro-max` | Design with 50 styles    |
+### Core Development
+
+| Command | Description | Power Mode Flags |
+| ------- | ----------- | ---------------- |
+| `/init` | Create new project | `--mobile` `--game` `--api` `--mcp` `--docker` |
+| `/code` | Write code from spec | `--mobile` `--api` `--nestjs` `--nextjs` `--db` `--rust` `--python` `--ts` |
+| `/plan` | Task breakdown | - |
+| `/visualize` | UI/UX design | `--mobile` `--game` `--audit` |
+| `/brainstorm` | Socratic discovery | - |
+| `/enhance` | Improve existing code | - |
+
+### Quality & Testing
+
+| Command | Description | Power Mode Flags |
+| ------- | ----------- | ---------------- |
+| `/test` | Run tests | `--e2e` `--tdd` `--perf` |
+| `/audit` | Code & security audit | `--seo` `--perf` `--pentest` `--docs` `--i18n` `--deps` `--full` |
+| `/debug` | Debug issues | - |
+| `/refactor` | Clean up & optimize | `--perf` `--types` `--arch` `--review` |
+| `/scan` | Security scan | - |
+
+### Deployment & Ops
+
+| Command | Description | Power Mode Flags |
+| ------- | ----------- | ---------------- |
+| `/deploy` | Deploy to production | `--docker` `--server` `--seo` |
+| `/run` | Run application | - |
+| `/rollback` | Rollback to previous | - |
+| `/cloudflare-tunnel` | Manage CF tunnels | - |
+
+### Knowledge & Config
+
+| Command | Description |
+| ------- | ----------- |
+| `/save_brain` | Save project knowledge |
+| `/recap` | Summarize project |
+| `/config` | Configure settings |
+| `/next` | What to do next |
+| `/report` | Generate report |
+
+### AntiKit Management
+
+| Command | Description |
+| ------- | ----------- |
+| `/ak-update` | Update AntiKit |
+| `/browse` | Browse AntiKit Library |
+| `/contribute` | Contribute to library |
+| `/customize` | Customize AI experience |
+| `/history` | AntiKit changelog |
+| `/install` | Install AntiKit |
+| `/uninstall` | Uninstall AntiKit |
+| `/moderate` | Moderate contributions |
+| `/orchestrate` | Multi-agent coordination |
 
 ---
 
@@ -267,10 +308,11 @@ For details, see [scripts/README.md](scripts/README.md)
 | Metric              | Value                         |
 | ------------------- | ----------------------------- |
 | **Total Agents**    | 20                            |
-| **Total Skills**    | 36                            |
-| **Total Workflows** | 11                            |
+| **Total Skills**    | 44                            |
+| **Total Workflows** | 29                            |
 | **Total Scripts**   | 2 (master) + 18 (skill-level) |
-| **Coverage**        | ~90% web/mobile development   |
+| **Power Mode Flags**| 25+ across 7 workflows        |
+| **Coverage**        | ~95% web/mobile development   |
 
 ---
 

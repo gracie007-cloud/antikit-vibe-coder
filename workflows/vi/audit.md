@@ -17,6 +17,49 @@ Bạn là **AntiKit Code Auditor**. Project có thể đang "bệnh" mà User kh
 
 ---
 
+## ⚡ Power Mode (Flags Nâng Cao)
+
+```
+/audit --seo          Audit SEO chuyên sâu
+/audit --perf         Audit hiệu năng (Core Web Vitals)
+/audit --pentest      Kiểm thử xâm nhập (offensive)
+/audit --docs         Audit tài liệu & documentation
+/audit --i18n         Audit đa ngôn ngữ (i18n)
+/audit --deps         Audit dependencies & supply chain
+/audit --full         Chạy TẤT CẢ các audit ở trên
+```
+
+| Flag | Agent + Skill được kích hoạt | Mô tả |
+|------|------------------------------|-------|
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | E-E-A-T, Core Web Vitals, GenAI SEO |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Lighthouse, bundle size, rendering |
+| `--pentest` | `penetration-tester` + `red-team-tactics` | MITRE ATT&CK, attack simulation |
+| `--docs` | `documentation-writer` + `documentation-templates` | README, API docs, inline comments |
+| `--i18n` | `i18n-localization` | Hardcoded strings, RTL, locale files |
+| `--deps` | `vulnerability-scanner` | Supply chain security, outdated packages |
+| `--full` | Tất cả agents + skills ở trên | Audit toàn diện mọi khía cạnh |
+
+### Không biết chọn flag nào?
+
+Nếu user không dùng flag, thêm options vào menu Giai đoạn 1:
+
+```
+"Anh/chị muốn kiểm tra phạm vi nào?
+
+A) 🚀 Quick Scan (5 phút - Chỉ lỗi nghiêm trọng)
+B) 🔍 Full Audit (15-30 phút - Toàn diện)
+C) 🔒 Security Focus (Bảo mật)
+D) ⚡ Performance Focus (Hiệu năng)
+E) 📈 SEO Audit (Tối ưu tìm kiếm)
+F) 🗡️ Pentest (Kiểm thử xâm nhập)
+G) 📝 Docs Audit (Tài liệu)
+H) 🌍 i18n Audit (Đa ngôn ngữ)
+I) 📦 Deps Audit (Dependencies)
+J) 💪 FULL POWER (Tất cả)"
+```
+
+---
+
 ## Giai đoạn 1: Chọn Phạm Vi
 
 *   "Anh/chị muốn kiểm tra phạm vi nào?"

@@ -17,6 +17,47 @@ description: 🏥 コードとセキュリティ監査
 
 ---
 
+## ⚡ パワーモード (高度なFlags)
+
+```
+/audit --seo          SEO深度監査
+/audit --perf         パフォーマンス監査 (Core Web Vitals)
+/audit --pentest      ペネトレーションテスト (攻撃的)
+/audit --docs         ドキュメント監査
+/audit --i18n         国際化監査
+/audit --deps         依存関係・サプライチェーン監査
+/audit --full         上記すべての監査を実行
+```
+
+| Flag | 有効化されるAgent + Skill | 説明 |
+|------|-------------------------|------|
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | E-E-A-T, Core Web Vitals |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Lighthouse, バンドルサイズ |
+| `--pentest` | `penetration-tester` + `red-team-tactics` | MITRE ATT&CK, 攻撃シミュレーション |
+| `--docs` | `documentation-writer` + `documentation-templates` | README, APIドキュメント |
+| `--i18n` | `i18n-localization` | ハードコード文字列, RTL |
+| `--deps` | `vulnerability-scanner` | サプライチェーンセキュリティ |
+| `--full` | 上記すべてのagents + skills | 包括的監査 |
+
+### どのFlagを選べばいい？
+
+```
+"どの範囲をチェックしますか？
+
+A) 🚀 クイックスキャン (5分)
+B) 🔍 フル監査 (15-30分)
+C) 🔒 セキュリティ重視
+D) ⚡ パフォーマンス重視
+E) 📈 SEO監査
+F) 🗡️ ペネトレーションテスト
+G) 📝 ドキュメント監査
+H) 🌍 国際化監査
+I) 📦 依存関係監査
+J) 💪 フルパワー (すべて)"
+```
+
+---
+
 ## フェーズ 1: 範囲選択
 
 *   「どの範囲をチェックしたいですか？」

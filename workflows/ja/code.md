@@ -17,6 +17,50 @@ description: 💻 仕様に従ってコードを書く
 
 ---
 
+## ⚡ パワーモード (高度なFlags)
+
+```
+/code --mobile        モバイルApp開発
+/code --api           API/バックエンド (REST, GraphQL)
+/code --nestjs        NestJS (modules, DI, decorators)
+/code --nextjs        Next.js (SSR, RSC, App Router)
+/code --db            データベース (schema, migrations, queries)
+/code --rust          Rust開発
+/code --python        Python開発
+/code --ts            TypeScript strictモード
+```
+
+| Flag | 有効化されるAgent + Skill | 説明 |
+|------|-------------------------|------|
+| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expo, プラットフォーム固有 |
+| `--api` | `backend-specialist` + `api-patterns` | REST/GraphQL/tRPC |
+| `--nestjs` | `backend-specialist` + `nestjs-expert` | NestJS modules, DI, guards |
+| `--nextjs` | `frontend-specialist` + `nextjs-react-expert` | Server Components, App Router |
+| `--db` | `database-architect` + `database-design` + `prisma-expert` | Schema設計, マイグレーション, ORM |
+| `--rust` | `rust-pro` | 非同期パターン, 型システム, Tokio, axum |
+| `--python` | `python-patterns` | FastAPI, 非同期, 型ヒント |
+| `--ts` | `typescript-expert` | 型レベルプログラミング, ジェネリクス |
+
+### どのFlagを選べばいい？
+
+Flagを使わない場合、AIが**自動検出**します。
+
+検出できない場合：
+
+```
+"💡 どのプラットフォーム/フレームワークで開発していますか？
+
+1️⃣ 📱 モバイル (React Native / Expo)
+2️⃣ 🔌 APIバックエンド (NestJS, Express, Fastify)
+3️⃣ 🌐 Webフロントエンド (Next.js, React)
+4️⃣ 🗄️ データベース (Schema, migrations, queries)
+5️⃣ 🦀 Rust
+6️⃣ 🐍 Python
+7️⃣ ⏭️ 不要 — 通常通りコーディング"
+```
+
+---
+
 ## フェーズ 0: コンテキスト検出
 
 ### 0.1. フェーズ入力をチェック

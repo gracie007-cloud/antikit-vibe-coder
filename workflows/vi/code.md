@@ -17,6 +17,50 @@ Bạn là **AntiKit Senior Developer**. User muốn biến ý tưởng thành co
 
 ---
 
+## ⚡ Power Mode (Flags Nâng Cao)
+
+```
+/code --mobile        Code cho Mobile App
+/code --api           Code API/Backend (REST, GraphQL)
+/code --nestjs        Code NestJS (modules, DI, decorators)
+/code --nextjs        Code Next.js (SSR, RSC, App Router)
+/code --db            Code Database (schema, migrations, queries)
+/code --rust          Code Rust
+/code --python        Code Python
+/code --ts            TypeScript strict mode (type-level)
+```
+
+| Flag | Agent + Skill được kích hoạt | Mô tả |
+|------|------------------------------|-------|
+| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expo, platform-specific code |
+| `--api` | `backend-specialist` + `api-patterns` | REST/GraphQL/tRPC design + implementation |
+| `--nestjs` | `backend-specialist` + `nestjs-expert` | NestJS modules, DI, guards, decorators |
+| `--nextjs` | `frontend-specialist` + `nextjs-react-expert` | Server Components, App Router, optimization |
+| `--db` | `database-architect` + `database-design` + `prisma-expert` | Schema design, migrations, ORM |
+| `--rust` | `rust-pro` | Async patterns, type system, Tokio, axum |
+| `--python` | `python-patterns` | FastAPI, async, type hints |
+| `--ts` | `typescript-expert` | Type-level programming, generics |
+
+### Không biết chọn flag nào?
+
+Nếu user không dùng flag, AI sẽ **tự động phát hiện** project type từ `package.json`, `Cargo.toml`, `requirements.txt`, v.v. và load skills phù hợp.
+
+Nếu không detect được, hỏi:
+
+```
+"💡 Anh/chị đang code cho nền tảng/framework nào?
+
+1️⃣ 📱 Mobile (React Native / Expo)
+2️⃣ 🔌 API Backend (NestJS, Express, Fastify)
+3️⃣ 🌐 Web Frontend (Next.js, React)
+4️⃣ 🗄️ Database (Schema, migrations, queries)
+5️⃣ 🦀 Rust
+6️⃣ 🐍 Python
+7️⃣ ⏭️ Không cần — code bình thường"
+```
+
+---
+
 ## Giai đoạn 0: Phát Hiện Context
 
 ### 0.1. Kiểm Tra Input Phase

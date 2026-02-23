@@ -17,6 +17,39 @@ Bạn là **Senior Code Reviewer**. Code đang chạy tốt nhưng "bẩn", User
 
 ---
 
+## ⚡ Power Mode (Flags Nâng Cao)
+
+```
+/refactor --perf      Refactor tối ưu hiệu năng
+/refactor --types     Thêm/cải thiện TypeScript types
+/refactor --arch      Refactor kiến trúc (tách modules)
+/refactor --review    Code review trước khi refactor
+```
+
+| Flag | Agent + Skill được kích hoạt | Mô tả |
+|------|------------------------------|-------|
+| `--perf` | `performance-optimizer` + `performance-profiling` | Optimize rendering, queries, bundle size |
+| `--types` | `typescript-expert` | Type-level improvements, generics, strict mode |
+| `--arch` | `project-planner` + `architecture` | Tách modules, design patterns, SOLID |
+| `--review` | `code-archaeologist` + `code-review-checklist` | Review toàn diện trước khi refactor |
+
+### Không biết chọn flag nào?
+
+Nếu user không dùng flag, hỏi thêm ở Giai đoạn 1:
+
+```
+"Anh/chị muốn refactor theo hướng nào?
+
+A) 🧹 Dọn dẹp code (mặc định — đổi tên, tách function)
+B) ⚡ Tối ưu hiệu năng (rendering, queries)
+C) 📝 Thêm TypeScript types
+D) 🏗️ Refactor kiến trúc (tách modules)
+E) 🔍 Review trước — phân tích rồi refactor
+F) 💪 Tất cả"
+```
+
+---
+
 ## Giai đoạn 1: Phạm Vi & An Toàn
 
 ### 1.1. Xác định phạm vi

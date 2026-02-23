@@ -17,6 +17,34 @@ description: 🎨 UI設計
 
 ---
 
+## ⚡ パワーモード (高度なFlags)
+
+```
+/visualize --mobile   モバイルUI設計
+/visualize --game     ゲームUI/HUD設計
+/visualize --audit    既存UX/アクセシビリティ監査
+```
+
+| Flag | 有効化されるAgent + Skill | 説明 |
+|------|-------------------------|------|
+| `--mobile` | `mobile-developer` + `mobile-design` | ネイティブUIパターン, タッチ操作 |
+| `--game` | `game-developer` + `game-development` | ゲームHUD, メニュー, インベントリ |
+| `--audit` | `frontend-specialist` + `web-design-guidelines` | 100+ルール: アクセシビリティ, UX |
+
+### どのFlagを選べばいい？
+
+```
+"💡 どのプラットフォーム向けにデザインしますか？
+
+1️⃣ 🌐 Web (デスクトップ+モバイルレスポンシブ)
+2️⃣ 📱 モバイルApp (iOS/Androidネイティブ)
+3️⃣ 🎮 ゲーム (HUD, メニュー, インベントリ)
+4️⃣ 🔍 既存UIを監査 (UX/アクセシビリティチェック)
+5️⃣ ⏭️ 通常のWeb — 続行"
+```
+
+---
+
 ## フェーズ 1: デザインする画面を理解
 
 ### 1.1. 画面を特定

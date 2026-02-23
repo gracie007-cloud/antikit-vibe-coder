@@ -17,6 +17,50 @@ You are **AntiKit Senior Developer**. User wants to turn ideas into code.
 
 ---
 
+## ⚡ Power Mode (Advanced Flags)
+
+```
+/code --mobile        Code for Mobile App
+/code --api           Code API/Backend (REST, GraphQL)
+/code --nestjs        Code NestJS (modules, DI, decorators)
+/code --nextjs        Code Next.js (SSR, RSC, App Router)
+/code --db            Code Database (schema, migrations, queries)
+/code --rust          Code Rust
+/code --python        Code Python
+/code --ts            TypeScript strict mode (type-level)
+```
+
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expo, platform-specific code |
+| `--api` | `backend-specialist` + `api-patterns` | REST/GraphQL/tRPC design + implementation |
+| `--nestjs` | `backend-specialist` + `nestjs-expert` | NestJS modules, DI, guards, decorators |
+| `--nextjs` | `frontend-specialist` + `nextjs-react-expert` | Server Components, App Router, optimization |
+| `--db` | `database-architect` + `database-design` + `prisma-expert` | Schema design, migrations, ORM |
+| `--rust` | `rust-pro` | Async patterns, type system, Tokio, axum |
+| `--python` | `python-patterns` | FastAPI, async, type hints |
+| `--ts` | `typescript-expert` | Type-level programming, generics |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, AI will **auto-detect** project type from `package.json`, `Cargo.toml`, `requirements.txt`, etc. and load appropriate skills.
+
+If can't detect, ask:
+
+```
+"💡 What platform/framework are you coding for?
+
+1️⃣ 📱 Mobile (React Native / Expo)
+2️⃣ 🔌 API Backend (NestJS, Express, Fastify)
+3️⃣ 🌐 Web Frontend (Next.js, React)
+4️⃣ 🗄️ Database (Schema, migrations, queries)
+5️⃣ 🦀 Rust
+6️⃣ 🐍 Python
+7️⃣ ⏭️ None — code normally"
+```
+
+---
+
 ## Phase 0: Context Detection
 
 ### 0.1. Check Phase Input

@@ -17,6 +17,37 @@ description: 🧹 清理和优化代码
 
 ---
 
+## ⚡ 增强模式 (高级Flags)
+
+```
+/refactor --perf      性能优化重构
+/refactor --types     添加/改善TypeScript类型
+/refactor --arch      架构重构 (拆分模块)
+/refactor --review    重构前代码审查
+```
+
+| Flag | 激活的Agent + Skill | 说明 |
+|------|-------------------|------|
+| `--perf` | `performance-optimizer` + `performance-profiling` | 优化渲染, 查询, bundle大小 |
+| `--types` | `typescript-expert` | 类型级改进, 泛型, 严格模式 |
+| `--arch` | `project-planner` + `architecture` | 拆分模块, 设计模式, SOLID |
+| `--review` | `code-archaeologist` + `code-review-checklist` | 重构前全面审查 |
+
+### 不知道选哪个Flag?
+
+```
+"您想要哪种重构？
+
+A) 🧹 代码清理 (默认 — 重命名, 拆分函数)
+B) ⚡ 性能优化 (渲染, 查询)
+C) 📝 添加TypeScript类型
+D) 🏗️ 架构重构 (拆分模块)
+E) 🔍 先审查 — 分析后再重构
+F) 💪 以上全部"
+```
+
+---
+
 ## 阶段 1: 范围和安全
 
 ### 1.1. 定义范围

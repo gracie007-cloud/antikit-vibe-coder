@@ -17,6 +17,41 @@ description: ✨ 新規プロジェクト作成
 
 ---
 
+## ⚡ パワーモード (高度なFlags)
+
+```
+/init --mobile        モバイルプロジェクト初期化 (React Native / Expo)
+/init --game          ゲームプロジェクト初期化
+/init --api           APIバックエンドのみ初期化
+/init --mcp           MCP Server初期化
+/init --docker        最初からDockerセットアップ追加
+```
+
+| Flag | 有効化されるAgent + Skill | 説明 |
+|------|-------------------------|------|
+| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expoスキャフォールド |
+| `--game` | `game-developer` + `game-development` | ゲームプロジェクト (Phaser, Unity, Godot) |
+| `--api` | `backend-specialist` + `api-patterns` + `database-design` | REST/GraphQL API + データベース |
+| `--mcp` | `backend-specialist` + `mcp-builder` | MCP Server, tools, resources |
+| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose |
+
+### どのFlagを選べばいい？
+
+Flagを使わない場合、アプリタイプ選択後に拡張メニーを表示：
+
+```
+"💡 特別な機能を追加しますか？
+
+1️⃣ 📱 モバイルApp (React Native/Expo)
+2️⃣ 🎮 ゲーム (Phaser, Unity, Godot)
+3️⃣ 🔌 APIバックエンドのみ (UIなし)
+4️⃣ 🤖 MCP Server (Model Context Protocol)
+5️⃣ 🐳 Dockerセットアップ (コンテナ対応)
+6️⃣ ⏭️ 不要 — 通常通り続行"
+```
+
+---
+
 ## フェーズ 0: 言語ノート
 
 > **💡 注意:** 言語はAntiKitのインストール時に選択されています。言語を変更するには、`/config language [en/vi/zh/ja]`を使用してください。

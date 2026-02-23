@@ -17,6 +17,37 @@ description: 🧹 コードのクリーンアップと最適化
 
 ---
 
+## ⚡ パワーモード (高度なFlags)
+
+```
+/refactor --perf      パフォーマンス最適化リファクタリング
+/refactor --types     TypeScript型の追加/改善
+/refactor --arch      アーキテクチャリファクタリング (モジュール分割)
+/refactor --review    リファクタリング前コードレビュー
+```
+
+| Flag | 有効化されるAgent + Skill | 説明 |
+|------|-------------------------|------|
+| `--perf` | `performance-optimizer` + `performance-profiling` | レンダリング, クエリ, バンドルサイズ最適化 |
+| `--types` | `typescript-expert` | 型レベル改善, ジェネリクス, strictモード |
+| `--arch` | `project-planner` + `architecture` | モジュール分割, デザインパターン, SOLID |
+| `--review` | `code-archaeologist` + `code-review-checklist` | リファクタリング前の包括的レビュー |
+
+### どのFlagを選べばいい？
+
+```
+"どの種類のリファクタリングが必要ですか？
+
+A) 🧹 コードクリーンアップ (デフォルト — リネーム, 関数分割)
+B) ⚡ パフォーマンス最適化 (レンダリング, クエリ)
+C) 📝 TypeScript型を追加
+D) 🏗️ アーキテクチャリファクタリング (モジュール分割)
+E) 🔍 先にレビュー — 分析してからリファクタリング
+F) 💪 すべて"
+```
+
+---
+
 ## フェーズ 1: 範囲と安全性
 
 ### 1.1. 範囲を定義

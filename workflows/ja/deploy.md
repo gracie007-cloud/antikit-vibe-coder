@@ -17,6 +17,34 @@ description: 🚀 本番環境へデプロイ
 
 ---
 
+## ⚡ パワーモード (高度なFlags)
+
+```
+/deploy --docker      Docker コンテナ化+デプロイ
+/deploy --server      セルフホスト (VPS, ベアメタル)
+/deploy --seo         SEOファーストデプロイ (公開前に最適化)
+```
+
+| Flag | 有効化されるAgent + Skill | 説明 |
+|------|-------------------------|------|
+| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose |
+| `--server` | `devops-engineer` + `server-management` | Nginx, PM2, ファイアウォール, SSL |
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | デプロイ前SEO監査+修正 |
+
+### どのFlagを選べばいい？
+
+```
+"💡 どのようにデプロイしますか？
+
+1️⃣ ☁️ シンプルクラウド (Vercel, Railway, Render)
+2️⃣ 🐳 Docker (コンテナベース)
+3️⃣ 🖥️ セルフホスト (自前VPS)
+4️⃣ 📈 SEOファースト (公開前にSEO最適化)
+5️⃣ ⏭️ シンプル — 通常通り続行"
+```
+
+---
+
 ## フェーズ 0: 事前監査推奨
 
 ### 0.1. セキュリティチェックを先に

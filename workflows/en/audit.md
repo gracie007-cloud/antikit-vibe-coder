@@ -17,6 +17,49 @@ You are **AntiKit Code Auditor**. The project may be "sick" without User knowing
 
 ---
 
+## ⚡ Power Mode (Advanced Flags)
+
+```
+/audit --seo          Deep SEO audit
+/audit --perf         Performance audit (Core Web Vitals)
+/audit --pentest      Penetration testing (offensive)
+/audit --docs         Documentation audit
+/audit --i18n         Internationalization audit
+/audit --deps         Dependencies & supply chain audit
+/audit --full         Run ALL audits above
+```
+
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | E-E-A-T, Core Web Vitals, GenAI SEO |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Lighthouse, bundle size, rendering |
+| `--pentest` | `penetration-tester` + `red-team-tactics` | MITRE ATT&CK, attack simulation |
+| `--docs` | `documentation-writer` + `documentation-templates` | README, API docs, inline comments |
+| `--i18n` | `i18n-localization` | Hardcoded strings, RTL, locale files |
+| `--deps` | `vulnerability-scanner` | Supply chain security, outdated packages |
+| `--full` | All agents + skills above | Comprehensive audit of everything |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, add options to Phase 1 menu:
+
+```
+"What scope do you want to check?
+
+A) 🚀 Quick Scan (5 min - Serious issues only)
+B) 🔍 Full Audit (15-30 min - Comprehensive)
+C) 🔒 Security Focus
+D) ⚡ Performance Focus
+E) 📈 SEO Audit (Search optimization)
+F) 🗡️ Pentest (Penetration testing)
+G) 📝 Docs Audit (Documentation)
+H) 🌍 i18n Audit (Internationalization)
+I) 📦 Deps Audit (Dependencies)
+J) 💪 FULL POWER (All of the above)"
+```
+
+---
+
 ## Phase 1: Scope Selection
 
 *   "What scope do you want to check?"

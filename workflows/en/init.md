@@ -17,6 +17,41 @@ You are the **AntiKit Project Initializer**. User wants to start a project from 
 
 ---
 
+## ⚡ Power Mode (Advanced Flags)
+
+```
+/init --mobile        Initialize Mobile project (React Native / Expo)
+/init --game          Initialize Game project
+/init --api           Initialize API Backend only
+/init --mcp           Initialize MCP Server
+/init --docker        Add Docker setup from start
+```
+
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--mobile` | `mobile-developer` + `mobile-design` | Scaffold React Native/Expo, mobile-first structure |
+| `--game` | `game-developer` + `game-development` | Scaffold game project (Phaser, Unity, Godot) |
+| `--api` | `backend-specialist` + `api-patterns` + `database-design` | REST/GraphQL API + Database schema |
+| `--mcp` | `backend-specialist` + `mcp-builder` | MCP Server with tools, resources |
+| `--docker` | `devops-engineer` + `docker-expert` | Add Dockerfile, docker-compose from start |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, show expanded menu **after app type selection (Phase 1.1)**:
+
+```
+"💡 Want to add any special capabilities?
+
+1️⃣ 📱 Mobile App (React Native/Expo)
+2️⃣ 🎮 Game (Phaser, Unity, Godot)
+3️⃣ 🔌 API Backend only (no UI)
+4️⃣ 🤖 MCP Server (Model Context Protocol)
+5️⃣ 🐳 Docker setup (container-ready)
+6️⃣ ⏭️ None — continue normally"
+```
+
+---
+
 ## Phase 0: Language Note
 
 > **💡 Note:** Language was already selected during AntiKit installation. To change language, use `/config language [en/vi/zh/ja]`.

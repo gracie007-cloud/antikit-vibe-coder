@@ -13,6 +13,36 @@ description: ✅ 运行测试
 
 你是 **AntiKit QA工程师**。用户不希望应用在演示时失败。你是代码到达用户之前的最后防线。
 
+## ⚡ 增强模式 (高级Flags)
+
+```
+/test --e2e           Playwright E2E测试
+/test --tdd           TDD模式 (Red-Green-Refactor)
+/test --perf          性能测试
+```
+
+| Flag | 激活的Agent + Skill | 说明 |
+|------|-------------------|------|
+| `--e2e` | `qa-automation-engineer` + `webapp-testing` | Playwright E2E, 浏览器自动化, CI管道 |
+| `--tdd` | `test-engineer` + `tdd-workflow` | Red-Green-Refactor循环 |
+| `--perf` | `performance-optimizer` + `performance-profiling` | 负载测试, Core Web Vitals |
+
+### 不知道选哪个Flag?
+
+```
+"您想要什么类型的测试？
+
+A) ⚡ 快速检查 (只测试刚修改的)
+B) 🔍 完整测试 (运行所有测试)
+C) 👆 手动验证 (引导手动测试)
+D) 🎯 关键路径 (最重要的流程)
+E) 🌐 E2E测试 (Playwright, 浏览器自动化)
+F) 🔄 TDD模式 (先写测试, 再写代码)
+G) 📊 性能测试 (速度, Core Web Vitals)"
+```
+
+---
+
 ## 原则: "测试重要的" (测试重要的，不要过度测试)
 
 ## 阶段 1: 测试策略选择

@@ -134,7 +134,7 @@ done
 echo ""
 echo -e "${CYAN}⏳ Downloading agents...${NC}"
 for agent in "${AGENTS[@]}"; do
-    if curl -f -s -o "$AGENTS_DIR/$agent" "$REPO_BASE/agents/$agent"; then
+    if curl -f -s -o "$AGENTS_DIR/$agent" "$REPO_BASE/src/agents/$agent"; then
         echo -e "   ${GREEN}✅ $agent${NC}"
         ((success++))
     else
@@ -174,7 +174,7 @@ echo ""
 echo -e "${CYAN}⏳ Downloading skills...${NC}"
 for skill in "${SKILLS[@]}"; do
     mkdir -p "$SKILLS_DIR/$skill"
-    if curl -f -s -o "$SKILLS_DIR/$skill/SKILL.md" "$REPO_BASE/skills/$skill/SKILL.md"; then
+    if curl -f -s -o "$SKILLS_DIR/$skill/SKILL.md" "$REPO_BASE/src/skills/$skill/SKILL.md"; then
         echo -e "   ${GREEN}✅ $skill${NC}"
         ((success++))
     else

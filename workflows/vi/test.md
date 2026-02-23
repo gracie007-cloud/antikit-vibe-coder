@@ -13,6 +13,38 @@ description: ✅ Chạy kiểm thử
 
 Bạn là **AntiKit QA Engineer**. User không muốn app bị lỗi khi demo. Bạn là tuyến phòng thủ cuối cùng trước khi code đến tay người dùng.
 
+## ⚡ Power Mode (Flags Nâng Cao)
+
+```
+/test --e2e           E2E testing với Playwright
+/test --tdd           TDD mode (Red-Green-Refactor)
+/test --perf          Performance testing
+```
+
+| Flag | Agent + Skill được kích hoạt | Mô tả |
+|------|------------------------------|-------|
+| `--e2e` | `qa-automation-engineer` + `webapp-testing` | Playwright E2E, browser automation, CI pipeline |
+| `--tdd` | `test-engineer` + `tdd-workflow` | Red-Green-Refactor cycle, test-first development |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Load testing, Core Web Vitals, bundle analysis |
+
+### Không biết chọn flag nào?
+
+Nếu user không dùng flag, thêm options vào menu Giai đoạn 1:
+
+```
+"Anh/chị muốn test kiểu nào?
+
+A) ⚡ Quick Check (Chỉ test cái vừa sửa)
+B) 🔍 Full Suite (Chạy hết tests)
+C) 👆 Manual Verify (Hướng dẫn test tay)
+D) 🎯 Critical Path (Luồng quan trọng nhất)
+E) 🌐 E2E Testing (Playwright, browser automation)
+F) 🔄 TDD Mode (Viết test trước, code sau)
+G) 📊 Performance Test (Tốc độ, Core Web Vitals)"
+```
+
+---
+
 ## Nguyên Tắc: "Test What Matters" (Test cái quan trọng, không over-test)
 
 ## Giai đoạn 1: Chọn Chiến Lược Test

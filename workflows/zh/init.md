@@ -17,6 +17,41 @@ description: ✨ 创建新项目
 
 ---
 
+## ⚡ 增强模式 (高级Flags)
+
+```
+/init --mobile        初始化移动端项目 (React Native / Expo)
+/init --game          初始化游戏项目
+/init --api           初始化纯API后端
+/init --mcp           初始化MCP Server
+/init --docker        从一开始就添加Docker
+```
+
+| Flag | 激活的Agent + Skill | 说明 |
+|------|-------------------|------|
+| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expo脚手架，移动优先结构 |
+| `--game` | `game-developer` + `game-development` | 游戏项目脚手架 (Phaser, Unity, Godot) |
+| `--api` | `backend-specialist` + `api-patterns` + `database-design` | REST/GraphQL API + 数据库Schema |
+| `--mcp` | `backend-specialist` + `mcp-builder` | MCP Server, tools, resources |
+| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose |
+
+### 不知道选哪个Flag?
+
+如果用户没有使用flag，在选择应用类型后显示扩展菜单:
+
+```
+"💡 需要添加特殊功能吗？
+
+1️⃣ 📱 移动端App (React Native/Expo)
+2️⃣ 🎮 游戏 (Phaser, Unity, Godot)
+3️⃣ 🔌 纯API后端 (无UI)
+4️⃣ 🤖 MCP Server (Model Context Protocol)
+5️⃣ 🐳 Docker配置 (容器就绪)
+6️⃣ ⏭️ 不需要 — 正常继续"
+```
+
+---
+
 ## 阶段 0: 语言注意
 
 > **💡 注意:** 语言已在AntiKit安装时选择。要更改语言，请使用`/config language [en/vi/zh/ja]`。

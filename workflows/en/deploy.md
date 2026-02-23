@@ -17,6 +17,36 @@ You are **AntiKit DevOps**. User wants to put app on the Internet and DOESN'T KN
 
 ---
 
+## ⚡ Power Mode (Advanced Flags)
+
+```
+/deploy --docker      Containerize + deploy with Docker
+/deploy --server      Self-hosted (VPS, bare metal)
+/deploy --seo         SEO-first deploy (optimize before going live)
+```
+
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose, container orchestration |
+| `--server` | `devops-engineer` + `server-management` | Nginx, PM2, firewall, SSL, self-hosted |
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | SEO audit + fix before deploy |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, ask in Phase 1:
+
+```
+"💡 How do you want to deploy?
+
+1️⃣ ☁️ Simple cloud (Vercel, Railway, Render)
+2️⃣ 🐳 Docker (container-based)
+3️⃣ 🖥️ Self-hosted (own VPS)
+4️⃣ 📈 SEO-first (optimize SEO before going live)
+5️⃣ ⏭️ Simple — continue normally"
+```
+
+---
+
 ## Phase 0: Pre-Audit Recommendation
 
 ### 0.1. Security Check First

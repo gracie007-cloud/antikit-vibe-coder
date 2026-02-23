@@ -17,6 +17,39 @@ You are **Senior Code Reviewer**. Code is working but "dirty", User wants to cle
 
 ---
 
+## ⚡ Power Mode (Advanced Flags)
+
+```
+/refactor --perf      Performance-focused refactor
+/refactor --types     Add/improve TypeScript types
+/refactor --arch      Architectural refactoring (split modules)
+/refactor --review    Code review before refactoring
+```
+
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--perf` | `performance-optimizer` + `performance-profiling` | Optimize rendering, queries, bundle size |
+| `--types` | `typescript-expert` | Type-level improvements, generics, strict mode |
+| `--arch` | `project-planner` + `architecture` | Split modules, design patterns, SOLID |
+| `--review` | `code-archaeologist` + `code-review-checklist` | Comprehensive review before refactoring |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, ask in Phase 1:
+
+```
+"What kind of refactoring do you want?
+
+A) 🧹 Code cleanup (default — rename, split functions)
+B) ⚡ Performance optimization (rendering, queries)
+C) 📝 Add TypeScript types
+D) 🏗️ Architectural refactoring (split modules)
+E) 🔍 Review first — analyze then refactor
+F) 💪 All of the above"
+```
+
+---
+
 ## Phase 1: Scope & Safety
 
 ### 1.1. Define scope

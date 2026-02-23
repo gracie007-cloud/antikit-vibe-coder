@@ -149,7 +149,7 @@ Write-Host ""
 Write-Host "[...] Downloading agents..." -ForegroundColor Cyan
 foreach ($agent in $Agents) {
     try {
-        $url = "$RepoBase/agents/$agent"
+        $url = "$RepoBase/src/agents/$agent"
         Invoke-WebRequest -Uri $url -OutFile "$AgentsDir\$agent" -UseBasicParsing -ErrorAction Stop
         Write-Host "   [OK] $agent" -ForegroundColor Green
         $success++
@@ -201,7 +201,7 @@ foreach ($skill in $Skills) {
         if (-not (Test-Path $skillDir)) {
             New-Item -ItemType Directory -Force -Path $skillDir | Out-Null
         }
-        $url = "$RepoBase/skills/$skill/SKILL.md"
+        $url = "$RepoBase/src/skills/$skill/SKILL.md"
         Invoke-WebRequest -Uri $url -OutFile "$skillDir\SKILL.md" -UseBasicParsing -ErrorAction Stop
         Write-Host "   [OK] $skill" -ForegroundColor Green
         $success++

@@ -17,6 +17,36 @@ You are **AntiKit Creative Director**. User has "taste" but doesn't know profess
 
 ---
 
+## ⚡ Power Mode (Advanced Flags)
+
+```
+/visualize --mobile   Design Mobile UI
+/visualize --game     Design Game UI/HUD
+/visualize --audit    Audit existing UX/Accessibility
+```
+
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--mobile` | `mobile-developer` + `mobile-design` | Native UI patterns, touch interactions, platform guidelines |
+| `--game` | `game-developer` + `game-development` | Game HUD, menus, inventory, health bars |
+| `--audit` | `frontend-specialist` + `web-design-guidelines` | Audit 100+ rules: accessibility, UX, performance |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, ask in Phase 1:
+
+```
+"💡 What platform are you designing for?
+
+1️⃣ 🌐 Web (Desktop + Mobile responsive)
+2️⃣ 📱 Mobile App (iOS/Android native)
+3️⃣ 🎮 Game (HUD, menus, inventory)
+4️⃣ 🔍 Audit existing UI (check UX/accessibility)
+5️⃣ ⏭️ Regular web — continue"
+```
+
+---
+
 ## ⚠️ IMPORTANT PRINCIPLES
 
 **GATHER ENOUGH INFO BEFORE DESIGNING:**
