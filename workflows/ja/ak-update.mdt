@@ -1,33 +1,33 @@
 ---
-description: Update AntiKit with package selection
+description: パッケージ選択でAntiKitを更新
 ---
 
-# WORKFLOW: /ak-update - AntiKit Update (Enhanced)
+# WORKFLOW: /ak-update - AntiKitアップデート（拡張版）
 
 > **Context:** Agent `@devops`
 > **Required Skills:** `server-management`, `git-workflow`
 > **Key Behaviors:**
-> - Display list of available packages
-> - Allow selective update
-> - Save local update history
+> - 利用可能なパッケージ一覧を表示
+> - 選択的アップデートを許可
+> - ローカル更新履歴を保存
 
-You are the **AntiKit Update Manager**. Mission: Check and update AntiKit with package selection capability.
+あなたは**AntiKit Update Manager**です。ミッション：パッケージ選択機能でAntiKitをチェック・更新します。
 
 ---
 
-## Phase 1: Fetch Registry
+## Phase 1: レジストリ取得
 
-### 1.1. Check core version
+### 1.1. コアバージョン確認
 
 ```bash
-# Local version
+# ローカルバージョン
 cat ~/.gemini/antikit_version 2>/dev/null || echo "unknown"
 
-# Remote version
+# リモートバージョン
 curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/VERSION
 ```
 
-### 1.2. Fetch library registry
+### 1.2. ライブラリレジストリ取得
 
 ```bash
 curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/registry/index.json
@@ -35,101 +35,103 @@ curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/registry/index.j
 
 ---
 
-## Phase 2: Compare with Local
+## Phase 2: ローカルと比較
 
-Read `~/.gemini/antikit_installed.json` and compare with registry.
-
----
-
-## Phase 3: Security Scan
-
-Before displaying updates, scan all packages for security issues:
-
-```
-🔍 SCANNING PACKAGES FOR SECURITY...
-
-[1/4] workflow/debug... ✅ PASSED
-[2/4] workflow/code... ✅ PASSED  
-[3/4] skill/react-patterns... ⚠️ 1 WARNING
-[4/4] skill/nextjs-expert... ✅ PASSED
-```
-
-**If BLOCKED**: Package cannot be installed, skip automatically.
-**If WARNING**: Show warning, ask user to confirm.
-**If all PASSED**: Proceed to display updates.
+`~/.gemini/antikit_installed.json`を読み込み、レジストリと比較します。
 
 ---
 
-## Phase 4: Display Available Updates
+## Phase 3: セキュリティスキャン
+
+更新を表示する前に、すべてのパッケージのセキュリティをスキャン：
 
 ```
-📦 ANTIKIT UPDATE CENTER
+🔍 パッケージのセキュリティをスキャン中...
 
-🔷 CORE: v{local} → v{remote} {status}
+[1/4] workflow/debug... ✅ 合格
+[2/4] workflow/code... ✅ 合格
+[3/4] skill/react-patterns... ⚠️ 警告1件
+[4/4] skill/nextjs-expert... ✅ 合格
+```
+
+**ブロック時**: パッケージはインストール不可、自動スキップ。
+**警告時**: 警告を表示し、ユーザーに確認を求める。
+**全て合格**: 更新表示に進む。
+
+---
+
+## Phase 4: 利用可能な更新を表示
+
+```
+📦 ANTIKIT アップデートセンター
+
+🔷 コア: v{local} → v{remote} {status}
 
 ┌─────────────────────────────────────────────────────┐
-│ 📂 WORKFLOWS ({count} updates)                      │
+│ 📂 ワークフロー ({count}件の更新)                     │
 ├─────────────────────────────────────────────────────┤
-│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ Hot update  │
-│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 New version │
-│ [✓] 3. /plan          1.2.0          ✅ Up to date  │
+│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ 注目更新    │
+│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 新バージョン │
+│ [✓] 3. /plan          1.2.0          ✅ 最新        │
 └─────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────┐
-│ 🛠️ SKILLS ({count} available)                       │
+│ 🛠️ スキル ({count}件利用可能)                        │
 ├─────────────────────────────────────────────────────┤
-│ [ ] 4. react-patterns  v2.0  ⭐ Popular             │
-│ [ ] 5. nextjs-expert   v1.5  🆕 New                 │
+│ [ ] 4. react-patterns  v2.0  ⭐ 人気                 │
+│ [ ] 5. nextjs-expert   v1.5  🆕 新規                 │
 └─────────────────────────────────────────────────────┘
 
-📊 Your language: 🇬🇧 English
+📊 言語: 🇯🇵 日本語
 ```
 
 ---
 
-## Phase 5: Selection
+## Phase 5: 選択
 
 ```
-🔽 SELECT TO UPDATE:
+🔽 更新するものを選択:
 
-Enter numbers (comma separated) or:
-• all       - Update all
-• workflows - Only workflows
-• skills    - Only skills
-• cancel    - Cancel
+番号を入力（カンマ区切り）または:
+• all       - すべて更新
+• workflows - ワークフローのみ
+• skills    - スキルのみ
+• cancel    - キャンセル
 
-Example: 1,2,4,5 or all
+例: 1,2,4,5 または all
 
 > _
 ```
 
 ---
 
-## Phase 6: Execute Update
+## Phase 6: 更新実行
 
-Download selected packages, copy to local, update antikit_installed.json.
+選択したパッケージをダウンロードし、ローカルにコピー、antikit_installed.jsonを更新。
 
 ---
 
-## Phase 7: Confirmation
+## Phase 7: 確認
 
 ```
-✅ UPDATE COMPLETE!
+✅ アップデート完了！
 
-📦 Updated:
+📦 更新済み:
 ├── workflow/debug 1.0.0 → 1.2.0
-├── skill/react-patterns (new)
+├── skill/react-patterns (新規)
 
-👉 Restart IDE to apply changes.
+👉 IDEを再起動して変更を適用してください。
 ```
 
 ---
 
-## Phase 8: Next Steps
+## Phase 8: 次のステップ
 
 ```
+1️⃣ 新機能を試す
+2️⃣ /recap で変更内容を確認
+3️⃣ 問題があれば /debug
 ```
-
 
 ---
 
@@ -137,19 +139,25 @@ Download selected packages, copy to local, update antikit_installed.json.
 
 **重要:** ワークフロー/スキル/エージェントの更新後、インストーラーを再実行してGEMINI.mdを最新のルール、AGENT INDEX、SKILL INDEXで更新してください。
 
+**自動言語検出**: `~/.gemini/antikit_lang`から言語を読み取り、正しいフラグを使用：
+
 ```bash
-# macOS/Linux
-curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+# macOS/Linux — 言語を自動検出
+LANG_FLAG=$(cat ~/.gemini/antikit_lang 2>/dev/null)
+[ -n "$LANG_FLAG" ] && [ "$LANG_FLAG" != "en" ] && curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang "$LANG_FLAG" || curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
 ```powershell
-# Windows
-iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+# Windows — 言語を自動検出
+$lang = Get-Content "$env:USERPROFILE\.gemini\antikit_lang" -ErrorAction SilentlyContinue
+if ($lang -and $lang -ne "en") { & ([scriptblock]::Create((iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb))) -Language $lang } else { iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex }
 ```
 
 確認事項:
-- ✅ コアルールが更新される
+- ✅ コアルールが更新される（rules/GEMINI.md）
 - ✅ AGENT INDEXが再生成される（新しいエージェントを含む）
 - ✅ SKILL INDEXが再生成される（新しいスキルを含む）
-- ✅ ユーザーのカスタムルールは保持される
+- ✅ ユーザーのカスタムルールは保持される（マーカー外）
 - ✅ 更新前に自動バックアップが作成される
+
+> **注意:** インストーラーは既存のインストールを検出し、インプレースで更新します。`<!-- ANTIKIT_START -->`マーカー外のカスタムルールは常に保持されます。

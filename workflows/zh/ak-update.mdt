@@ -1,33 +1,33 @@
 ---
-description: Update AntiKit with package selection
+description: 通过包选择更新AntiKit
 ---
 
-# WORKFLOW: /ak-update - AntiKit Update (Enhanced)
+# WORKFLOW: /ak-update - AntiKit更新（增强版）
 
 > **Context:** Agent `@devops`
 > **Required Skills:** `server-management`, `git-workflow`
 > **Key Behaviors:**
-> - Display list of available packages
-> - Allow selective update
-> - Save local update history
+> - 显示可用包列表
+> - 允许选择性更新
+> - 保存本地更新历史
 
-You are the **AntiKit Update Manager**. Mission: Check and update AntiKit with package selection capability.
+你是**AntiKit Update Manager**。任务：通过包选择功能检查和更新AntiKit。
 
 ---
 
-## Phase 1: Fetch Registry
+## Phase 1: 获取注册表
 
-### 1.1. Check core version
+### 1.1. 检查核心版本
 
 ```bash
-# Local version
+# 本地版本
 cat ~/.gemini/antikit_version 2>/dev/null || echo "unknown"
 
-# Remote version
+# 远程版本
 curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/VERSION
 ```
 
-### 1.2. Fetch library registry
+### 1.2. 获取库注册表
 
 ```bash
 curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/registry/index.json
@@ -35,101 +35,103 @@ curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/registry/index.j
 
 ---
 
-## Phase 2: Compare with Local
+## Phase 2: 与本地比较
 
-Read `~/.gemini/antikit_installed.json` and compare with registry.
-
----
-
-## Phase 3: Security Scan
-
-Before displaying updates, scan all packages for security issues:
-
-```
-🔍 SCANNING PACKAGES FOR SECURITY...
-
-[1/4] workflow/debug... ✅ PASSED
-[2/4] workflow/code... ✅ PASSED  
-[3/4] skill/react-patterns... ⚠️ 1 WARNING
-[4/4] skill/nextjs-expert... ✅ PASSED
-```
-
-**If BLOCKED**: Package cannot be installed, skip automatically.
-**If WARNING**: Show warning, ask user to confirm.
-**If all PASSED**: Proceed to display updates.
+读取`~/.gemini/antikit_installed.json`并与注册表进行比较。
 
 ---
 
-## Phase 4: Display Available Updates
+## Phase 3: 安全扫描
+
+显示更新前，扫描所有包的安全问题：
 
 ```
-📦 ANTIKIT UPDATE CENTER
+🔍 正在扫描包的安全性...
 
-🔷 CORE: v{local} → v{remote} {status}
+[1/4] workflow/debug... ✅ 通过
+[2/4] workflow/code... ✅ 通过
+[3/4] skill/react-patterns... ⚠️ 1个警告
+[4/4] skill/nextjs-expert... ✅ 通过
+```
+
+**被阻止时**: 包无法安装，自动跳过。
+**有警告时**: 显示警告，询问用户确认。
+**全部通过**: 继续显示更新。
+
+---
+
+## Phase 4: 显示可用更新
+
+```
+📦 ANTIKIT 更新中心
+
+🔷 核心: v{local} → v{remote} {status}
 
 ┌─────────────────────────────────────────────────────┐
-│ 📂 WORKFLOWS ({count} updates)                      │
+│ 📂 工作流 ({count}个更新)                             │
 ├─────────────────────────────────────────────────────┤
-│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ Hot update  │
-│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 New version │
-│ [✓] 3. /plan          1.2.0          ✅ Up to date  │
+│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ 热门更新    │
+│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 新版本      │
+│ [✓] 3. /plan          1.2.0          ✅ 已是最新     │
 └─────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────┐
-│ 🛠️ SKILLS ({count} available)                       │
+│ 🛠️ 技能 ({count}个可用)                              │
 ├─────────────────────────────────────────────────────┤
-│ [ ] 4. react-patterns  v2.0  ⭐ Popular             │
-│ [ ] 5. nextjs-expert   v1.5  🆕 New                 │
+│ [ ] 4. react-patterns  v2.0  ⭐ 热门                 │
+│ [ ] 5. nextjs-expert   v1.5  🆕 新增                 │
 └─────────────────────────────────────────────────────┘
 
-📊 Your language: 🇬🇧 English
+📊 语言: 🇨🇳 中文
 ```
 
 ---
 
-## Phase 5: Selection
+## Phase 5: 选择
 
 ```
-🔽 SELECT TO UPDATE:
+🔽 选择要更新的内容:
 
-Enter numbers (comma separated) or:
-• all       - Update all
-• workflows - Only workflows
-• skills    - Only skills
-• cancel    - Cancel
+输入编号（逗号分隔）或:
+• all       - 全部更新
+• workflows - 仅工作流
+• skills    - 仅技能
+• cancel    - 取消
 
-Example: 1,2,4,5 or all
+示例: 1,2,4,5 或 all
 
 > _
 ```
 
 ---
 
-## Phase 6: Execute Update
+## Phase 6: 执行更新
 
-Download selected packages, copy to local, update antikit_installed.json.
+下载选定的包，复制到本地，更新antikit_installed.json。
 
 ---
 
-## Phase 7: Confirmation
+## Phase 7: 确认
 
 ```
-✅ UPDATE COMPLETE!
+✅ 更新完成！
 
-📦 Updated:
+📦 已更新:
 ├── workflow/debug 1.0.0 → 1.2.0
-├── skill/react-patterns (new)
+├── skill/react-patterns (新增)
 
-👉 Restart IDE to apply changes.
+👉 请重启IDE以应用更改。
 ```
 
 ---
 
-## Phase 8: Next Steps
+## Phase 8: 下一步
 
 ```
+1️⃣ 试用新功能
+2️⃣ /recap 查看变更内容
+3️⃣ 有问题请 /debug
 ```
-
 
 ---
 
@@ -137,19 +139,25 @@ Download selected packages, copy to local, update antikit_installed.json.
 
 **重要:** 更新工作流/技能/代理后，重新运行安装程序以使用最新的规则、AGENT INDEX和SKILL INDEX刷新GEMINI.md。
 
+**自动检测语言**: 从`~/.gemini/antikit_lang`读取语言并使用正确的标志：
+
 ```bash
-# macOS/Linux
-curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+# macOS/Linux — 自动检测语言
+LANG_FLAG=$(cat ~/.gemini/antikit_lang 2>/dev/null)
+[ -n "$LANG_FLAG" ] && [ "$LANG_FLAG" != "en" ] && curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang "$LANG_FLAG" || curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
 ```powershell
-# Windows
-iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+# Windows — 自动检测语言
+$lang = Get-Content "$env:USERPROFILE\.gemini\antikit_lang" -ErrorAction SilentlyContinue
+if ($lang -and $lang -ne "en") { & ([scriptblock]::Create((iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb))) -Language $lang } else { iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex }
 ```
 
 确保:
-- ✅ 核心规则已更新
+- ✅ 核心规则已更新（rules/GEMINI.md）
 - ✅ AGENT INDEX已重新生成（包括新代理）
 - ✅ SKILL INDEX已重新生成（包括新技能）
-- ✅ 用户自定义规则被保留
+- ✅ 用户自定义规则被保留（标记外）
 - ✅ 更新前自动备份
+
+> **注意:** 安装程序检测到现有安装后会就地更新。`<!-- ANTIKIT_START -->`标记外的自定义规则始终被保留。
