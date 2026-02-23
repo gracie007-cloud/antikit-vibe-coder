@@ -4,6 +4,17 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.13.4] - 2026-02-24
+
+### 🔄 /ak-update Now Refreshes GEMINI.md
+
+### Fixed
+- **`/ak-update` Phase 9** — After updating workflows/skills/agents, re-runs installer to refresh GEMINI.md with latest rules, AGENT INDEX, and SKILL INDEX
+- Previously, `/ak-update` only updated individual files but left GEMINI.md stale
+- User custom rules outside markers are always preserved
+
+---
+
 ## [1.13.3] - 2026-02-24
 
 ### 🔄 Merge /sync-schema + Website Redesign
