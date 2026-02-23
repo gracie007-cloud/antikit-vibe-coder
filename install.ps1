@@ -10,8 +10,9 @@ $RepoBase = "https://raw.githubusercontent.com/hasugoii/antikit/main"
 # Workflows - organized by language
 $WorkflowsEn = @(
     "ak-update.mdt", "audit.mdt", "brainstorm.mdt", "code.mdt", "config.mdt",
-    "debug.mdt", "deploy.mdt", "init.mdt", "next.mdt", "plan.mdt", "recap.mdt",
-    "refactor.mdt", "run.mdt", "test.mdt", "uninstall.mdt", "visualize.mdt"
+    "debug.mdt", "deploy.mdt", "grow.mdt", "init.mdt", "launch.mdt", "next.mdt",
+    "plan.mdt", "recap.mdt", "refactor.mdt", "run.mdt", "test.mdt",
+    "uninstall.mdt", "visualize.mdt"
 )
 
 # Agents
