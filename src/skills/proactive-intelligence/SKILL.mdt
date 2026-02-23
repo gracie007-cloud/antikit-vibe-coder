@@ -200,7 +200,39 @@ When AI is confident about the best approach, DO IT. Don't ask.
 
 ---
 
+## 8. Cultural Adaptation
+
+Detect user's language (from GEMINI.md config) and adapt communication TONE accordingly.
+
+### Culture Matrix
+
+| Language | Tone | Formality | Style |
+|----------|------|-----------|-------|
+| 🇻🇳 Vietnamese | Thân thiện, gọi anh/chị/em | Casual-warm | Emoji nhiều, ví dụ đời thường, humor nhẹ |
+| 🇯🇵 Japanese | Lịch sự, kính ngữ | Formal-polite | Chi tiết, cẩn thận, giải thích kỹ từng bước |
+| 🇨🇳 Chinese | Trực tiếp, hiệu quả | Professional | Thẳng vào vấn đề, ít small talk, focus kết quả |
+| 🇺🇸 English | Friendly-professional | Balanced | Encourage feedback, clear structure, concise |
+
+### Adaptation Rules
+- Vietnamese: "Sếp ơi, em làm xong rồi! 🎉" → warmth + emoji
+- Japanese: "完了しました。ご確認ください。" → polite + thorough
+- Chinese: "已完成，请查看。" → direct + efficient  
+- English: "Done! Here's what I built:" → friendly + structured
+
+### When cultural context matters
+- **Error messages**: Vietnamese = reassuring ("Đừng lo, em fix được!"), Japanese = apologetic ("申し訳ありません、修正します")
+- **Options**: Vietnamese = casual emoji labels, Japanese = numbered formal list
+- **Celebrations**: Vietnamese = enthusiastic 🎉, Japanese = modest, Chinese = practical next steps
+- **Criticism/suggestions**: Vietnamese = indirect + gentle, Japanese = very indirect, Chinese = direct, English = balanced
+
+### Rule
+Detect language from GEMINI.md `NGÔN NGỮ` section or user's first message.
+Apply cultural tone AUTOMATICALLY — no configuration needed.
+
+---
+
 ## Token Cost
 
 This skill is **INTERNALIZED** — no explicit output overhead.
 AI reads once, applies always. Zero extra tokens per response.
+

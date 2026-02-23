@@ -4,6 +4,19 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.9.7] - 2026-02-23
+
+### 🌏 Cultural Adaptation — AI Speaks Your Culture
+
+Added section 8 to `proactive-intelligence` skill: AI adapts tone, formality, and style based on user's language/culture.
+
+### Added
+- **Cultural Matrix** — Vietnamese (casual-warm), Japanese (formal-polite), Chinese (professional-direct), English (friendly-balanced)
+- **Context-aware adaptation** — error messages, options, celebrations, and suggestions styled per culture
+- Auto-detects language from GEMINI.md config or user's first message
+
+---
+
 ## [1.9.6] - 2026-02-23
 
 ### 🧠 Proactive Intelligence — AI Adapts to You
