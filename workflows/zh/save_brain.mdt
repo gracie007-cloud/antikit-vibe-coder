@@ -2,163 +2,163 @@
 description: 💾 保存项目知识
 ---
 
-# WORKFLOW: /save-brain - The Permanent Memory Keeper (Comprehensive Documentation)
+# WORKFLOW: /save-brain - 永久记忆守护者（全面文档化）
 
 > **Context:** Agent `@doc-writer`
 > **Required Skills:** `documentation-templates`
 > **Key Behaviors:**
-> - Update docs immediately when code changes
-> - Write clearly for non-technical readers
-> - Separate static knowledge (brain.json) from dynamic state (session.json)
+> - 代码变更时立即更新文档
+> - 为非技术人员写清晰易懂的内容
+> - 将静态知识（brain.json）与动态状态（session.json）分离
 
-You are **AntiKit Librarian**. Mission: Fight "Context Drift" - ensure AI never forgets.
+你是**AntiKit Librarian**。使命：对抗"上下文漂移"——确保AI永远不会忘记。
 
-**Principle:** "Code changes → Docs change IMMEDIATELY"
-
----
-
-## Phase 1: Analyze Changes
-
-### 1.1. Ask User
-*   "What important changes did we make today?"
-*   Or: "I'll auto-scan changed files, OK?"
-
-### 1.2. Auto-analyze
-*   Review files changed in session
-*   Categorize:
-    *   **Major:** New module, DB changes → Update Architecture
-    *   **Minor:** Bug fix, refactor → Just log
+**原则：** "代码变了 → 文档立刻跟着变"
 
 ---
 
-## Phase 2: Update Documentation
+## 阶段1: 分析变更
 
-### 2.1. System Architecture
-*   File: `docs/architecture/system_overview.md`
-*   Update if:
-    *   New modules
-    *   New third-party APIs
-    *   Database changes
+### 1.1. 询问用户
+*   "今天有什么重要的变更？"
+*   或者："我自动扫描修改过的文件好吗？"
 
-### 2.2. Database Schema (Auto-Sync ⚡)
-*   **AUTO-RUN `/sync-schema`** for projects with migrations
-*   File: `docs/database/schema.md`
-*   File: `src/lib/db/schema.ts`
-*   Update when:
-    *   New tables
-    *   New columns
-    *   New migrations
-*   **🚨 Check CRITICAL_COLUMNS before changes**
+### 1.2. 自动分析
+*   查看本次会话中修改的文件
+*   分类：
+    *   **重大：** 新增模块、数据库变更 → 更新架构文档
+    *   **次要：** 修复Bug、重构 → 仅记录日志
 
-### 2.3. API Documentation (⚠️ Often forgotten)
+---
 
-#### 2.3.1. Auto-generate API Docs
-*   Scan all API routes in project
-*   Create/update `docs/api/endpoints.md`:
+## 阶段2: 更新文档
+
+### 2.1. 系统架构
+*   文件：`docs/architecture/system_overview.md`
+*   需要更新的情况：
+    *   新模块
+    *   新的第三方API
+    *   数据库变更
+
+### 2.2. 数据库Schema（自动同步 ⚡）
+*   有迁移的项目**自动运行 `/sync-schema`**
+*   文件：`docs/database/schema.md`
+*   文件：`src/lib/db/schema.ts`
+*   更新时机：
+    *   新表
+    *   新字段
+    *   新迁移
+*   **🚨 变更前检查CRITICAL_COLUMNS**
+
+### 2.3. API文档（⚠️ 经常被遗忘）
+
+#### 2.3.1. 自动生成API文档
+*   扫描项目中所有API路由
+*   创建/更新 `docs/api/endpoints.md`：
 
 ```markdown
-# API Documentation
+# API 文档
 
-## Authentication
+## 认证
 ### POST /api/auth/login
-- **Description:** Login
+- **描述：** 登录
 - **Body:** { email, password }
 - **Response:** { token, user }
-- **Errors:** 401 (Invalid credentials)
+- **错误：** 401（凭证无效）
 
-## Users
+## 用户
 ### GET /api/users
-- **Description:** Get user list
-- **Auth:** Required (Admin)
-- **Query:** ?page=1&limit=10
+- **描述：** 获取用户列表
+- **认证：** 必须（管理员）
+- **查询：** ?page=1&limit=10
 - **Response:** { users[], total, page }
 ...
 ```
 
-### 2.4. Business Logic Documentation
-*   File: `docs/business/rules.md`
-*   Save business rules:
-    *   "Reward points expire after 1 year"
-    *   "Orders > $50 get free shipping"
-    *   "Admin can override pricing"
+### 2.4. 业务逻辑文档
+*   文件：`docs/business/rules.md`
+*   保存业务规则：
+    *   "积分1年后过期"
+    *   "订单满500元免运费"
+    *   "管理员可以覆盖价格"
 
-### 2.5. Update Spec Status
-*   Move Specs from `Draft` → `Implemented`
-*   Update if changes differ from original plan
+### 2.5. 更新Spec状态
+*   将Spec从 `Draft` → `Implemented`
+*   如果与原计划不同则更新
 
 ---
 
-## Phase 3: Codebase Documentation
+## 阶段3: 代码库文档
 
-### 3.1. Update README
-*   Update setup guide if new dependencies added
-*   Update new environment variables
+### 3.1. 更新README
+*   有新依赖时更新安装指南
+*   更新新的环境变量
 
-### 3.2. Inline Documentation
-*   Check if complex functions have JSDoc
-*   Suggest adding comments if missing
+### 3.2. 内联文档
+*   检查复杂函数是否有JSDoc
+*   如有缺失，建议添加注释
 
-### 3.3. Changelog (⚠️ Important for teams)
-*   Create/update `CHANGELOG.md`:
+### 3.3. Changelog（⚠️ 团队协作必备）
+*   创建/更新 `CHANGELOG.md`：
 
 ```markdown
 # Changelog
 
 ## [2026-01-15]
 ### Added
-- Customer reward points feature
+- 客户积分功能
 - API `/api/points/redeem`
 
 ### Changed
-- Updated Dashboard UI
+- 更新仪表板UI
 
 ### Fixed
-- Email confirmation error
+- 邮件确认错误
 ```
 
 ---
 
-## Phase 4: Sync Knowledge Items
+## 阶段4: 同步知识项
 
-### 4.1. Update KI if new knowledge discovered
-*   New patterns used
-*   Gotchas/Bugs encountered and how to fix
-*   Third-party service integrations
-
----
-
-## Phase 5: Deployment Config Documentation
-
-### 5.1. Environment Variables
-*   Update `.env.example` with new variables
-*   Document meaning of each variable
-
-### 5.2. Infrastructure
-*   Document server/hosting configuration
-*   Document scheduled tasks
+### 4.1. 有新知识时更新KI
+*   使用过的新模式
+*   遇到的坑/Bug及修复方法
+*   第三方服务集成
 
 ---
 
-## Phase 6: Create Structured Context
+## 阶段5: 部署配置文档
 
-> **Purpose:** Separate static knowledge and dynamic session for faster AI parsing
+### 5.1. 环境变量
+*   用新变量更新 `.env.example`
+*   记录每个变量的含义
 
-### 6.1. `.brain/` Directory Structure
+### 5.2. 基础设施
+*   记录服务器/托管配置
+*   记录定时任务
+
+---
+
+## 阶段6: 创建结构化上下文
+
+> **目的：** 分离静态知识和动态会话，加快AI解析速度
+
+### 6.1. `.brain/` 目录结构
 
 ```
-.brain/                            # LOCAL (per-project)
-├── brain.json                     # 🧠 Static knowledge (rarely changes)
-├── session.json                   # 📍 Dynamic session (changes frequently)
-└── preferences.json               # ⚙️ Local override (if different from global)
+.brain/                            # LOCAL（每个项目）
+├── brain.json                     # 🧠 静态知识（很少变化）
+├── session.json                   # 📍 动态会话（经常变化）
+└── preferences.json               # ⚙️ 本地覆盖
 
-~/.gemini/antigravity/             # GLOBAL (all projects)
-├── preferences.json               # Default preferences
-└── defaults/                      # Templates
+~/.gemini/antigravity/             # GLOBAL（所有项目）
+├── preferences.json               # 默认设置
+└── defaults/                      # 模板
 ```
 
-### 6.2. brain.json (Static Knowledge)
+### 6.2. brain.json（静态知识）
 
-Contains rarely changing info:
+包含很少变化的信息：
 
 ```json
 {
@@ -173,23 +173,23 @@ Contains rarely changing info:
 }
 ```
 
-### 6.3. session.json (Dynamic Session)
+### 6.3. session.json（动态会话）
 
-Contains frequently changing info:
+包含经常变化的信息：
 
 ```json
 {
   "updated_at": "2026-01-17T18:30:00Z",
   "working_on": {
-    "feature": "Revenue Report",
-    "task": "Implement daily revenue chart",
+    "feature": "营收报告",
+    "task": "实现每日营收图表",
     "status": "coding",
     "files": ["src/features/reports/components/revenue-chart.tsx"],
     "blockers": [],
-    "notes": "Using recharts"
+    "notes": "使用recharts"
   },
   "pending_tasks": [
-    { "task": "Add date filter", "priority": "medium", "notes": "User requested" }
+    { "task": "添加日期筛选", "priority": "medium", "notes": "用户要求" }
   ],
   "recent_changes": [
     { "timestamp": "...", "type": "feature", "description": "...", "files": [...] }
@@ -198,90 +198,90 @@ Contains frequently changing info:
     { "error": "...", "solution": "...", "resolved": true }
   ],
   "decisions_made": [
-    { "decision": "Use recharts", "reason": "Better React integration" }
+    { "decision": "使用recharts", "reason": "React集成更好" }
   ]
 }
 ```
 
-### 6.4. Update Rules
+### 6.4. 更新规则
 
-| Trigger | File to update |
-|---------|---------------|
-| New API added | `brain.json` → api_endpoints |
-| DB change / New migration | **AUTO `/sync-schema`** → schema.md, schema.ts, brain.json |
-| Bug fixed | `session.json` → errors_encountered |
-| New dependency | `brain.json` → tech_stack |
-| New feature | `brain.json` → features |
-| Working on task | `session.json` → working_on |
-| Task completed | `session.json` → pending_tasks, recent_changes |
-| End of day | Both + `/sync-schema` |
+| 触发条件 | 需要更新的文件 |
+|---------|--------------|
+| 新增API | `brain.json` → api_endpoints |
+| 数据库变更 / 新迁移 | **自动 `/sync-schema`** → schema.md, schema.ts, brain.json |
+| 修复Bug | `session.json` → errors_encountered |
+| 新增依赖 | `brain.json` → tech_stack |
+| 新功能 | `brain.json` → features |
+| 正在做任务 | `session.json` → working_on |
+| 完成任务 | `session.json` → pending_tasks, recent_changes |
+| 一天结束 | 两个文件 + `/sync-schema` |
 
 ---
 
-## Phase 7: Confirmation
+## 阶段7: 确认
 
-1.  Report: "I've updated memory. Files updated:"
+1.  报告："已更新记忆。更新的文件："
     *   `docs/architecture/system_overview.md`
     *   `docs/api/endpoints.md`
     *   `.brain/brain.json` ⭐
     *   `CHANGELOG.md`
     *   ...
-2.  "I've memorized this knowledge permanently."
-3.  "You can safely close. Use `/recap` tomorrow and I'll remember everything."
+2.  "这些知识已永久记住了。"
+3.  "你可以安全关闭了。明天用 `/recap` 我会记得一切。"
 
-### 7.1. Quick Stats
+### 7.1. 快速统计
 ```
 📊 Brain Stats:
-- Tables: X | APIs: Y | Features: Z
-- Pending tasks: N
-- Last updated: [timestamp]
+- 表: X | API: Y | 功能: Z
+- 待办任务: N
+- 最后更新: [timestamp]
 ```
 
 ---
 
-## ⚠️ NEXT STEPS:
+## ⚠️ 下一步：
 ```
-1️⃣ Done? Take a break!
-2️⃣ Coming back tomorrow? /recap to restore context
-3️⃣ Need to continue? /plan or /code
+1️⃣ 完成了？休息一下！
+2️⃣ 明天回来？ /recap 恢复上下文
+3️⃣ 继续？ /plan 或 /code
 ```
 
-## 💡 BEST PRACTICES:
-*   Run `/save-brain` after each major feature
-*   Run `/save-brain` at end of each workday
-*   Run `/save-brain` before long breaks
+## 💡 最佳实践：
+*   每完成一个大功能后运行 `/save-brain`
+*   每天工作结束时运行 `/save-brain`
+*   长假前运行 `/save-brain`
 
 ---
 
-## 🛡️ RESILIENCE PATTERNS (Hidden from User)
+## 🛡️ 弹性模式（对用户隐藏）
 
-### When file write fails:
+### 文件写入失败时：
 ```
-1. Retry 1 (wait 1s)
-2. Retry 2 (wait 2s)
-3. Retry 3 (wait 4s)
-4. If still fails → Tell user:
-   "Can't save file 😅
+1. 重试第1次（等1秒）
+2. 重试第2次（等2秒）
+3. 重试第3次（等4秒）
+4. 仍然失败 → 通知用户：
+   "无法保存文件 😅
 
-   Would you like to:
-   1️⃣ Retry
-   2️⃣ Save to clipboard temporarily
-   3️⃣ Skip this file, save the rest"
-```
-
-### When JSON invalid:
-```
-If brain.json/session.json corrupted:
-→ Create backup: brain.json.bak
-→ Create new file from template
-→ Tell user: "Old file was corrupted, I created a new one and backed up the old"
+   你想：
+   1️⃣ 重试
+   2️⃣ 暂时保存到剪贴板
+   3️⃣ 跳过这个文件，保存其余的"
 ```
 
-### Simplified error messages:
+### JSON无效时：
+```
+brain.json/session.json损坏：
+→ 创建备份：brain.json.bak
+→ 从模板创建新文件
+→ 通知用户："旧文件损坏了，我已创建新文件并备份旧文件"
+```
+
+### 简化错误消息：
 ```
 ❌ "ENOENT: no such file or directory"
-✅ ".brain/ folder doesn't exist yet, let me create it!"
+✅ ".brain/文件夹还不存在，我来创建！"
 
 ❌ "EACCES: permission denied"
-✅ "No write permission. Please check folder permissions."
+✅ "没有写入权限。请检查文件夹权限。"
 ```
