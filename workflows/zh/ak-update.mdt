@@ -129,3 +129,27 @@ Download selected packages, copy to local, update antikit_installed.json.
 
 ```
 ```
+
+
+---
+
+## Phase 9: 刷新GEMINI.md规则
+
+**重要:** 更新工作流/技能/代理后，重新运行安装程序以使用最新的规则、AGENT INDEX和SKILL INDEX刷新GEMINI.md。
+
+```bash
+# macOS/Linux
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+```
+
+```powershell
+# Windows
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+```
+
+确保:
+- ✅ 核心规则已更新
+- ✅ AGENT INDEX已重新生成（包括新代理）
+- ✅ SKILL INDEX已重新生成（包括新技能）
+- ✅ 用户自定义规则被保留
+- ✅ 更新前自动备份

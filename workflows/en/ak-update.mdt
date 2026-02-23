@@ -129,3 +129,29 @@ Download selected packages, copy to local, update antikit_installed.json.
 
 ```
 ```
+
+
+---
+
+## Phase 9: Refresh GEMINI.md Rules
+
+**CRITICAL:** After updating workflows/skills/agents, re-run the installer to refresh GEMINI.md with latest rules, AGENT INDEX, and SKILL INDEX.
+
+```bash
+# macOS/Linux
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+```
+
+```powershell
+# Windows
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+```
+
+This ensures:
+- ✅ Core rules updated (rules/GEMINI.md)
+- ✅ AGENT INDEX regenerated (new agents included)
+- ✅ SKILL INDEX regenerated (new skills included)
+- ✅ User custom rules preserved (outside markers)
+- ✅ Auto-backup created before update
+
+> **Note:** The installer detects existing installation and updates in-place. User custom rules outside `<!-- ANTIKIT_START -->` markers are always preserved.

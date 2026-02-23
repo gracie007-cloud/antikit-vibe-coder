@@ -265,3 +265,29 @@ cp -r antikit/library/workflows/debug/translations/vi.md ~/.gemini/antigravity/g
 - Packages được auto-translate sang ngôn ngữ của bạn
 - Core framework update sẽ overwrite global files
 - Lịch sử update được lưu để rollback nếu cần
+
+
+---
+
+## Phase 9: Cập Nhật GEMINI.md Rules
+
+**QUAN TRỌNG:** Sau khi update workflows/skills/agents, chạy lại installer để cập nhật GEMINI.md với rules, AGENT INDEX, SKILL INDEX mới nhất.
+
+```bash
+# macOS/Linux
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+```
+
+```powershell
+# Windows
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+```
+
+Đảm bảo:
+- ✅ Core rules được cập nhật
+- ✅ AGENT INDEX tạo lại (bao gồm agents mới)
+- ✅ SKILL INDEX tạo lại (bao gồm skills mới)
+- ✅ Custom rules của user được giữ nguyên
+- ✅ Auto-backup trước khi update
+
+> **Lưu ý:** Installer tự detect đã cài đặt → chỉ update. Custom rules ngoài markers luôn được bảo toàn.
