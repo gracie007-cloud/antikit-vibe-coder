@@ -2,14 +2,14 @@
 
 # AntiKit 🚀
 
-**Antigravity 的 "Vibe Coding" 伴侣。**
-*凭感觉写代码，让AI处理逻辑。* 🧘‍♂️✨
+### 把Antigravity变成**赚钱机器。**
+*从"我有个想法" → 开发完成、营销完成、开始赚钱 — 一套工具搞定。*
 
-[![Version](https://img.shields.io/badge/Version-1.9.4-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.12.0-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
-[![Documentation](https://img.shields.io/badge/Docs-Read%20Manual-orange?style=for-the-badge)](https://antikit.pages.dev/docs)
-[![Website](https://img.shields.io/badge/Website-antikit.pages.dev-purple?style=for-the-badge)](https://antikit.pages.dev)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hasugoii)
+[![Docs](https://img.shields.io/badge/文档-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
+[![Buy Me A Coffee](https://img.shields.io/badge/支持-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hasugoii)
 
 [English](README.md) | [Tiếng Việt](README.vi.md) | [日本語](README.ja.md) | [中文](README.zh.md)
 
@@ -17,138 +17,213 @@
 
 ---
 
-## 🤔 为什么需要 AntiKit？
+## 🤯 如果AI不仅写代码，还帮你卖产品呢？
 
-你拥有 **Google Antigravity**，最强大的AI编程代理。但有时候感觉...
-- 😥 **太技术化：** "上下文"、"Schema"、"提示词"...让人头疼！
-- 🎲 **太随机：** 你要一个功能，它给你一堂课。
-- 😨 **太冒险：** 万一它删了 `C:\Windows` 怎么办？
-- 😵 **太混乱：** 正在和谁对话？开发者？测试员？
+大多数AI编码工具止步于写代码。**AntiKit不一样。**
 
-**AntiKit** 解决一切问题。它将 Antigravity 的原始引擎变成了任何人都能驾驶的**豪华跑车**。
-
----
-
-## ✨ "Vibe Coding" 六大支柱
-
-### 1. 🌏 严格语言控制（无语言漂移）
-Antigravity 总爱默认英语。AntiKit 强制AI **100%使用你选择的语言**（中文、越南语、日语等）。
-> *再也不会中途切换语言了。*
-
-### 2. 🛡️ 零恐惧安全（沙盒模式）
-安心编程。我们安装了**数字力场**：
-- 🚫 **阻止破坏性命令：** 禁止 `rm -rf`。
-- 🔒 **项目锁定：** AI 不能触碰项目文件夹以外的任何东西。
-- 🧱 **系统保护：** 你的OS文件不可侵犯。
-
-### 3. 🤖 多代理协作（2+大脑，1个任务）`新功能`
-每个任务现在有**多个AI代理**协作 — PRIMARY 专家主导，SUPPORT 代理提供跨领域知识。
-> `> 🤖 PRIMARY: @backend | SUPPORT: @security, @database | 🛠️ Skills: api-patterns, vulnerability-scanner`
-
-不再有单一视角的答案。每次请求都获得**多专家输出**。
-
-### 4. 🔬 证据纪律（无感觉Bug）`新功能`
-永远消灭"凭感觉写代码"的Bug。AI在动你的代码之前，必须证明需求：
-- 🐛 **修复Bug？** → 必须先复现。
-- ⚡ **优化？** → 必须有前后基准测试。
-- 📦 **添加依赖？** → 必须比较2+替代方案。
-- 🚀 **部署？** → 所有测试必须通过。
-
-> *不再有"也许改一下这个就行..."的随机修复。*
-
-### 5. 🧠 监督大脑（自动纠正）
-我们给AI植入了"良心"。在给你代码之前，它会自问：
-> *"等等，这代码够好吗？高级开发者会批准吗？"*
-在你看到之前**就自动修正**错误。
-
-### 6. 🎯 上下文完整性（防漂移）
-AI每隔几轮自我检查：*"我还在解决原来的请求吗？"*
-- 在**范围蔓延**扩散之前就捕获。
-- 检测**兔子洞**并自我拉回。
-- 确保编辑全程的**文件一致性**。
-
----
-
-## 🚀 一键安装
-
-无需技术专家。打开终端，粘贴这个**魔法咒语**：
-
-### 🪟 Windows (PowerShell)
-```powershell
-iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex -Language zh
 ```
+你: /brainstorm 记账App
+AI: → 市场调研 + 竞品分析
+    → MVP功能选择 + 技术栈
+    → 架构设计图
+
+你: /code
+AI: → 全栈代码（含测试）
+    → 21个专家Agent协作
+
+你: /launch
+AI: → 落地页（已编码+部署）
+    → 微信/小红书/微博文案（可直接复制）
+    → 支付设置（Stripe, 微信支付）
+    → 30天营销日历
+
+你: /grow
+AI: → 用户留存策略
+    → 裂变邀请程序设计
+    → 定价优化（Van Westendorp法）
+    → 邮件序列（可直接复制）
+```
+
+**结果：** 从想法到收入，几天而非几个月。
+
+---
+
+## ⚡ 安装（30秒）
 
 ### 🍎 macOS / 🐧 Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang zh
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
-> **💡 提示：** 随时用 `/config language [en|vi|ja|zh]` 更改语言
+### 🪟 Windows (PowerShell)
+```powershell
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+```
+
+> 💡 **切换语言：** 随时 `/config language zh`
 
 ---
 
-## 🎮 如何 "Vibe"？
+## 🎮 斜杠命令 — 你的AI团队
 
-安装完成后，在聊天中输入斜杠命令召唤专家：
+输入命令，召唤专家。就这么简单。
 
-| 命令 | 召唤... | 当你感觉... |
-| :--- | :--- | :--- |
-| `/brainstorm` | 💡 **创意大师** | "有想法但不知道从哪开始..." |
-| `/plan` | 📝 **架构师** | "编码前需要一个靠谱的计划。" |
-| `/visualize` | 🎨 **设计师** | "想要漂亮的界面。" |
-| `/code` | 💻 **高级开发** | "帮我写代码。" |
-| `/deploy` | 🚀 **运维** | "把这个东西上线！" |
-| `/audit` | 🏥 **医生** | "我的代码健康吗？安全吗？" |
-| `/recap` | 🧠 **秘书** | "刷新一下记忆，我们在做什么？" |
+| 命令 | 发生什么 | 你的感受... |
+|:-----|:---------|:-----------|
+| `/brainstorm` | 💡 市场调研、竞品分析、功能规划 | "现在我知道该做什么了" |
+| `/plan` | 📝 架构设计、任务分解、技术选型 | "这个方案很靠谱" |
+| `/visualize` | 🎨 内置**转化率优化**的UI/UX设计 | "看起来很专业" |
+| `/code` | 💻 全栈代码、多Agent协作、含测试 | "直接能跑" |
+| `/test` | ✅ Unit + E2E + 统计学A/B测试 | "放心上线" |
+| `/deploy` | 🚀 Docker、CI/CD、分析+SEO自动设置 | "上线了！" |
+| `/audit` | 🏥 安全扫描 + SEO审计 + 性能检查 | "安全又快速" |
+| `/launch` | 📢 **GTM：内容、落地页、支付、渠道** | "有人注册了！" |
+| `/grow` | 📈 **留存、定价、裂变、邮件** | "收入在增长！" |
 
----
+### 🔥 `/launch` + `/grow` 流水线 — *大家安装AntiKit的原因*
 
-## 🛠️ 也适合专业人士 ⚡
+```
+/launch 为你创建:
+├── 📋 30天营销日历
+├── 📱 微信/小红书/微博文案（可直接复制）
+├── 🏠 落地页（编码完成，8段高转化结构）
+├── 💰 支付设置（微信支付 🇨🇳, Stripe 🌍）
+├── 🚀 Product Hunt发布套件
+└── 📧 邮件序列（欢迎、引导、留存）
 
-认为 AntiKit 只适合初学者？**大错特错。** 这是高级开发者的外骨骼装甲：
-
-1.  **⚡ 极速效率：** 1秒自动化无聊工作（设置、配置、模板代码）。
-2.  **🧠 45项专家技能：** 代理预装深度知识：
-    *   **技术：** Next.js、React、Node.js、Python、Rust、Docker、Cloudflare。
-    *   **方法论：** TDD、Clean Code、DDD、Evidence Discipline、安全模式。
-    *   **专项：** SEO、UX/UI、性能优化、移动端、游戏开发。
-3.  **🤖 多代理协议：** 每个任务 **2+代理** 协作：
-    *   PRIMARY（领域专家）+ SUPPORT（跨领域审查）
-    *   从20个代理的 AGENT INDEX 自动选择
-    *   构建/创建任务强制交叉审查
-4.  **⚡ 强力模式标志：** 用简单标志解锁专家代理：
-    *   `/code --mobile` → React Native 移动端专家
-    *   `/audit --pentest` → MITRE ATT&CK 渗透测试员
-    *   `/deploy --docker` → Docker DevOps 专家
-5.  **🔬 证据门：** 不再有"在我这里能跑"：
-    *   修复Bug需要复现步骤
-    *   重构需要前后指标
-    *   部署需要测试通过
-6.  **🧘 深度心流：** 保持在心流区，代理安全处理杂务。
+/grow 为你创建:
+├── 📊 PMF评分（Sean Ellis 40%测试）
+├── 🔄 流失预防策略
+├── 💎 定价优化（Van Westendorp, MaxDiff）
+├── 🎁 裂变邀请程序（双向奖励）
+├── 📧 留存邮件（可直接复制）
+└── 📈 月度增长报告
+```
 
 ---
 
-## 📦 里面有什么？
+## 🧠 83项技能 — 不只是代码，是一切
 
--   **20个专家代理：** 前端、后端、安全、SEO、移动端、游戏开发...
--   **29个工作流：** 4种语言优化的斜杠命令，带**强力模式标志**。
--   **45项技能：** 按需加载的深度知识模块。
--   **多代理协议：** 每个任务自动选择 PRIMARY + SUPPORT 代理。
--   **证据纪律：** 基于证据的开发，无感觉Bug。
--   **全局记忆（GEMINI.md）：** 管理安全、语言和路由的"大脑"。
+<table>
+<tr>
+<td width="33%">
+
+### 💻 工程技术 (40+)
+- Clean Code & TDD
+- React, Next.js, Vue
+- Python, Rust, Go, Java
+- 数据库设计
+- Docker & 部署
+- API & 安全模式
+- 性能分析
+- 移动端 (RN, Flutter)
+- 游戏开发
+
+</td>
+<td width="33%">
+
+### 📈 营销 & 增长 (29)
+- 文案写作 (AIDA)
+- SEO + AI SEO (GEO)
+- 定价策略 (Van Westendorp)
+- 发布策略 (5阶段 + ORB)
+- 营销心理学 (Cialdini)
+- 流失预防
+- 裂变邀请
+- 邮件序列
+- 内容策略
+- A/B测试
+- 社交内容
+- 广告 & 冷邮件
+
+</td>
+<td width="33%">
+
+### 🛡️ 安全 & AI
+- 漏洞扫描器
+- Red Team战术
+- OWASP 2025
+- AI自学习（instinct-based）
+- LLM成本管理
+- 上下文压缩
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🤖 21个Agent — 多脑协作
+
+每个任务都有**2个以上Agent**协作。不是1个AI，是一个**团队**。
+
+```
+你: "做一个登录页面"
+
+AntiKit:
+🤖 主要: @frontend-specialist (React, CSS, 无障碍)
+🤖 支援: @security-auditor (XSS, CSRF, JWT)
+🤖 支援: @test-engineer (E2E测试)
+
+→ 结果: 美观、安全、已测试的登录页面
+```
+
+---
+
+## 🛡️ 绝对安全（无忧编码）
+
+| 保护 | 作用 |
+|:-----|:-----|
+| 🚫 **阻止破坏性命令** | `rm -rf /` → **已阻止** |
+| 🔒 **项目沙盒** | AI只能操作项目文件夹 |
+| 🧱 **系统文件保护** | 操作系统文件不可触碰 |
+| 🧠 **监督大脑** | AI在显示前自我修正 |
+| 🎯 **防止偏题** | 自动检测范围蔓延 |
+| 🔬 **证据门禁** | 修Bug先复现，部署先过测试 |
+
+---
+
+## 📦 包含什么？
+
+| 组件 | 数量 | 亮点 |
+|:-----|:-----|:-----|
+| 🤖 Agent | 21 | 每个任务多Agent协作 |
+| 🧠 技能 | 83 | 技术 + 营销 + 安全 + 增长 |
+| ⚡ 工作流 | 30+ | 从头脑风暴到收入 |
+| 🌍 语言 | 4 | EN, VI, JA, ZH |
+| 🛡️ 安全 | 6层 | 沙盒 + 阻止 + 监督 |
+
+---
+
+## 💰 适合谁？
+
+| 你是... | AntiKit给你... |
+|:--------|:---------------|
+| 🌱 **新手** | 安全编码，不怕搞坏，有工作流引导 |
+| 💻 **独立开发者** | Build → Launch → Marketing → Grow **一个工具搞定** |
+| 👨‍💻 **高级开发** | 21 Agent + 83技能 = 效率×10 |
+| 🏢 **创业公司** | 全栈 + 营销 + SEO + 增长，从第一天开始 |
 
 ---
 
 ## 🤝 致谢
 
-本项目参考了 [AWF (Antigravity Workflow Framework)](https://github.com/TUAN130294/awf) by [TUAN130294](https://github.com/TUAN130294)。
+灵感来自 [AWF](https://github.com/TUAN130294/awf)（[TUAN130294](https://github.com/TUAN130294)）。
+
+社区技能来自 [coreyhaines31](https://github.com/coreyhaines31/marketingskills)、[affaan-m](https://github.com/affaan-m/everything-claude-code)、[sickn33](https://github.com/sickn33/antigravity-awesome-skills)。
 
 ---
 
 <div align="center">
 
-**Built with ❤️ for the Vibe Coding Community.**
+**别盲目写代码。开始构建商业。** 🚀
+
+```
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+```
 
 [![Star History Chart](https://api.star-history.com/svg?repos=hasugoii/antikit&type=Date)](https://star-history.com/#hasugoii/antikit&Date)
+
+**用 ❤️ 为想要发布并销售的构建者而制作。**
 
 </div>

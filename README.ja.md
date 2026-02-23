@@ -2,14 +2,14 @@
 
 # AntiKit 🚀
 
-**Antigravityの「バイブコーディング」コンパニオン。**
-*感覚でコーディング。ロジックはAIに任せよう。* 🧘‍♂️✨
+### Antigravityを**マネーマシン**に変える。
+*「アイデアがある」→ 開発、マーケティング、収益化 — ひとつのツールキットで。*
 
-[![Version](https://img.shields.io/badge/Version-1.9.4-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.12.0-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
-[![Documentation](https://img.shields.io/badge/Docs-Read%20Manual-orange?style=for-the-badge)](https://antikit.pages.dev/docs)
-[![Website](https://img.shields.io/badge/Website-antikit.pages.dev-purple?style=for-the-badge)](https://antikit.pages.dev)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hasugoii)
+[![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
+[![Buy Me A Coffee](https://img.shields.io/badge/サポート-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hasugoii)
 
 [English](README.md) | [Tiếng Việt](README.vi.md) | [日本語](README.ja.md) | [中文](README.zh.md)
 
@@ -17,138 +17,213 @@
 
 ---
 
-## 🤔 なぜAntiKitが必要？
+## 🤯 AIがコードを書くだけでなく、売上まで作ってくれたら？
 
-**Google Antigravity**を持っていますね。最強のAIコーディングエージェントです。でも時々...
-- 😥 **難しすぎる:** 「コンテキスト」「スキーマ」「プロンプト」...頭が痛い！
-- 🎲 **ランダムすぎる:** 機能を頼んだのに講義が始まる。
-- 😨 **危険すぎる:** `C:\Windows`を削除されたらどうする？
-- 😵 **混乱しすぎる:** 今話しているのは誰？開発者？テスター？
+ほとんどのAIコーディングツールはコード生成で止まる。**AntiKitは違う。**
 
-**AntiKit**がすべてを解決します。Antigravityの生のエンジンを、誰でも運転できる**高級スポーツカー**に変えます。
-
----
-
-## ✨ 「バイブコーディング」の6本柱
-
-### 1. 🌏 厳格な言語制御（言語ドリフトなし）
-Antigravityは英語ばかり使いたがります。AntiKitは、あなたの**希望する言語**（日本語、ベトナム語、中国語など）を100%守らせます。
-> *途中で英語に切り替わることはもうありません。*
-
-### 2. 🛡️ ゼロ恐怖セーフティ（サンドボックスモード）
-安心してコーディング。**デジタルフォースフィールド**を設置しました：
-- 🚫 **破壊的コマンドをブロック：** `rm -rf`は禁止。
-- 🔒 **プロジェクトロックダウン：** AIはプロジェクトフォルダ外に触れません。
-- 🧱 **システム保護：** OSファイルは不可侵。
-
-### 3. 🤖 マルチエージェント協力（2+頭脳、1タスク）`NEW`
-すべてのタスクで**複数のAIエージェント**が協力します。PRIMARYエキスパートがリードし、SUPPORTエージェントがクロスドメイン知識を提供。
-> `> 🤖 PRIMARY: @backend | SUPPORT: @security, @database | 🛠️ Skills: api-patterns, vulnerability-scanner`
-
-もう一方的な回答はありません。すべてのリクエストで**マルチエキスパート出力**を得られます。
-
-### 4. 🔬 エビデンス規律（バイブバグなし）`NEW`
-「感覚コーディング」によるバグを永久に排除。AIがコードに触れる前に証明が必要：
-- 🐛 **バグ修正？** → まず再現すること。
-- ⚡ **最適化？** → 前後のベンチマークが必要。
-- 📦 **依存関係追加？** → 2つ以上の代替案を比較。
-- 🚀 **デプロイ？** → すべてのテストがパスすること。
-
-> *「これを変えたらうまくいくかも...」はもう終わり。*
-
-### 5. 🧠 スーパーバイザーブレイン（自動修正）
-AIに「良心」を植え付けました。コードを渡す前に自問します：
-> *「待って、このコードは十分良い？シニアDevに承認される？」*
-あなたが見る**前に**ミスを自動修正します。
-
-### 6. 🎯 コンテキスト整合性（ドリフト防止）
-AIは数ターンごとに自己チェック：*「元のリクエストに対応しているか？」*
-- **スコープクリープ**を早期発見。
-- **ラビットホール**の検出と自己修正。
-- 編集全体の**ファイル一貫性**を保証。
-
----
-
-## 🚀 ワンクリックインストール
-
-技術の専門家である必要はありません。ターミナルを開いてこの**魔法の呪文**を貼り付けるだけ：
-
-### 🪟 Windows (PowerShell)
-```powershell
-iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex -Language ja
 ```
+あなた: /brainstorm 家計簿アプリ
+AI:    → 市場調査 + 競合分析
+       → MVP機能選定 + 技術スタック
+       → アーキテクチャ図
+
+あなた: /code
+AI:    → フルスタックコード（テスト付き）
+       → 21の専門エージェントが協力
+
+あなた: /launch
+AI:    → ランディングページ（コード＆デプロイ済み）
+       → Twitter/note.com投稿文（コピペで使える）
+       → 決済設定（Stripe, PayPay）
+       → 30日マーケティングカレンダー
+
+あなた: /grow
+AI:    → 解約防止戦略
+       → 紹介プログラム設計
+       → 価格最適化（Van Westendorp法）
+       → メールシーケンス（コピペで使える）
+```
+
+**結果:** アイデアから収益まで、数ヶ月ではなく数日で。
+
+---
+
+## ⚡ インストール（30秒）
 
 ### 🍎 macOS / 🐧 Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang ja
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
-> **💡 ヒント：** いつでも `/config language [en|vi|ja|zh]` で言語変更可能
+### 🪟 Windows (PowerShell)
+```powershell
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+```
+
+> 💡 **言語変更:** いつでも `/config language ja`
 
 ---
 
-## 🎮 「バイブ」の仕方
+## 🎮 スラッシュコマンド — あなたのAIチーム
 
-インストール後、チャットでスラッシュコマンドを入力してエキスパートを召喚：
+コマンドを入力。専門家を召喚。それだけ。
 
-| コマンド | 召喚... | こんな時に... |
-| :--- | :--- | :--- |
-| `/brainstorm` | 💡 **アイデアマン** | 「アイデアはあるけど、どこから始めれば...」 |
-| `/plan` | 📝 **アーキテクト** | 「コーディング前にしっかり計画したい。」 |
-| `/visualize` | 🎨 **デザイナー** | 「美しく仕上げたい。」 |
-| `/code` | 💻 **シニアDev** | 「コード書いて。」 |
-| `/deploy` | 🚀 **DevOps** | 「これをインターネットに公開して！」 |
-| `/audit` | 🏥 **ドクター** | 「コードの健康状態は？」 |
-| `/recap` | 🧠 **秘書** | 「何をやってたっけ？思い出させて。」 |
+| コマンド | 何が起こる | あなたの気持ち... |
+|:---------|:-----------|:-----------------|
+| `/brainstorm` | 💡 市場調査、競合分析、機能企画 | 「何を作るか明確になった」 |
+| `/plan` | 📝 アーキテクチャ、タスク分解、技術選定 | 「しっかりした計画だ」 |
+| `/visualize` | 🎨 **コンバージョン最適化済み**のUI/UXデザイン | 「プロの仕上がりだ」 |
+| `/code` | 💻 フルスタックコード、マルチエージェント、テスト | 「そのまま動く」 |
+| `/test` | ✅ Unit + E2E + 統計的に正しいA/Bテスト | 「安心してリリースできる」 |
+| `/deploy` | 🚀 Docker、CI/CD、アナリティクス+SEO自動設定 | 「公開完了！」 |
+| `/audit` | 🏥 セキュリティ + SEO + パフォーマンス監査 | 「安全で速い」 |
+| `/launch` | 📢 **GTM戦略：コンテンツ、LP、決済、チャネル** | 「登録者が来た！」 |
+| `/grow` | 📈 **リテンション、価格、紹介、メール** | 「売上が伸びてる！」 |
 
----
+### 🔥 `/launch` + `/grow` パイプライン — *みんながAntiKitをインストールする理由*
 
-## 🛠️ プロにも最適 ⚡
+```
+/launch が作るもの:
+├── 📋 30日マーケティングカレンダー
+├── 📱 Twitter/note.com/Qiita投稿文（コピペ可）
+├── 🏠 ランディングページ（コード済み、高CVR 8セクション構造）
+├── 💰 決済設定（Stripe 🌍, PayPay 🇯🇵）
+├── 🚀 Product Huntローンチキット
+└── 📧 メールシーケンス（ウェルカム、オンボーディング）
 
-AntiKitは初心者向けだけ？**大間違い。** シニアDevのためのエクソスケルトン：
-
-1.  **⚡ 超高速:** 退屈な作業（セットアップ、設定、ボイラープレート）を1秒で自動化。
-2.  **🧠 45のエキスパートスキル：** エージェントに深い知識をプリロード：
-    *   **技術:** Next.js、React、Node.js、Python、Rust、Docker、Cloudflare。
-    *   **手法:** TDD、Clean Code、DDD、Evidence Discipline、セキュリティパターン。
-    *   **専門:** SEO、UX/UI、パフォーマンス、モバイル、ゲーム開発。
-3.  **🤖 マルチエージェントプロトコル：** すべてのタスクに**2+エージェント**が協力：
-    *   PRIMARY（ドメインエキスパート）+ SUPPORT（クロスドメインレビュー）
-    *   20エージェントのAGENT INDEXから自動選択
-    *   ビルド/作成タスクでクロスレビュー必須
-4.  **⚡ パワーモードフラグ：** シンプルなフラグで専門エージェントを解放：
-    *   `/code --mobile` → React Nativeスキルのモバイルエキスパート
-    *   `/audit --pentest` → MITRE ATT&CKのペネトレーションテスター
-    *   `/deploy --docker` → Dockerスキルのdevopsエキスパート
-5.  **🔬 エビデンスゲート：** 「手元では動く」はもう終わり：
-    *   バグ修正には再現手順が必要
-    *   リファクタにはビフォー/アフターメトリクスが必要
-    *   デプロイにはテストパスが必要
-6.  **🧘 ディープフロー:** ゾーンに留まり、エージェントが安全に雑務を処理。
+/grow が作るもの:
+├── 📊 PMFスコアリング（Sean Ellis 40%テスト）
+├── 🔄 解約防止戦略
+├── 💎 価格最適化（Van Westendorp、MaxDiff）
+├── 🎁 紹介プログラム（双方向報酬）
+├── 📧 リテンションメール（コピペ可）
+└── 📈 月次グロースレポート
+```
 
 ---
 
-## 📦 中身は？
+## 🧠 83スキル — コードだけじゃない、すべて
 
--   **20の専門エージェント：** Frontend、Backend、Security、SEO、Mobile、Game Dev...
--   **29のワークフロー：** 4言語対応のスラッシュコマンド、**パワーモードフラグ**付き。
--   **45のスキル：** オンデマンドでロードされる深い知識モジュール。
--   **マルチエージェントプロトコル：** タスクごとにPRIMARY + SUPPORTエージェントを自動選択。
--   **エビデンス規律：** 証拠に基づく開発、バイブバグなし。
--   **グローバルメモリ（GEMINI.md）：** 安全性、言語、ルーティングを管理する「脳」。
+<table>
+<tr>
+<td width="33%">
+
+### 💻 エンジニアリング (40+)
+- Clean Code & TDD
+- React, Next.js, Vue
+- Python, Rust, Go, Java
+- データベース設計
+- Docker & デプロイ
+- API & セキュリティ
+- パフォーマンス分析
+- モバイル (RN, Flutter)
+- ゲーム開発
+
+</td>
+<td width="33%">
+
+### 📈 マーケティング (29)
+- コピーライティング (AIDA)
+- SEO + AI SEO (GEO)
+- 価格戦略 (Van Westendorp)
+- ローンチ戦略 (5段階 + ORB)
+- マーケティング心理学 (Cialdini)
+- 解約防止
+- 紹介プログラム
+- メールシーケンス
+- コンテンツ戦略
+- A/Bテスト
+- ソーシャルコンテンツ
+- 広告 & コールドメール
+
+</td>
+<td width="33%">
+
+### 🛡️ セキュリティ & AI
+- 脆弱性スキャナー
+- Red Team戦術
+- OWASP 2025
+- AI自己学習
+- LLMコスト管理
+- コンテキスト圧縮
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🤖 21エージェント — マルチブレイン協力
+
+すべてのタスクで**2つ以上のエージェント**が協力。1つのAIではなく、**チーム**。
+
+```
+あなた: 「ログインページを作って」
+
+AntiKit:
+🤖 メイン: @frontend-specialist (React, CSS, アクセシビリティ)
+🤖 サポート: @security-auditor (XSS, CSRF, JWT)
+🤖 サポート: @test-engineer (E2Eテスト)
+
+→ 結果: 美しく、安全で、テスト済みのログインページ
+```
+
+---
+
+## 🛡️ 完全な安全性（安心コーディング）
+
+| 保護 | 内容 |
+|:-----|:-----|
+| 🚫 **破壊コマンドブロック** | `rm -rf /` → **ブロック** |
+| 🔒 **プロジェクトサンドボックス** | AIはプロジェクトフォルダ内のみ操作可 |
+| 🧱 **システムファイル保護** | OS ファイルは触れない |
+| 🧠 **スーバーバイザーブレイン** | AIが表示前に自己修正 |
+| 🎯 **スコープクリープ防止** | 自動で脱線を検知 |
+| 🔬 **エビデンスゲート** | バグ修正は再現が先。デプロイはテスト合格が先。 |
+
+---
+
+## 📦 パッケージ内容
+
+| コンポーネント | 数量 | ハイライト |
+|:--------------|:-----|:-----------|
+| 🤖 エージェント | 21 | 全タスクでマルチエージェント |
+| 🧠 スキル | 83 | 技術 + マーケ + セキュリティ + グロース |
+| ⚡ ワークフロー | 30+ | ブレストから収益まで |
+| 🌍 言語 | 4 | EN, VI, JA, ZH |
+| 🛡️ セキュリティ | 6層 | サンドボックス + ブロック + 監視 |
+
+---
+
+## 💰 こんな人のために
+
+| あなたは... | AntiKitは... |
+|:-----------|:-------------|
+| 🌱 **初心者** | 安全にコーディング、壊す心配なし |
+| 💻 **個人開発者** | Build → Launch → Marketing → Grow を**1ツールで** |
+| 👨‍💻 **シニアDevr** | 21エージェント + 83スキル = 生産性×10 |
+| 🏢 **スタートアップ** | フルスタック + マーケ + SEO + グロースを初日から |
 
 ---
 
 ## 🤝 クレジット
 
-このプロジェクトは[AWF (Antigravity Workflow Framework)](https://github.com/TUAN130294/awf) by [TUAN130294](https://github.com/TUAN130294)を参考にしています。
+[AWF](https://github.com/TUAN130294/awf)（[TUAN130294](https://github.com/TUAN130294)）に触発されました。
+
+コミュニティスキル: [coreyhaines31](https://github.com/coreyhaines31/marketingskills), [affaan-m](https://github.com/affaan-m/everything-claude-code), [sickn33](https://github.com/sickn33/antigravity-awesome-skills)
 
 ---
 
 <div align="center">
 
-**Built with ❤️ for the Vibe Coding Community.**
+**盲目にコードを書くのをやめる。ビジネスを構築しよう。** 🚀
+
+```
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+```
 
 [![Star History Chart](https://api.star-history.com/svg?repos=hasugoii/antikit&type=Date)](https://star-history.com/#hasugoii/antikit&Date)
+
+**売りたいビルダーのために ❤️ で作られました。**
 
 </div>

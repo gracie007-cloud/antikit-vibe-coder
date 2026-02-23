@@ -2,14 +2,14 @@
 
 # AntiKit 🚀
 
-**The "Vibe Coding" Companion for Antigravity.**
-*Code by feeling. Let AI handle the logic.* 🧘‍♂️✨
+### Turn Antigravity into a **money-printing machine.**
+*From "I have an idea" → deployed, marketed, and making money — in one toolkit.*
 
-[![Version](https://img.shields.io/badge/Version-1.9.4-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.12.0-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
-[![Documentation](https://img.shields.io/badge/Docs-Read%20Manual-orange?style=for-the-badge)](https://antikit.pages.dev/docs)
-[![Website](https://img.shields.io/badge/Website-antikit.pages.dev-purple?style=for-the-badge)](https://antikit.pages.dev)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hasugoii)
+[![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
+[![Buy Me A Coffee](https://img.shields.io/badge/Support-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hasugoii)
 
 [English](README.md) | [Tiếng Việt](README.vi.md) | [日本語](README.ja.md) | [中文](README.zh.md)
 
@@ -17,138 +17,243 @@
 
 ---
 
-## 🤔 Why AntiKit?
+## 🤯 What if AI could build AND sell your product?
 
-You have **Google Antigravity**, the most powerful AI coding agent. But sometimes it feels...
-- 😥 **Too Technical:** "Contexts", "Schemas", "Prompts"... confusing!
-- 🎲 **Too Random:** You ask for a feature, it gives you a lecture.
-- 😨 **Too Risky:** What if it deletes your `C:\Windows` folder?
-- 😵 **Too Chaotic:** Who is talking? The coder? The tester?
+Most AI coding tools stop at writing code. **AntiKit doesn't.**
 
-**AntiKit** fixes all of that. It turns the raw engine of Antigravity into a **Luxury Sports Car** that anyone can drive.
-
----
-
-## ✨ The 6 Pillars of "Vibe Coding"
-
-### 1. 🌏 Strict Language Enforcement (No Language Drift)
-Antigravity loves to default to English. AntiKit forces it to **stick to your preferred language** (Vietnamese, Japanese, Chinese, etc.) 100% of the time.
-> *No more random switching mid-conversation.*
-
-### 2. 🛡️ Zero-Fear Safety (Sandbox Mode)
-Code with total peace of mind. We installed a **Digital Force Field**:
-- 🚫 **Block Destructive Commands:** No `rm -rf` allowed.
-- 🔒 **Project Lockdown:** AI cannot touch anything outside your project folder.
-- 🧱 **System Protection:** Your OS files are untouchable.
-
-### 3. 🤖 Multi-Agent Collaboration (2+ Brains, 1 Task) `NEW`
-Every task now uses **multiple AI agents** working together — a PRIMARY expert leads, and SUPPORT agents provide cross-domain knowledge.
-> `> 🤖 PRIMARY: @backend | SUPPORT: @security, @database | 🛠️ Skills: api-patterns, vulnerability-scanner`
-
-No more single-perspective answers. You get **multi-expert output** on every request.
-
-### 4. 🔬 Evidence Discipline (No Vibe Bugs) `NEW`
-We killed "vibe coding" bugs forever. Before AI touches your code, it must prove the need:
-- 🐛 **Fix bug?** → Must reproduce it first.
-- ⚡ **Optimize?** → Must benchmark before and after.
-- 📦 **Add dependency?** → Must compare 2+ alternatives.
-- 🚀 **Deploy?** → All tests must pass first.
-
-> *No more "maybe if I change this..." random fixes.*
-
-### 5. 🧠 Supervisor Brain (Auto-Correction)
-We implanted a "Conscience" into the AI. Before it gives you code, it secretly asks itself:
-> *"Wait, is this code good enough? Would a Senior Dev approve this?"*
-It fixes its own mistakes **before** you even see them.
-
-### 6. 🎯 Context Integrity (Anti-Drift)
-AI checks itself every few turns: *"Am I still solving the original request?"*
-- Catches **scope creep** before it spreads.
-- Detects **rabbit holes** and pulls itself back.
-- Ensures **file coherence** across edits.
-
----
-
-## 🚀 Install in 1 Click
-
-You don't need to be a tech wizard. Just open your terminal and paste this **Magic Spell**:
-
-### 🪟 Windows (PowerShell)
-```powershell
-iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
 ```
+You: /brainstorm expense tracker app
+AI:  → Market research + competitor analysis
+     → Feature prioritization + tech stack
+     → Architecture diagram
+
+You: /code
+AI:  → Full-stack code with tests
+     → 21 specialist agents collaborating
+
+You: /launch
+AI:  → Landing page (coded + deployed)
+     → Facebook/TikTok/ProductHunt copy (ready to paste)
+     → Payment setup (SePay, Stripe, MoMo)
+     → 30-day marketing calendar
+
+You: /grow
+AI:  → Churn prevention strategy
+     → Referral program design
+     → Pricing optimization (Van Westendorp method)
+     → Email sequences (copy-paste ready)
+```
+
+**Result:** From idea to revenue in days, not months.
+
+---
+
+## ⚡ Install (30 seconds)
 
 ### 🍎 macOS / 🐧 Linux
 ```bash
 curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
-> **💡 Tip:** Change language anytime with `/config language [en|vi|ja|zh]`
+### 🪟 Windows (PowerShell)
+```powershell
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+```
+
+> 💡 **Language?** Change anytime: `/config language [en|vi|ja|zh]`
 
 ---
 
-## 🎮 How to "Vibe"?
+## 🎮 Slash Commands — Your AI Team
 
-Once installed, just type these slash commands in your chat to summon experts:
+Type a command. Get an expert. It's that simple.
 
-| Command | Summon... | For when you feel... |
-| :--- | :--- | :--- |
-| `/brainstorm` | 💡 **Idea Guy** | "I have an idea but don't know where to start..." |
-| `/plan` | 📝 **Architect** | "I need a solid plan before coding." |
-| `/visualize` | 🎨 **Designer** | "I want it to look beautiful." |
-| `/code` | 💻 **Senior Dev** | "Just write the code for me." |
-| `/deploy` | 🚀 **DevOps** | "Get this thing on the internet!" |
-| `/audit` | 🏥 **Doctor** | "Is my code healthy and safe?" |
-| `/recap` | 🧠 **Secretary** | "Refresh my memory, what were we doing?" |
+| Command | What happens | You feel... |
+|:--------|:-------------|:------------|
+| `/brainstorm` | 💡 Market research, competitor analysis, feature planning | "Now I know exactly what to build" |
+| `/plan` | 📝 Architecture, task breakdown, tech stack selection | "This is a solid plan" |
+| `/visualize` | 🎨 UI/UX design with **conversion optimization** built-in | "This looks professional" |
+| `/code` | 💻 Full-stack code, multi-agent collaboration, tests | "It just works" |
+| `/test` | ✅ Unit + E2E + A/B testing with statistical rigor | "I'm confident shipping this" |
+| `/deploy` | 🚀 Docker, CI/CD, analytics + SEO auto-setup | "It's live!" |
+| `/audit` | 🏥 Security scan + SEO audit + performance check | "It's safe and fast" |
+| `/launch` | 📢 **Go-to-market: content, landing page, payment, channels** | "People are signing up!" |
+| `/grow` | 📈 **Retention, pricing, referral, email sequences** | "Revenue is growing!" |
+
+### 🔥 The `/launch` + `/grow` Pipeline — *This is why people install AntiKit*
+
+```
+/launch creates:
+├── 📋 30-day marketing calendar
+├── 📱 Facebook/TikTok/Twitter posts (copy-paste ready)
+├── 🏠 Landing page (coded, 8-section high-converting structure)
+├── 💰 Payment setup (localized: SePay 🇻🇳, PayPay 🇯🇵, Stripe 🌍)
+├── 🚀 Product Hunt launch kit (tagline, description, maker comment)
+└── 📧 Email sequences (welcome, onboarding, re-engagement)
+
+/grow creates:
+├── 📊 Product-Market Fit scoring (Sean Ellis 40% test)
+├── 🔄 Churn prevention strategy
+├── 💎 Pricing optimization (Van Westendorp, MaxDiff)
+├── 🎁 Referral program design (double-sided rewards)
+├── 📧 Re-engagement email sequences
+└── 📈 Monthly growth recap with metrics
+```
 
 ---
 
-## 🛠️ Also for the PROS ⚡
+## 🧠 83 Skills — Not Just Code, Everything
 
-Think AntiKit is just for beginners? **Think again.** It's an exoskeleton for Senior Devs:
+<table>
+<tr>
+<td width="33%">
 
-1.  **⚡ Blazing Efficiency:** Automate the boring stuff (setup, config, boilerplate) in 1 second.
-2.  **🧠 45 Expert Skills:** Our agents come pre-loaded with deep knowledge in:
-    *   **Tech:** Next.js, React, Node.js, Python, Rust, Docker, Cloudflare.
-    *   **Methodology:** TDD, Clean Code, DDD, Security Patterns, Evidence Discipline.
-    *   **Specialty:** SEO, UX/UI, Performance Profiling, Mobile, Game Dev.
-3.  **🤖 Multi-Agent Protocol:** Every task gets **2+ agents** collaborating:
-    *   PRIMARY (domain expert) + SUPPORT (cross-domain review)
-    *   Automatic agent selection from 20-agent AGENT INDEX
-    *   Mandatory cross-review on build/create tasks
-4.  **⚡ Power Mode Flags:** Unlock specialist agents with simple flags:
-    *   `/code --mobile` → Mobile expert with React Native skills
-    *   `/audit --pentest` → Penetration tester with MITRE ATT&CK
-    *   `/deploy --docker` → DevOps expert with Docker skills
-5.  **🔬 Evidence Gates:** No more "works on my machine":
-    *   Bug fixes require reproduction steps
-    *   Refactors require before/after metrics
-    *   Deploys require passing tests
-6.  **🧘 Deep Flow:** Stay in the zone while the Agent handles the grunt work safely.
+### 💻 Engineering (40+)
+- Clean Code & TDD
+- React, Next.js, Vue, Angular
+- Python, Rust, Go, Java
+- Database Design & Migrations
+- Docker & Deployment
+- API Patterns & Security
+- Performance Profiling
+- Mobile (React Native, Flutter)
+- Game Development
+
+</td>
+<td width="33%">
+
+### 📈 Marketing & Growth (29)
+- Copywriting (AIDA framework)
+- SEO + AI SEO (GEO)
+- Pricing Strategy (Van Westendorp)
+- Launch Strategy (5-phase + ORB)
+- Marketing Psychology (Cialdini)
+- Churn Prevention
+- Referral Programs
+- Email Sequences
+- Content Strategy
+- A/B Testing
+- Social Content
+- Paid Ads & Cold Email
+- Programmatic SEO
+
+</td>
+<td width="33%">
+
+### 🛡️ Security & Intelligence
+- Vulnerability Scanner
+- Red Team Tactics
+- Penetration Testing
+- OWASP 2025
+- AI Self-Learning (instinct-based)
+- Cost-Aware LLM Pipelines
+- Context Compression
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🤖 21 Agents — Multi-Brain Collaboration
+
+Every task gets **2+ agents** working together. Not one AI — a **team**.
+
+```
+You: "Build a login page"
+
+AntiKit:
+🤖 PRIMARY: @frontend-specialist (React, CSS, accessibility)
+🤖 SUPPORT: @security-auditor (XSS, CSRF, JWT)
+🤖 SUPPORT: @test-engineer (E2E tests)
+
+→ Result: Beautiful, secure, tested login page
+```
+
+| Agent | Expertise |
+|:------|:----------|
+| `@orchestrator` | Complex multi-domain tasks |
+| `@frontend-specialist` | React, Next.js, UI/UX, Tailwind |
+| `@backend-specialist` | Node.js, Python, APIs, WebSocket |
+| `@security-auditor` | OWASP, JWT, encryption |
+| `@database-architect` | Prisma, PostgreSQL, MongoDB |
+| `@devops-engineer` | Docker, CI/CD, Nginx |
+| `@mobile-developer` | React Native, Flutter |
+| `@game-developer` | Unity, Godot, Phaser |
+| `@performance-optimizer` | Core Web Vitals, profiling |
+| `@test-engineer` | Jest, Playwright, TDD |
+| `@seo-specialist` | Technical SEO, GEO |
+| + 10 more... | |
+
+---
+
+## 🛡️ Built-in Safety (Zero-Fear Coding)
+
+| Protection | What it does |
+|:-----------|:-------------|
+| 🚫 **Destructive Command Block** | `rm -rf /` → **BLOCKED** |
+| 🔒 **Project Sandbox** | AI can only touch your project folder |
+| 🧱 **System File Protection** | OS files are untouchable |
+| 🧠 **Supervisor Brain** | AI self-corrects before you see mistakes |
+| 🎯 **Anti-Drift** | Catches scope creep automatically |
+| 🔬 **Evidence Gates** | Bug fix? Must reproduce first. Deploy? Tests must pass. |
+
+---
+
+## 🌍 4 Languages, Same Power
+
+AntiKit speaks your language natively:
+
+| Language | Status | Workflows |
+|:---------|:-------|:----------|
+| 🇬🇧 English | Full | All 30+ commands |
+| 🇻🇳 Tiếng Việt | Full | All 30+ commands |
+| 🇯🇵 日本語 | Full | All 30+ commands |
+| 🇨🇳 中文 | Full | All 30+ commands |
 
 ---
 
 ## 📦 What's Inside?
 
--   **20 Specialist Agents:** Frontend, Backend, Security, SEO, Mobile, Game Dev...
--   **29 Workflows:** Optimized slash commands in 4 languages with **Power Mode flags**.
--   **45 Skills:** Deep knowledge modules loaded on-demand.
--   **Multi-Agent Protocol:** Auto-select PRIMARY + SUPPORT agents per task.
--   **Evidence Discipline:** Proof-first development, no vibe bugs.
--   **Global Memory (GEMINI.md):** The "Brain" that enforces safety, language, and routing.
+| Component | Count | Highlights |
+|:----------|:------|:-----------|
+| 🤖 Agents | 21 | Multi-agent collaboration on every task |
+| 🧠 Skills | 83 | Engineering + Marketing + Security + Growth |
+| ⚡ Workflows | 30+ | From brainstorm to revenue |
+| 🌍 Languages | 4 | EN, VI, JA, ZH |
+| 🛡️ Safety | 6 layers | Sandbox + destructive blocks + supervisor |
+
+---
+
+## 💰 Who Is This For?
+
+| You are... | AntiKit gives you... |
+|:-----------|:---------------------|
+| 🌱 **Beginner** | Safe coding, no fear of breaking things, guided workflows |
+| 💻 **Indie Hacker** | Build → Launch → Market → Grow **all in one tool** |
+| 👨‍💻 **Senior Dev** | 21 AI agents + 83 skills = 10x productivity |
+| 🏢 **Startup** | Full-stack + marketing + SEO + growth — from day 1 |
 
 ---
 
 ## 🤝 Credits
 
-This project was inspired by and references the [AWF (Antigravity Workflow Framework)](https://github.com/TUAN130294/awf) by [TUAN130294](https://github.com/TUAN130294).
+Inspired by [AWF (Antigravity Workflow Framework)](https://github.com/TUAN130294/awf) by [TUAN130294](https://github.com/TUAN130294).
+
+Community skills from [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills), [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code), [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills).
 
 ---
 
 <div align="center">
 
-**Built with ❤️ for the Vibe Coding Community.**
+**Stop coding blindly. Start building businesses.** 🚀
+
+```
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+```
 
 [![Star History Chart](https://api.star-history.com/svg?repos=hasugoii/antikit&type=Date)](https://star-history.com/#hasugoii/antikit&Date)
+
+**Built with ❤️ for builders who want to ship AND sell.**
 
 </div>
