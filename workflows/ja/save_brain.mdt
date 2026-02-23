@@ -41,7 +41,7 @@ description: 💾 プロジェクト知識を保存
     *   データベース変更
 
 ### 2.2. データベーススキーマ（自動同期 ⚡）
-*   マイグレーションがあるプロジェクトは**自動で `/sync-schema` を実行**
+*   マイグレーションがあるプロジェクトは**自動でスキーマドキュメントを同期**
 *   ファイル：`docs/database/schema.md`
 *   ファイル：`src/lib/db/schema.ts`
 *   更新タイミング：
@@ -208,13 +208,13 @@ description: 💾 プロジェクト知識を保存
 | トリガー | 更新するファイル |
 |---------|----------------|
 | 新しいAPI追加 | `brain.json` → api_endpoints |
-| DB変更 / 新マイグレーション | **自動 `/sync-schema`** → schema.md, schema.ts, brain.json |
+| DB変更 / 新マイグレーション | **自動同期** → schema.md, schema.ts, brain.json |
 | バグ修正 | `session.json` → errors_encountered |
 | 新しい依存関係追加 | `brain.json` → tech_stack |
 | 新機能 | `brain.json` → features |
 | タスク作業中 | `session.json` → working_on |
 | タスク完了 | `session.json` → pending_tasks, recent_changes |
-| 一日の終わり | 両方 + `/sync-schema` |
+| 一日の終わり | 両方 + 自動スキーマ同期 |
 
 ---
 

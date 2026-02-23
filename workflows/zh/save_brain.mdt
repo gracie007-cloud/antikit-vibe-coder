@@ -41,7 +41,7 @@ description: 💾 保存项目知识
     *   数据库变更
 
 ### 2.2. 数据库Schema（自动同步 ⚡）
-*   有迁移的项目**自动运行 `/sync-schema`**
+*   有迁移的项目**自动同步Schema文档**
 *   文件：`docs/database/schema.md`
 *   文件：`src/lib/db/schema.ts`
 *   更新时机：
@@ -208,13 +208,13 @@ description: 💾 保存项目知识
 | 触发条件 | 需要更新的文件 |
 |---------|--------------|
 | 新增API | `brain.json` → api_endpoints |
-| 数据库变更 / 新迁移 | **自动 `/sync-schema`** → schema.md, schema.ts, brain.json |
+| 数据库变更 / 新迁移 | **自动同步** → schema.md, schema.ts, brain.json |
 | 修复Bug | `session.json` → errors_encountered |
 | 新增依赖 | `brain.json` → tech_stack |
 | 新功能 | `brain.json` → features |
 | 正在做任务 | `session.json` → working_on |
 | 完成任务 | `session.json` → pending_tasks, recent_changes |
-| 一天结束 | 两个文件 + `/sync-schema` |
+| 一天结束 | 两个文件 + 自动Schema同步 |
 
 ---
 

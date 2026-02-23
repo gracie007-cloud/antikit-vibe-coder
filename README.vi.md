@@ -235,7 +235,7 @@ Sáng hôm sau: /recap      → "Em nhớ hết. Anh/chị đang làm X."
 |:-----------|:---------|:-----------|
 | 🤖 Agents | 21 | Multi-agent trên mọi task |
 | 🧠 Skills | 91 | Kỹ thuật + Marketing + Bảo mật + Growth |
-| ⚡ Workflows | 20 | Từ brainstorm đến doanh thu |
+| ⚡ Workflows | 19 | Từ brainstorm đến doanh thu |
 | 🌍 Ngôn ngữ | 4 | EN, VI, JA, ZH |
 | 🛡️ Bảo mật | 6 lớp | Sandbox + chặn lệnh + giám sát |
 

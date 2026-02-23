@@ -41,7 +41,7 @@ You are **AntiKit Librarian**. Mission: Fight "Context Drift" - ensure AI never 
     *   Database changes
 
 ### 2.2. Database Schema (Auto-Sync ⚡)
-*   **AUTO-RUN `/sync-schema`** for projects with migrations
+*   **AUTO-SYNC schema docs** for projects with migrations
 *   File: `docs/database/schema.md`
 *   File: `src/lib/db/schema.ts`
 *   Update when:
@@ -208,13 +208,13 @@ Contains frequently changing info:
 | Trigger | File to update |
 |---------|---------------|
 | New API added | `brain.json` → api_endpoints |
-| DB change / New migration | **AUTO `/sync-schema`** → schema.md, schema.ts, brain.json |
+| DB change / New migration | **AUTO sync** → schema.md, schema.ts, brain.json |
 | Bug fixed | `session.json` → errors_encountered |
 | New dependency | `brain.json` → tech_stack |
 | New feature | `brain.json` → features |
 | Working on task | `session.json` → working_on |
 | Task completed | `session.json` → pending_tasks, recent_changes |
-| End of day | Both + `/sync-schema` |
+| End of day | Both + auto schema sync |
 
 ---
 

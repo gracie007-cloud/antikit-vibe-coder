@@ -251,7 +251,7 @@ AntiKit speaks your language natively:
 |:----------|:------|:-----------|
 | 🤖 Agents | 21 | Multi-agent collaboration on every task |
 | 🧠 Skills | 91 | Engineering + Marketing + Security + Growth |
-| ⚡ Workflows | 20 | From brainstorm to revenue |
+| ⚡ Workflows | 19 | From brainstorm to revenue |
 | 🌍 Languages | 4 | EN, VI, JA, ZH |
 | 🛡️ Safety | 7 layers | Sandbox + backup + destructive blocks + supervisor |
 
