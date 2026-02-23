@@ -5,7 +5,7 @@
 **Bạn đồng hành "Vibe Coding" cho Antigravity AI.**
 *Code bằng cảm giác. Để AI lo logic.* 🧘‍♂️✨
 
-[![Version](https://img.shields.io/badge/Version-1.1.9-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/Version-1.6.0-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/Docs-Read%20Manual-orange?style=for-the-badge)](https://antikit.pages.dev/docs)
 [![Website](https://img.shields.io/badge/Website-antikit.pages.dev-purple?style=for-the-badge)](https://antikit.pages.dev)
@@ -58,15 +58,23 @@ Không cần biết code cao siêu. Mở terminal lên và paste câu **Thần C
 
 ### 🪟 Windows (PowerShell)
 ```powershell
+# Tiếng Việt
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex -Language vi
+
+# Tiếng Anh (mặc định)
 iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
 ```
 
 ### 🍎 macOS / 🐧 Linux
 ```bash
+# Tiếng Việt
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang vi
+
+# Tiếng Anh (mặc định)
 curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
-*(Trong lúc cài, cứ chọn ngôn ngữ bạn thích: **Vietnamese** nhé!)*
+> **💡 Mẹo:** Đổi ngôn ngữ bất cứ lúc nào với `/config language [en|vi|ja|zh]`
 
 ---
 
@@ -91,20 +99,25 @@ Cài xong rồi, chỉ cần gõ mấy lệnh `/slash` này vào chat để gọ
 Nghĩ AntiKit chỉ dành cho người mới? **Nhầm to.** Đây là bộ giáp exoskeleton cho Senior Dev:
 
 1.  **⚡ Tốc độ tối đa:** Tự động hóa những thứ nhàm chán (setup, config, boilerplate) trong 1 giây.
-2.  **🧠 40+ Skill Chuyên Sâu:** Agent được nạp sẵn kiến thức sâu rộng về:
-    *   **Tech:** Next.js, React, Node.js, Python, Docker, Cloudflare.
+2.  **🧠 44 Skill Chuyên Sâu:** Agent được nạp sẵn kiến thức sâu rộng về:
+    *   **Tech:** Next.js, React, Node.js, Python, Rust, Docker, Cloudflare.
     *   **Quy trình:** TDD, Clean Code, DDD, Security Patterns.
-    *   **Ngách:** SEO, UX/UI, Tối ưu hiệu năng.
-3.  **👮 Kỷ luật thép:** Dùng AntiKit để ép chuẩn **Linting, Testing, và Safety** cho cả team mà không cần đóng vai ác.
-4.  **🧘 Deep Flow:** Giữ sự tập trung cao độ, để AI xử lý việc tay chân (nhưng nguy hiểm) ở background.
+    *   **Ngách:** SEO, UX/UI, Tối ưu hiệu năng, Mobile, Game Dev.
+3.  **⚡ Power Mode Flags:** Mở khóa agent chuyên biệt bằng flags đơn giản:
+    *   `/code --mobile` → Expert Mobile với React Native skills
+    *   `/audit --pentest` → Penetration tester với MITRE ATT&CK
+    *   `/deploy --docker` → DevOps expert với Docker skills
+4.  **👮 Kỷ luật thép:** Dùng AntiKit để ép chuẩn **Linting, Testing, và Safety** cho cả team.
+5.  **🧘 Deep Flow:** Giữ sự tập trung cao độ, để AI xử lý việc tay chân ở background.
 
 ---
 
 ## 📦 Trong Hộp Có Gì?
 
--   **16 Agent Chuyên Biệt:** Frontend, Backend, Security, SEO, Mobile...
--   **20 Workflow:** Quy trình chuẩn chỉnh (nhân 4 ngôn ngữ) gói gọn trong 1 lệnh.
--   **Global Memory (GEMINI.md):** "Bộ não" quản lý luật an toàn và ngôn ngữ.
+-   **20 Agent Chuyên Biệt:** Frontend, Backend, Security, SEO, Mobile, Game Dev...
+-   **29 Workflow:** Lệnh slash chuẩn chỉnh trong 4 ngôn ngữ với **Power Mode flags**.
+-   **44 Skills:** Module kiến thức chuyên sâu, tải theo yêu cầu.
+-   **Global Memory (GEMINI.md):** "Bộ não" quản lý luật an toàn, ngôn ngữ, và routing.
 
 ---
 

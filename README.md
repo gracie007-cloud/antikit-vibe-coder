@@ -5,7 +5,7 @@
 **The "Vibe Coding" Companion for Antigravity.**
 *Code by feeling. Let AI handle the logic.* 🧘‍♂️✨
 
-[![Version](https://img.shields.io/badge/Version-1.1.9-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/Version-1.6.0-green?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/Docs-Read%20Manual-orange?style=for-the-badge)](https://antikit.pages.dev/docs)
 [![Website](https://img.shields.io/badge/Website-antikit.pages.dev-purple?style=for-the-badge)](https://antikit.pages.dev)
@@ -58,15 +58,23 @@ You don't need to be a tech wizard. Just open your terminal and paste this **Mag
 
 ### 🪟 Windows (PowerShell)
 ```powershell
+# English (default)
 iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+
+# Other languages
+iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex -Language vi
 ```
 
 ### 🍎 macOS / 🐧 Linux
 ```bash
+# English (default)
 curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+
+# Vietnamese / Japanese / Chinese
+curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang vi
 ```
 
-*(During install, just choose your language: **Vietnamese**, **English**, **Japanese**, or **Chinese**)*
+> **💡 Tip:** Change language anytime with `/config language [en|vi|ja|zh]`
 
 ---
 
@@ -91,20 +99,25 @@ Once installed, just type these slash commands in your chat to summon experts:
 Think AntiKit is just for beginners? **Think again.** It's an exoskeleton for Senior Devs:
 
 1.  **⚡ Blazing Efficiency:** Automate the boring stuff (setup, config, boilerplate) in 1 second.
-2.  **🧠 40+ Expert Skills:** Our agents come pre-loaded with deep knowledge in:
-    *   **Tech:** Next.js, React, Node.js, Python, Docker, Cloudflare.
+2.  **🧠 44 Expert Skills:** Our agents come pre-loaded with deep knowledge in:
+    *   **Tech:** Next.js, React, Node.js, Python, Rust, Docker, Cloudflare.
     *   **Methodology:** TDD, Clean Code, DDD, Security Patterns.
-    *   **Specialty:** SEO, UX/UI, Performance Profiling.
-3.  **👮 Enforcement:** Use AntiKit to enforce **Linting, Testing, and Safety** rules across your team without being the "bad cop".
-4.  **🧘 Deep Flow:** Stay in the zone while the Agent handles the grunt work safely in the background.
+    *   **Specialty:** SEO, UX/UI, Performance Profiling, Mobile, Game Dev.
+3.  **⚡ Power Mode Flags:** Unlock specialist agents with simple flags:
+    *   `/code --mobile` → Mobile expert with React Native skills
+    *   `/audit --pentest` → Penetration tester with MITRE ATT&CK
+    *   `/deploy --docker` → DevOps expert with Docker skills
+4.  **👮 Enforcement:** Use AntiKit to enforce **Linting, Testing, and Safety** rules across your team.
+5.  **🧘 Deep Flow:** Stay in the zone while the Agent handles the grunt work safely.
 
 ---
 
 ## 📦 What's Inside?
 
--   **16 Specialized Agents:** Frontend, Backend, Security, SEO, Mobile...
--   **20 Workflows:** Optimized processes available in 4 languages.
--   **Global Memory (GEMINI.md):** The "Brain" that enforces safety and language.
+-   **20 Specialist Agents:** Frontend, Backend, Security, SEO, Mobile, Game Dev...
+-   **29 Workflows:** Optimized slash commands in 4 languages with **Power Mode flags**.
+-   **44 Skills:** Deep knowledge modules loaded on-demand.
+-   **Global Memory (GEMINI.md):** The "Brain" that enforces safety, language, and routing.
 
 ---
 

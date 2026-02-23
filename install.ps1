@@ -596,6 +596,9 @@ Write-Host "[>] You can use AntiKit in ANY project immediately!" -ForegroundColo
 Write-Host "[>] Try typing '/recap' to test." -ForegroundColor White
 Write-Host "[>] Check for updates: '/ak-update'" -ForegroundColor White
 Write-Host ""
+Write-Host "[LANG] Current language: $lang" -ForegroundColor Cyan
+Write-Host "   To change language: /config language [en|vi|ja|zh]" -ForegroundColor Magenta
+Write-Host ""
 Write-Host "----------------------------------------------------------" -ForegroundColor DarkGray
 Write-Host ""
 if (-not $Unattended) {

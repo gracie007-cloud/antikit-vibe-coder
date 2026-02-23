@@ -85,28 +85,56 @@ fi
 # Language selection
 LANG_FILE="$HOME/.gemini/antikit_language"
 LANG="en" # Default
+CLI_LANG=""
 
-# 1. Try to load from config if exists
-if [ -f "$LANG_FILE" ]; then
+# 0. Parse CLI arguments (e.g., --lang vi)
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --lang)
+            CLI_LANG="$2"
+            shift 2
+            ;;
+        --lang=*)
+            CLI_LANG="${1#*=}"
+            shift
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
+
+# 1. CLI argument has highest priority
+if [ -n "$CLI_LANG" ]; then
+    LANG="$CLI_LANG"
+    echo -e "${GREEN}✅ Using language from --lang: $LANG${NC}"
+# 2. Try to load from config if exists
+elif [ -f "$LANG_FILE" ]; then
     LANG=$(cat "$LANG_FILE")
     echo -e "${GREEN}✅ Auto-detected language: $LANG${NC}"
 else
-    # 2. Prompt user ONLY if no config found
-    echo -e "${CYAN}🌐 Select language for workflows:${NC}"
-    echo "   1. English (en)"
-    echo "   2. Japanese (ja)"
-    echo "   3. Vietnamese (vi)"
-    echo "   4. Chinese (zh)"
-    echo ""
-    read -p "Enter choice (1-4, default: 1): " lang_choice
+    # 3. Prompt user (only works in interactive terminal, not piped)
+    if [ -t 0 ]; then
+        echo -e "${CYAN}🌐 Select language for workflows:${NC}"
+        echo "   1. English (en)"
+        echo "   2. Japanese (ja)"
+        echo "   3. Vietnamese (vi)"
+        echo "   4. Chinese (zh)"
+        echo ""
+        read -p "Enter choice (1-4, default: 1): " lang_choice
 
-    case $lang_choice in
-        2) LANG="ja" ;;
-        3) LANG="vi" ;;
-        4) LANG="zh" ;;
-        *) LANG="en" ;;
-    esac
-    echo -e "${GREEN}✅ Selected language: $LANG${NC}"
+        case $lang_choice in
+            2) LANG="ja" ;;
+            3) LANG="vi" ;;
+            4) LANG="zh" ;;
+            *) LANG="en" ;;
+        esac
+        echo -e "${GREEN}✅ Selected language: $LANG${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Non-interactive mode: defaulting to English${NC}"
+        echo -e "${YELLOW}   To install in another language, use: --lang vi${NC}"
+        echo -e "${YELLOW}   Example: curl -fsSL .../install.sh | bash -s -- --lang vi${NC}"
+    fi
 fi
 echo ""
 
@@ -575,6 +603,9 @@ echo ""
 echo -e "${CYAN}👉 You can use AntiKit in ANY project immediately!${NC}"
 echo "👉 Try typing '/recap' to test."
 echo "👉 Check for updates: '/ak-update'"
+echo ""
+echo -e "${CYAN}🌐 Current language: $LANG${NC}"
+echo -e "   To change language: ${MAGENTA}/config language [en|vi|ja|zh]${NC}"
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
