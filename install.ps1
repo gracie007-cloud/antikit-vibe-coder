@@ -283,297 +283,34 @@ Write-Host ""
 Write-Host "[OK] Version saved: $CurrentVersion" -ForegroundColor Green
 Write-Host "[OK] Language saved: $lang" -ForegroundColor Green
 
-# 8. Update Global Rules (GEMINI.md) - Language specific
-$AntiKitInstructions = switch ($lang) {
-    "vi" {
-        @"
+# 8. Download GEMINI.md source files from rules/
+Write-Host ""
+Write-Host "[...] Downloading GEMINI rules..." -ForegroundColor Cyan
+$RulesDir = "$AntigravityDir\rules"
+if (-not (Test-Path $RulesDir)) { New-Item -ItemType Directory -Force -Path $RulesDir | Out-Null }
 
-# AntiKit - Enhancement Kit for Antigravity
+# Download language-specific instructions + core GEMINI.md
+try {
+    Invoke-WebRequest -Uri "$RepoBase/rules/instructions_$Language.md" -OutFile "$RulesDir\instructions.md" -UseBasicParsing -ErrorAction Stop
+    Write-Host "   [OK] instructions_$Language.md" -ForegroundColor Green
+} catch {
+    Write-Host "   [X] instructions_$Language.md" -ForegroundColor Red
+}
 
-## NGÔN NGỮ BẮT BUỘC (CRITICAL):
-1.  **SUY NGHĨ (THOUGHTS):** Bạn PHẢI viết toàn bộ quy trình suy nghĩ (thought process) bằng **TIẾNG VIỆT**.
-2.  **TRAO ĐỔI:** Luôn trả lời user bằng **TIẾNG VIỆT**, trừ khi user yêu cầu cụ thể ngôn ngữ khác.
-3.  **KHÔNG** dùng tiếng Anh cho phân tích nội bộ.
+try {
+    Invoke-WebRequest -Uri "$RepoBase/rules/GEMINI.md" -OutFile "$RulesDir\GEMINI.md" -UseBasicParsing -ErrorAction Stop
+    Write-Host "   [OK] GEMINI.md (core rules)" -ForegroundColor Green
+} catch {
+    Write-Host "   [X] GEMINI.md (core rules)" -ForegroundColor Red
+}
 
-## HIỂN THỊ DANH TÍNH (MANDATORY):
-KHI BẮT ĐẦU phản hồi, BẠN PHẢI:
-1.  Xác định **PRIMARY** agent (từ workflow `> **Context:**` hoặc match keywords trong AGENT INDEX). PRIMARY luôn chỉ có 1. Nếu ≥3 domains → PRIMARY = `orchestrator`.
-2.  Chọn ít nhất **1 SUPPORT** agent từ AGENT INDEX (match keywords khác trong request). LUÔN LUÔN có SUPPORT. Nếu ≥3 domains → dùng nhiều SUPPORT.
-3.  Trích xuất `Required Skills` từ cả PRIMARY và SUPPORT.
-4.  Hiển thị ở dòng ĐẦU TIÊN:
-    `> 🤖 **PRIMARY:** @[agent] | **SUPPORT:** @[agent2], @[...] | 🛠️ **Skills:** [danh sách]`
-
-## ĐỊNH DẠNG PHẢN HỒI (MANDATORY):
-Khi đưa ra lựa chọn cho user (bước tiếp theo, menu, options), LUÔN hiển thị dạng **DANH SÁCH DỌC** (mỗi option 1 dòng riêng). KHÔNG BAO GIỜ viết tất cả options trên 1 hàng ngang.
-
-## GIỚI HẠN AN TOÀN (CRITICAL):
-1.  **PHẠM VI:** CHỈ tạo, sửa, xóa file TRONG thư mục dự án hiện tại.
-2.  **BẢO VỆ HỆ THỐNG:** TUYỆT ĐỐI KHÔNG sửa/xóa file hệ thống (ví dụ: `C:\Windows`, `/etc`) hoặc file cấu hình user bên ngoài dự án.
-3.  **HÀNH ĐỘNG HỦY DIỆT:** KHÔNG BAO GIỜ chạy lệnh hủy diệt (như `rm -rf /`, `Format-Volume`) nếu không có sự chấp thuận rõ ràng từ user.
-
-## TỰ PHẢN BIỆN (SUPERVISOR MODE):
-Trước khi thực hiện một hành động quan trọng (viết file, chạy lệnh), hãy tự hỏi:
-"Nếu @supervisor (hoặc @security, @tester) nhìn vào hành động này, họ sẽ phê bình điều gì?"
--> Hãy tự sửa lỗi TRƯỚC khi đưa ra output cuối cùng.
-
-## CRITICAL: Nhận Diện Lệnh
-Khi user gõ các lệnh bắt đầu bằng `/`, đọc file workflow tương ứng và thực hiện theo hướng dẫn.
-
-## Command Mapping:
-| Lệnh | Workflow File | Mô Tả |
-|------|--------------|-------|
-| `/brainstorm` | ~/.gemini/antigravity/global_workflows/brainstorm.md | 💡 Bàn ý tưởng, nghiên cứu thị trường |
-| `/plan` | ~/.gemini/antigravity/global_workflows/plan.md | Thiết kế tính năng |
-| `/visualize` | ~/.gemini/antigravity/global_workflows/visualize.md | Tạo UI/UX |
-| `/code` | ~/.gemini/antigravity/global_workflows/code.md | Viết code an toàn |
-| `/test` | ~/.gemini/antigravity/global_workflows/test.md | Kiểm thử |
-| `/debug` | ~/.gemini/antigravity/global_workflows/debug.md | Debug sâu |
-| `/run` | ~/.gemini/antigravity/global_workflows/run.md | Chạy ứng dụng |
-| `/deploy` | ~/.gemini/antigravity/global_workflows/deploy.md | Deploy production |
-| `/audit` | ~/.gemini/antigravity/global_workflows/audit.md | Kiểm tra bảo mật |
-| `/refactor` | ~/.gemini/antigravity/global_workflows/refactor.md | Tái cấu trúc code |
-| `/launch` | .gemini/antigravity/global_workflows/launch.md | 📢 Go-to-market: content, landing page, thanh toán |
-| `/grow` | .gemini/antigravity/global_workflows/grow.md | 📈 Growth: retention, pricing, referral, email |
-| `/init` | ~/.gemini/antigravity/global_workflows/init.md | Khởi tạo dự án |
-| `/recap` | ~/.gemini/antigravity/global_workflows/recap.md | Khôi phục context |
-| `/next` | ~/.gemini/antigravity/global_workflows/next.md | Gợi ý bước tiếp theo |
-| `/config` | ~/.gemini/antigravity/global_workflows/config.md | Cấu hình settings |
-| `/ak-update` | ~/.gemini/antigravity/global_workflows/ak-update.md | Cập nhật AntiKit |
-| `/uninstall` | ~/.gemini/antigravity/global_workflows/uninstall.md | 🗑️ Gỡ cài đặt AntiKit |
-
-## Vị Trí Tài Nguyên:
-- Agents: ~/.gemini/antigravity/agents/
-- Skills: ~/.gemini/antigravity/skills/
-- Schemas: ~/.gemini/antigravity/schemas/
-- Templates: ~/.gemini/antigravity/templates/
-
-## Hướng Dẫn:
-1. Khi user gõ một trong các lệnh trên, ĐỌC file WORKFLOW tương ứng
-2. Thực hiện TỪNG PHASE trong workflow
-3. KHÔNG bỏ qua bước nào
-4. Kết thúc bằng menu BƯỚC TIẾP THEO như trong workflow
-
-## Kiểm Tra Update:
-- Version AntiKit lưu tại: ~/.gemini/antikit_version
-- Để kiểm tra và cập nhật AntiKit, user gõ: /ak-update
-"@
-    }
-    "ja" {
-        @"
-
-# AntiKit - Enhancement Kit for Antigravity
-
-## 必須言語 (CRITICAL):
-1.  **思考プロセス:** すべての思考プロセスを必ず**日本語**で記述してください。
-2.  **対話:** ユーザーには常に**日本語**で応答してください。
-
-## IDENTITY VISIBILITY (MANDATORY):
-応答の開始時に、必ず以下を行ってください:
-1.  **PRIMARY** エージェントを特定（ワークフロー `> **Context:**` またはAGENT INDEXのキーワードマッチ）。PRIMARYは常に1つのみ。3つ以上のドメイン → PRIMARY = `orchestrator`。
-2.  AGENT INDEXから最低**1つのSUPPORT**エージェントを選択。常にSUPPORTが必要。3つ以上のドメイン → 複数のSUPPORTを使用。
-3.  PRIMARYとSUPPORT両方から`Required Skills`を抽出。
-4.  最初の行に表示:
-    `> 🤖 **PRIMARY:** @[agent] | **SUPPORT:** @[agent2], @[...] | 🛠️ **Skills:** [リスト]`
-
-## 応答フォーマット (MANDATORY):
-ユーザーに選択肢を提示する場合（次のステップ、メニュー、オプション）、常に**縦リスト**で表示してください（各オプションは1行ずつ）。すべてのオプションを1行に横並びで書くことは禁止。
-
-## 安全境界 (CRITICAL):
-1.  **範囲制限:** 現在のプロジェクトディレクトリ内のファイルのみを作成、変更、または削除してください。
-2.  **システム保護:** プロジェクト外のシステムファイル（例: `C:\Windows`、`/etc`）やユーザー設定ファイルを絶対に修正または削除しないでください。
-3.  **破壊的アクション:** 明示的なユーザーの承認なしに、破壊的なコマンド（`rm -rf /`、`Format-Volume`など）を絶対に実行しないでください。
-
-## 自己反省 (SUPERVISOR MODE):
-重要なアクション（ファイルの書き込み、コマンドの実行）を行う前に、自問してください:
-"もし @supervisor（または @security、@tester）がこのアクションを見たら、何を批判するでしょうか？"
--> 最終的な出力を出す前に、自分で修正してください。
-
-## CRITICAL: コマンド認識
-ユーザーが `/` で始まるコマンドを入力した場合、対応するワークフローファイルを読み、指示に従ってください。
-
-## Command Mapping:
-| コマンド | ワークフローファイル | 説明 |
-|----------|---------------------|------|
-| `/brainstorm` | ~/.gemini/antigravity/global_workflows/brainstorm.md | 💡 アイデア出し、市場調査 |
-| `/plan` | ~/.gemini/antigravity/global_workflows/plan.md | 機能設計 |
-| `/code` | ~/.gemini/antigravity/global_workflows/code.md | 安全なコード作成 |
-| `/visualize` | ~/.gemini/antigravity/global_workflows/visualize.md | UI/UX作成 |
-| `/debug` | ~/.gemini/antigravity/global_workflows/debug.md | 詳細デバッグ |
-| `/test` | ~/.gemini/antigravity/global_workflows/test.md | テスト |
-| `/run` | ~/.gemini/antigravity/global_workflows/run.md | アプリ実行 |
-| `/deploy` | ~/.gemini/antigravity/global_workflows/deploy.md | 本番デプロイ |
-| `/audit` | ~/.gemini/antigravity/global_workflows/audit.md | セキュリティ監査 |
-| `/refactor` | ~/.gemini/antigravity/global_workflows/refactor.md | コードリファクタリング |
-| `/launch` | .gemini/antigravity/global_workflows/launch.md | 📢 GTM: コンテンツ、LP、決済、チャネル |
-| `/grow` | .gemini/antigravity/global_workflows/grow.md | 📈 グロース: リテンション、価格、紹介 |
-| `/init` | ~/.gemini/antigravity/global_workflows/init.md | プロジェクト初期化 |
-| `/recap` | ~/.gemini/antigravity/global_workflows/recap.md | コンテキスト復元 |
-| `/next` | ~/.gemini/antigravity/global_workflows/next.md | 次のステップ提案 |
-| `/config` | ~/.gemini/antigravity/global_workflows/config.md | 設定 |
-| `/ak-update` | ~/.gemini/antigravity/global_workflows/ak-update.md | AntiKit更新 |
-| `/uninstall` | ~/.gemini/antigravity/global_workflows/uninstall.md | 🗑️ AntiKitをアンインストール |
-
-## リソースの場所:
-- Agents: ~/.gemini/antigravity/agents/
-- Skills: ~/.gemini/antigravity/skills/
-- Schemas: ~/.gemini/antigravity/schemas/
-- Templates: ~/.gemini/antigravity/templates/
-
-## 手順:
-1. ユーザーが上記のコマンドを入力したら、対応するWORKFLOWファイルを読む
-2. ワークフローの各フェーズを実行
-3. どのステップもスキップしない
-4. ワークフローの次のステップメニューで終了
-
-## アップデート確認:
-- AntiKitバージョン保存先: ~/.gemini/antikit_version
-- AntiKitの確認・更新: /ak-update
-"@
-    }
-    "zh" {
-        @"
-
-# AntiKit - Enhancement Kit for Antigravity
-
-## 强制语言 (CRITICAL):
-1.  **思维过程:** 您必须使用**中文**编写所有思维过程。
-2.  **交互:** 始终使用**中文**回答用户。
-
-## 身份可见性 (MANDATORY):
-在回复开始时，您必须:
-1.  确定 **PRIMARY** 代理（从工作流 `> **Context:**` 或 AGENT INDEX 关键词匹配）。PRIMARY 始终只有1个。≥3个领域 → PRIMARY = `orchestrator`。
-2.  从 AGENT INDEX 中选择至少 **1个 SUPPORT** 代理。必须始终有SUPPORT。≥3个领域 → 使用多个SUPPORT。
-3.  从 PRIMARY 和 SUPPORT 中提取 `Required Skills`。
-4.  在第一行显示:
-    `> 🤖 **PRIMARY:** @[agent] | **SUPPORT:** @[agent2], @[...] | 🛠️ **Skills:** [列表]`
-
-## 回复格式 (MANDATORY):
-向用户提供选择时（下一步、菜单、选项），始终以**垂直列表**显示（每个选项单独一行）。禁止将所有选项写在一行。
-
-## 安全边界 (CRITICAL):
-1.  **范围限制:** 仅在当前项目目录内创建、修改或删除文件。
-2.  **系统保护:** 绝不修改或删除项目外的系统文件（例如 `C:\Windows`、`/etc`）或用户配置文件。
-3.  **破坏性操作:** 未经用户明确批准，绝不运行破坏性命令（如 `rm -rf /`、`Format-Volume`）。
-
-## 自我反思 (SUPERVISOR MODE):
-在执行重要操作（写入文件、运行命令）之前，请自问：
-“如果 @supervisor（或 @security、@tester）看到此操作，他们会批评什么？”
--> 在给出最终输出之前，请自行修正。
-
-## CRITICAL: 命令识别
-当用户输入以 `/` 开头的命令时，读取相应的工作流文件并按照说明执行。
-
-## Command Mapping:
-| 命令 | 工作流文件 | 描述 |
-|------|-----------|------|
-| `/brainstorm` | ~/.gemini/antigravity/global_workflows/brainstorm.md | 💡 头脑风暴、市场研究 |
-| `/plan` | ~/.gemini/antigravity/global_workflows/plan.md | 功能设计 |
-| `/code` | ~/.gemini/antigravity/global_workflows/code.md | 安全编写代码 |
-| `/visualize` | ~/.gemini/antigravity/global_workflows/visualize.md | 创建UI/UX |
-| `/debug` | ~/.gemini/antigravity/global_workflows/debug.md | 深度调试 |
-| `/test` | ~/.gemini/antigravity/global_workflows/test.md | 测试 |
-| `/run` | ~/.gemini/antigravity/global_workflows/run.md | 运行应用 |
-| `/deploy` | ~/.gemini/antigravity/global_workflows/deploy.md | 部署生产 |
-| `/audit` | ~/.gemini/antigravity/global_workflows/audit.md | 安全审计 |
-| `/refactor` | ~/.gemini/antigravity/global_workflows/refactor.md | 重构代码 |
-| `/launch` | .gemini/antigravity/global_workflows/launch.md | 📢 GTM：内容、落地页、支付、渠道 |
-| `/grow` | .gemini/antigravity/global_workflows/grow.md | 📈 增长：留存、定价、裂变、邮件 |
-| `/init` | ~/.gemini/antigravity/global_workflows/init.md | 初始化项目 |
-| `/recap` | ~/.gemini/antigravity/global_workflows/recap.md | 恢复上下文 |
-| `/next` | ~/.gemini/antigravity/global_workflows/next.md | 下一步建议 |
-| `/config` | ~/.gemini/antigravity/global_workflows/config.md | 配置设置 |
-| `/ak-update` | ~/.gemini/antigravity/global_workflows/ak-update.md | 更新AntiKit |
-| `/uninstall` | ~/.gemini/antigravity/global_workflows/uninstall.md | 🗑️ 卸载 AntiKit |
-
-## 资源位置:
-- Agents: ~/.gemini/antigravity/agents/
-- Skills: ~/.gemini/antigravity/skills/
-- Schemas: ~/.gemini/antigravity/schemas/
-- Templates: ~/.gemini/antigravity/templates/
-
-## 说明:
-1. 当用户输入上述命令之一时，读取相应的WORKFLOW文件
-2. 执行工作流中的每个阶段
-3. 不要跳过任何步骤
-4. 以工作流中的下一步菜单结束
-
-## 更新检查:
-- AntiKit版本保存在: ~/.gemini/antikit_version
-- 检查和更新AntiKit: /ak-update
-"@
-    }
-    default {
-        @"
-
-# AntiKit - Enhancement Kit for Antigravity
-
-## MANDATORY LANGUAGE (CRITICAL):
-1.  **THOUGHTS:** You MUST write your entire thought process in **ENGLISH**.
-2.  **INTERACTION:** Always respond to the user in **ENGLISH**.
-
-## IDENTITY VISIBILITY (MANDATORY):
-AT THE START of your response, you MUST:
-1.  Identify the **PRIMARY** agent (from workflow `> **Context:**` or keyword match in AGENT INDEX). PRIMARY is always exactly 1. If ≥3 domains → PRIMARY = `orchestrator`.
-2.  Select at least **1 SUPPORT** agent from AGENT INDEX. ALWAYS have SUPPORT. If ≥3 domains → use multiple SUPPORTs.
-3.  Extract `Required Skills` from both PRIMARY and SUPPORT.
-4.  Display as the very first line:
-    `> 🤖 **PRIMARY:** @[agent] | **SUPPORT:** @[agent2], @[...] | 🛠️ **Skills:** [list]`
-
-## RESPONSE FORMATTING (MANDATORY):
-When presenting choices to the user (next steps, menus, options), ALWAYS display as a **VERTICAL LIST** (each option on its own line). NEVER write all options on a single horizontal line.
-
-## SAFETY BOUNDARIES (CRITICAL):
-1.  **SCOPE RESTRICTION:** ONLY create, modify, or delete files WITHIN the current project directory.
-2.  **SYSTEM PROTECTION:** NEVER modify or delete system files (e.g., `C:\Windows`, `/etc`) or user config files outside the project.
-3.  **DESTRUCTIVE ACTIONS:** NEVER run destructive commands (like `rm -rf /`, `Format-Volume`) without explicit user approval.
-
-## INTERNAL REFLECTION (SUPERVISOR MODE):
-Before executing a critical action (writing files, running commands), ask yourself:
-"If @supervisor (or @security, @tester) reviewed this, what would they critique?"
--> Fix it yourself BEFORE creating the final output.
-
-## CRITICAL: Command Recognition
-When user types commands starting with `/`, read the corresponding workflow file and follow instructions.
-
-## Command Mapping:
-| Command | Workflow File | Description |
-|---------|--------------|-------------|
-| `/brainstorm` | ~/.gemini/antigravity/global_workflows/brainstorm.md | 💡 Brainstorm ideas, market research |
-| `/plan` | ~/.gemini/antigravity/global_workflows/plan.md | Design features |
-| `/code` | ~/.gemini/antigravity/global_workflows/code.md | Write code safely |
-| `/visualize` | ~/.gemini/antigravity/global_workflows/visualize.md | Create UI/UX |
-| `/debug` | ~/.gemini/antigravity/global_workflows/debug.md | Deep debugging |
-| `/test` | ~/.gemini/antigravity/global_workflows/test.md | Testing |
-| `/run` | ~/.gemini/antigravity/global_workflows/run.md | Run application |
-| `/deploy` | ~/.gemini/antigravity/global_workflows/deploy.md | Deploy production |
-| `/audit` | ~/.gemini/antigravity/global_workflows/audit.md | Security audit |
-| `/refactor` | ~/.gemini/antigravity/global_workflows/refactor.md | Refactor code |
-| `/launch` | .gemini/antigravity/global_workflows/launch.md | 📢 Go-to-market: content, landing page, payments |
-| `/grow` | .gemini/antigravity/global_workflows/grow.md | 📈 Growth: retention, pricing, referral, email |
-| `/init` | ~/.gemini/antigravity/global_workflows/init.md | Initialize project |
-| `/recap` | ~/.gemini/antigravity/global_workflows/recap.md | Restore context |
-| `/next` | ~/.gemini/antigravity/global_workflows/next.md | Next steps suggestion |
-| `/config` | ~/.gemini/antigravity/global_workflows/config.md | Configure settings |
-| `/ak-update` | ~/.gemini/antigravity/global_workflows/ak-update.md | Update AntiKit |
-| `/uninstall` | ~/.gemini/antigravity/global_workflows/uninstall.md | 🗑️ Uninstall AntiKit |
-
-## Resource Locations:
-- Agents: ~/.gemini/antigravity/agents/
-- Skills: ~/.gemini/antigravity/skills/
-- Schemas: ~/.gemini/antigravity/schemas/
-- Templates: ~/.gemini/antigravity/templates/
-
-## Instructions:
-1. When user types one of the commands above, READ the corresponding WORKFLOW FILE
-2. Execute EACH PHASE in the workflow
-3. DO NOT skip any step
-4. End with NEXT STEPS menu as in workflow
-
-## Update Check:
-- AntiKit version saved at: ~/.gemini/antikit_version
-- To check and update AntiKit, user types: /ak-update
-"@
-    }
+# Assemble AntiKitInstructions from downloaded files
+$AntiKitInstructions = ""
+if (Test-Path "$RulesDir\instructions.md") {
+    $AntiKitInstructions = Get-Content "$RulesDir\instructions.md" -Raw
+}
+if (Test-Path "$RulesDir\GEMINI.md") {
+    $AntiKitInstructions = $AntiKitInstructions + "`n`n" + (Get-Content "$RulesDir\GEMINI.md" -Raw)
 }
 
 # 8.5 Generate AGENT INDEX from downloaded agents
