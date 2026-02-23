@@ -4,6 +4,45 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.9.0] - 2026-02-23
+
+### 🤖 Multi-Agent Task Protocol — Dynamic Agent Selection
+
+Every task now uses 2+ agents collaborating together. Agent selection is automatic based on keyword matching against an auto-generated AGENT INDEX.
+
+### Added
+
+#### Agent Tags System
+- All 20 agents now have `tags:` field in frontmatter for keyword-based matching
+- Tags cover domain-specific keywords (e.g., `auth,jwt,oauth` for security-auditor)
+
+#### AGENT INDEX (Auto-Generated)
+- Installer generates an AGENT INDEX table from agent frontmatter at install time
+- Table is embedded directly in GEMINI.md (~500 tokens, always available)
+- No need to read individual agent files for routing decisions
+
+#### Multi-Agent Task Protocol
+- **Selection**: Match request keywords → agent tags, select PRIMARY + SUPPORT agents
+- **Loading**: Read only PRIMARY agent file; use SUPPORT skills from index (token-optimized)
+- **Execution**: PRIMARY persona + SUPPORT knowledge
+- **Cross-Review**: Mandatory for build/create, auto for fix/refactor, skip for questions
+
+#### Scripts
+- **`scripts/generate-index.sh`** — Generates AGENT INDEX table from agent frontmatter
+
+### Changed
+- **`intelligent-routing/SKILL.mdt`** — Rewritten from v1 (hardcoded matrix) to v2 (dynamic tag matching)
+- **`install.sh`** — Generates AGENT INDEX, appends MULTI-AGENT PROTOCOL to GEMINI.md
+- **`install.ps1`** — Same changes mirrored for PowerShell
+
+### Benefits
+- Higher code quality through multi-perspective collaboration
+- Token-efficient: ~11-20k tokens (vs ~80-150k if reading all agents)
+- Cross-review catches issues from multiple domain perspectives
+- Deterministic baseline (tags) with AI flexibility (override)
+
+---
+
 ## [1.8.0] - 2026-02-23
 
 ### 🔒 MDT Extension Migration — Anti-Scan Protection

@@ -552,6 +552,73 @@ When user types commands starting with `/`, read the corresponding workflow file
         ;;
 esac
 
+# 8.5 Generate AGENT INDEX from downloaded agents
+echo ""
+echo -e "${CYAN}⏳ Generating Agent Index...${NC}"
+AGENT_INDEX="| Agent | Tags | Skills |
+|-------|------|--------|"
+
+for agent_file in "$AGENTS_DIR"/*.md; do
+    [ -f "$agent_file" ] || continue
+    a_name="" a_tags="" a_skills=""
+    in_fm=0
+    while IFS= read -r line; do
+        case "$line" in
+            "---") [ $in_fm -eq 0 ] && in_fm=1 || break ;;
+            *) if [ $in_fm -eq 1 ]; then
+                key="${line%%:*}"; val="${line#*: }"
+                case "$key" in name) a_name="$val";; tags) a_tags="$val";; skills) a_skills="$val";; esac
+            fi ;;
+        esac
+    done < "$agent_file"
+    [ -n "$a_name" ] && [ -n "$a_tags" ] && AGENT_INDEX="$AGENT_INDEX
+| $a_name | $a_tags | $a_skills |"
+done
+echo -e "${GREEN}✅ Agent Index generated${NC}"
+
+# 8.6 MULTI-AGENT PROTOCOL (language-agnostic, appended to all languages)
+MULTI_AGENT_PROTOCOL='
+
+## AGENT INDEX (Auto-Generated)
+
+'"$AGENT_INDEX"'
+
+## MULTI-AGENT TASK PROTOCOL
+
+### Selection Rules
+1. Extract keywords from user request
+2. Match keywords against agent Tags in AGENT INDEX above
+3. Select minimum 2 agents: 1 PRIMARY (best match) + 1+ SUPPORT
+4. If only 1 agent matches, add the closest related agent as SUPPORT
+5. Do NOT select orchestrator unless 3+ domains are involved
+
+### Loading Strategy (Token Optimization)
+1. READ full agent file for PRIMARY agent only
+2. For SUPPORT agents: use only their Skills list from AGENT INDEX (do NOT read their full file)
+3. LOAD skill files (SKILL.md) from PRIMARY + unique skills from SUPPORT agents
+
+### Execution
+1. Apply PRIMARY agent persona and rules
+2. Use SUPPORT agent skills as additional knowledge
+3. Announce: "🤖 **PRIMARY:** @[primary] | **SUPPORT:** @[support1], @[support2]"
+
+### Cross-Review (After Code Completion)
+| Task Type | Cross-Review |
+|-----------|-------------|
+| build, create, implement | MANDATORY — check from all SUPPORT agent perspectives |
+| fix, debug, refactor | AUTO — lightweight quality check |
+| question, explain | SKIP |
+
+Cross-review format:
+```
+✅ @[support-agent] check: [1-line assessment]
+```
+'
+
+# Append protocol to instructions
+ANTIKIT_INSTRUCTIONS="$ANTIKIT_INSTRUCTIONS
+$MULTI_AGENT_PROTOCOL"
+
 if [ ! -f "$GEMINI_MD" ]; then
     echo "<!-- ANTIKIT_START -->" > "$GEMINI_MD"
     echo "$ANTIKIT_INSTRUCTIONS" >> "$GEMINI_MD"

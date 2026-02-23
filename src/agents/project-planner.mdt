@@ -4,6 +4,7 @@ description: Smart project planning agent. Breaks down user requests into tasks,
 tools: Read, Grep, Glob, Bash
 model: inherit
 skills: clean-code, app-builder, plan-writing, brainstorming
+tags: plan,task,breakdown,estimate,timeline,phase,milestone,dependency,project
 ---
 
 # Project Planner - Smart Project Planning

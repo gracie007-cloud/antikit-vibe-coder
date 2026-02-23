@@ -560,6 +560,75 @@ When user types commands starting with `/`, read the corresponding workflow file
     }
 }
 
+# 8.5 Generate AGENT INDEX from downloaded agents
+Write-Host ""
+Write-Host "[...] Generating Agent Index..." -ForegroundColor Cyan
+$AgentIndexRows = @()
+$AgentIndexRows += "| Agent | Tags | Skills |"
+$AgentIndexRows += "|-------|------|--------|"
+
+foreach ($agentFile in Get-ChildItem "$AgentsDir\*.md" -ErrorAction SilentlyContinue) {
+    $aName = ""; $aTags = ""; $aSkills = ""
+    $inFm = $false
+    foreach ($line in Get-Content $agentFile.FullName) {
+        if ($line -eq "---") {
+            if (-not $inFm) { $inFm = $true; continue } else { break }
+        }
+        if ($inFm) {
+            if ($line -match "^name:\s*(.+)") { $aName = $Matches[1].Trim() }
+            elseif ($line -match "^tags:\s*(.+)") { $aTags = $Matches[1].Trim() }
+            elseif ($line -match "^skills:\s*(.+)") { $aSkills = $Matches[1].Trim() }
+        }
+    }
+    if ($aName -and $aTags) {
+        $AgentIndexRows += "| $aName | $aTags | $aSkills |"
+    }
+}
+$AgentIndex = $AgentIndexRows -join "`n"
+Write-Host "[OK] Agent Index generated" -ForegroundColor Green
+
+# 8.6 MULTI-AGENT PROTOCOL (language-agnostic)
+$MultiAgentProtocol = @"
+
+## AGENT INDEX (Auto-Generated)
+
+$AgentIndex
+
+## MULTI-AGENT TASK PROTOCOL
+
+### Selection Rules
+1. Extract keywords from user request
+2. Match keywords against agent Tags in AGENT INDEX above
+3. Select minimum 2 agents: 1 PRIMARY (best match) + 1+ SUPPORT
+4. If only 1 agent matches, add the closest related agent as SUPPORT
+5. Do NOT select orchestrator unless 3+ domains are involved
+
+### Loading Strategy (Token Optimization)
+1. READ full agent file for PRIMARY agent only
+2. For SUPPORT agents: use only their Skills list from AGENT INDEX (do NOT read their full file)
+3. LOAD skill files (SKILL.md) from PRIMARY + unique skills from SUPPORT agents
+
+### Execution
+1. Apply PRIMARY agent persona and rules
+2. Use SUPPORT agent skills as additional knowledge
+3. Announce: "🤖 **PRIMARY:** @[primary] | **SUPPORT:** @[support1], @[support2]"
+
+### Cross-Review (After Code Completion)
+| Task Type | Cross-Review |
+|-----------|-------------|
+| build, create, implement | MANDATORY — check from all SUPPORT agent perspectives |
+| fix, debug, refactor | AUTO — lightweight quality check |
+| question, explain | SKIP |
+
+Cross-review format:
+``````
+✅ @[support-agent] check: [1-line assessment]
+``````
+"@
+
+# Append protocol to instructions
+$AntiKitInstructions = "$AntiKitInstructions`n$MultiAgentProtocol"
+
 # Define markers for robust updates
 $StartMarker = "<!-- ANTIKIT_START -->"
 $EndMarker = "<!-- ANTIKIT_END -->"

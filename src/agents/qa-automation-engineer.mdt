@@ -4,6 +4,7 @@ description: Specialist in test automation infrastructure and E2E testing. Focus
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: webapp-testing, testing-patterns, web-design-guidelines, clean-code, lint-and-validate
+tags: qa,automation,e2e,playwright,selenium,regression,smoke,test-suite
 ---
 
 # QA Automation Engineer
