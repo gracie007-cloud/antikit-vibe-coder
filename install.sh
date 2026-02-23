@@ -149,6 +149,21 @@ failed=0
 mkdir -p "$ANTIGRAVITY_DIR" "$GLOBAL_WORKFLOWS" "$AGENTS_DIR" "$SCHEMAS_DIR" "$TEMPLATES_DIR" "$SKILLS_DIR"
 echo -e "${GREEN}📂 Directories ready: $ANTIGRAVITY_DIR${NC}"
 
+# 1.5. Clean old files (remove renamed/obsolete agents)
+OLD_AGENTS=("architect.md" "backend.md" "database.md" "devops.md" "doc-writer.md"
+    "explorer.md" "frontend.md" "game.md" "mobile.md" "pentester.md"
+    "performance.md" "security.md" "seo.md" "tester.md")
+cleaned=0
+for old in "${OLD_AGENTS[@]}"; do
+    if [ -f "$AGENTS_DIR/$old" ]; then
+        rm -f "$AGENTS_DIR/$old"
+        ((cleaned++))
+    fi
+done
+if [ $cleaned -gt 0 ]; then
+    echo -e "${YELLOW}🧹 Cleaned $cleaned old agent files${NC}"
+fi
+
 # 2. Download Workflows
 echo ""
 echo -e "${CYAN}⏳ Downloading workflows ($LANG)...${NC}"

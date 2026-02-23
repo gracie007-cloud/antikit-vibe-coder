@@ -132,6 +132,22 @@ foreach ($dir in $dirs) {
 }
 Write-Host "[DIR] Directories ready: $AntigravityDir" -ForegroundColor Green
 
+# 1.5. Clean old files (remove renamed/obsolete agents)
+$OldAgents = @("architect.md", "backend.md", "database.md", "devops.md", "doc-writer.md",
+    "explorer.md", "frontend.md", "game.md", "mobile.md", "pentester.md",
+    "performance.md", "security.md", "seo.md", "tester.md")
+$cleaned = 0
+foreach ($old in $OldAgents) {
+    $oldPath = "$AgentsDir\$old"
+    if (Test-Path $oldPath) {
+        Remove-Item $oldPath -Force
+        $cleaned++
+    }
+}
+if ($cleaned -gt 0) {
+    Write-Host "[CLEAN] Cleaned $cleaned old agent files" -ForegroundColor Yellow
+}
+
 # 2. Download Workflows
 Write-Host ""
 Write-Host "[...] Downloading workflows ($lang)..." -ForegroundColor Cyan
