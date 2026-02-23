@@ -4,6 +4,51 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.12.0] - 2026-02-23
+
+### 🌐 Community Skills Import — 36 Skills from 3 Repos
+
+Audited and imported 36 high-quality skills from community repos. Security-scanned, verified clean.
+
+### Added — Marketing & Growth (29 skills from `coreyhaines31/marketingskills`)
+- **CRO Skills** (6): `page-cro`, `form-cro`, `signup-flow-cro`, `onboarding-cro`, `popup-cro`, `paywall-upgrade-cro`
+- **Content & Copy** (4): `copywriting`, `copy-editing`, `content-strategy`, `social-content`
+- **SEO** (4): `ai-seo`, `programmatic-seo`, `seo-audit`, `schema-markup`
+- **Growth** (4): `churn-prevention`, `referral-program`, `email-sequence`, `ab-test-setup`
+- **Strategy** (4): `pricing-strategy`, `launch-strategy`, `marketing-psychology`, `marketing-ideas`
+- **Acquisition** (4): `ad-creative`, `paid-ads`, `cold-email`, `competitor-alternatives`
+- **Other** (3): `analytics-tracking`, `free-tool-strategy`, `product-marketing-context`
+
+### Added — Engineering (6 skills from `affaan-m/everything-claude-code`)
+- `continuous-learning-v2` — AI self-learning via instinct-based hooks
+- `cost-aware-llm-pipeline` — LLM cost management patterns
+- `content-hash-cache-pattern` — Smart caching strategy
+- `strategic-compact` — Context compression for efficiency
+- `docker-patterns` — Docker/compose best practices
+- `e2e-testing` — E2E testing with Playwright
+
+### Added — Mobile (1 skill from `sickn33/antigravity-awesome-skills`)
+- `app-store-optimization` — ASO for iOS/Android launches
+
+### Workflow Enhancements (via new skills)
+| Workflow | New Skills Available |
+|----------|---------------------|
+| `/brainstorm` | competitor-alternatives, marketing-ideas, product-marketing-context |
+| `/visualize` | page-cro, form-cro, signup-flow-cro, copywriting, marketing-psychology |
+| `/code` | schema-markup, content-hash-cache-pattern, cost-aware-llm-pipeline |
+| `/test` | ab-test-setup, e2e-testing |
+| `/deploy` | analytics-tracking, programmatic-seo, docker-patterns |
+| `/audit` | seo-audit |
+| `/launch` | launch-strategy, ad-creative, cold-email, app-store-optimization |
+| `/grow` | churn-prevention, pricing-strategy, referral-program, email-sequence |
+
+### Security
+- All 36 skills scanned for prompt injection, hidden instructions, executable code
+- 2 false positives verified (docker-compose override, prompt caching references)
+- Sources: repos with 14K-50K GitHub stars
+
+---
+
 ## [1.11.0] - 2026-02-23
 
 ### 🚀 Deep Research Edition — Launch & Grow System v2
