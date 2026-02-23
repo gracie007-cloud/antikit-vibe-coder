@@ -137,14 +137,18 @@ Download selected packages, copy to local, update antikit_installed.json.
 
 **CRITICAL:** After updating workflows/skills/agents, re-run the installer to refresh GEMINI.md with latest rules, AGENT INDEX, and SKILL INDEX.
 
+**Auto-detect language** from `~/.gemini/antikit_lang` and use the correct flag:
+
 ```bash
-# macOS/Linux
-curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
+# macOS/Linux — auto-detect language
+LANG_FLAG=$(cat ~/.gemini/antikit_lang 2>/dev/null)
+[ -n "$LANG_FLAG" ] && [ "$LANG_FLAG" != "en" ] && curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash -s -- --lang "$LANG_FLAG" || curl -fsSL https://raw.githubusercontent.com/hasugoii/antikit/main/install.sh | bash
 ```
 
 ```powershell
-# Windows
-iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex
+# Windows — auto-detect language
+$lang = Get-Content "$env:USERPROFILE\.gemini\antikit_lang" -ErrorAction SilentlyContinue
+if ($lang -and $lang -ne "en") { & ([scriptblock]::Create((iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb))) -Language $lang } else { iwr https://raw.githubusercontent.com/hasugoii/antikit/main/install.ps1 -useb | iex }
 ```
 
 This ensures:
