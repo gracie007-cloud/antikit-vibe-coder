@@ -169,9 +169,32 @@ AI TỰ ĐỘNG thiết lập những thứ quan trọng mà user hay quên:
     *   "Tech stack: [Danh sách]"
     *   "Chạy dev: `npm run dev`"
     *   "Mở trình duyệt: `http://localhost:3000`"
-3.  Bước tiếp theo:
-    *   "Gõ `/plan` để bắt đầu thiết kế tính năng đầu tiên."
-    *   "Gõ `/visualize` nếu muốn thiết kế UI trước."
+
+---
+
+## Giai đoạn 9: 🚀 Tùy Chọn Build App (Từ Scaffold → App Hoàn Chỉnh)
+
+### 9.1. Hỏi User
+```
+"Dự án đã scaffold xong! Anh/chị muốn:
+
+1️⃣ **Dừng ở đây** - Tôi sẽ tự code sau (/plan)
+2️⃣ **Build luôn** - Em tạo app hoàn chỉnh từ ý tưởng
+3️⃣ **Thiết kế UI trước** - /visualize"
+```
+
+### 9.2. Nếu chọn Build luôn (Option 2)
+Sử dụng `app-builder` skill để orchestrate các agent:
+- `database-architect` → Tạo Schema
+- `backend-specialist` → Tạo API
+- `frontend-specialist` → Tạo UI
+
+### 9.3. Auto Preview
+Khi build xong, tự động khởi chạy preview:
+```bash
+python .agent/scripts/auto_preview.py start
+```
+→ Hiển thị URL cho User: `http://localhost:3000`
 
 ---
 
@@ -180,6 +203,7 @@ AI TỰ ĐỘNG thiết lập những thứ quan trọng mà user hay quên:
 1️⃣ Bắt đầu tính năng đầu tiên? /plan
 2️⃣ Thiết kế UI trước? /visualize
 3️⃣ Chạy app? /run
+4️⃣ Xem preview? /preview
 ```
 
 ---

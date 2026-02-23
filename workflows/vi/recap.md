@@ -181,6 +181,37 @@ AI tự động phát hiện potential blockers từ:
 
 ---
 
+## Giai đoạn 5: 📊 Dashboard Nhanh (Agent + Files + Preview)
+
+### 5.1. Agent Status Board
+Hiển thị trạng thái các agent đã/đang/chờ xử lý:
+
+```
+=== Agent Status ===
+
+✅ database-architect → Hoàn thành
+✅ backend-specialist → Hoàn thành
+🔄 frontend-specialist → Dashboard components (60%)
+⏳ test-engineer → Đang chờ
+```
+
+### 5.2. File Statistics
+```
+📄 Files: [X] đã tạo, [Y] đã sửa
+```
+*   Lấy từ: `python .agent/scripts/session_manager.py status`
+
+### 5.3. Preview Health Check
+```
+=== Preview ===
+🌐 URL: http://localhost:3000
+💚 Health: OK
+```
+*   Lấy từ: `python .agent/scripts/auto_preview.py status`
+*   Nếu server chưa chạy → Gợi ý `/preview start`
+
+---
+
 ## ⚠️ BƯỚC TIẾP THEO:
 ```
 1️⃣ Tiếp tục việc dang dở? /code hoặc /debug
@@ -188,6 +219,7 @@ AI tự động phát hiện potential blockers từ:
 3️⃣ Kiểm tra tổng thể? /audit
 4️⃣ Có blocker? Giải quyết blocker trước!
 5️⃣ Cuối ngày? /save-brain để lưu progress
+6️⃣ Xem preview? /preview
 ```
 
 ## 💡 MẸO:
