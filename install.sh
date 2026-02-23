@@ -563,12 +563,28 @@ MULTI_AGENT_PROTOCOL='
 
 ## MULTI-AGENT TASK PROTOCOL
 
+### 🔴 ALWAYS-ON RULE (NO EXCEPTIONS)
+Every task MUST use minimum 2 agents: 1 PRIMARY + 1+ SUPPORT.
+Single-agent responses are a PROTOCOL VIOLATION, even for simple tasks.
+
+**Why:** SUPPORT agents catch mistakes PRIMARY would miss, challenge assumptions,
+and split work for higher quality. This is non-negotiable.
+
 ### Selection Rules
 1. Extract keywords from user request
 2. Match keywords against agent Tags in AGENT INDEX above
 3. Select minimum 2 agents: 1 PRIMARY (best match) + 1+ SUPPORT
 4. If only 1 agent matches, add the closest related agent as SUPPORT
 5. Do NOT select orchestrator unless 3+ domains are involved
+
+### SUPPORT Agent Roles
+SUPPORT agents MUST serve at least one of these roles:
+
+| Role | What they do | Example |
+|------|-------------|---------|
+| 🔍 **Devil'\''s Advocate** | Challenge PRIMARY'\''s decisions, find flaws | security-auditor reviews backend code |
+| ✂️ **Task Splitter** | Take ownership of sub-tasks | test-engineer writes tests while dev codes |
+| 🛡️ **Quality Gate** | Verify output meets standards | code-archaeologist reviews for clean code |
 
 ### Loading Strategy (Token Optimization)
 1. READ full agent file for PRIMARY agent only
@@ -580,16 +596,19 @@ MULTI_AGENT_PROTOCOL='
 2. Use SUPPORT agent skills as additional knowledge
 3. Announce: "🤖 **PRIMARY:** @[primary] | **SUPPORT:** @[support1], @[support2]"
 
-### Cross-Review (After Code Completion)
+### Cross-Review (MANDATORY for all code changes)
+After completing ANY code task, SUPPORT agent(s) MUST review:
+
 | Task Type | Cross-Review |
 |-----------|-------------|
-| build, create, implement | MANDATORY — check from all SUPPORT agent perspectives |
-| fix, debug, refactor | AUTO — lightweight quality check |
-| question, explain | SKIP |
+| build, create, implement | MANDATORY — full review from all SUPPORT perspectives |
+| fix, debug, refactor | MANDATORY — check for side effects + regressions |
+| question, explain | LIGHT — verify accuracy from SUPPORT perspective |
 
 Cross-review format:
 ```
 ✅ @[support-agent] check: [1-line assessment]
+⚠️ @[support-agent] concern: [issue found] → [suggested fix]
 ```
 '
 
