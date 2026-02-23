@@ -1,41 +1,109 @@
+---
+name: systematic-debugging
+description: 4-phase systematic debugging methodology with root cause analysis and evidence-based verification. Use when debugging complex issues.
+allowed-tools: Read, Glob, Grep
+---
+
 # Systematic Debugging
 
-> Phương pháp debug có hệ thống
+> Source: obra/superpowers
 
-## Quy trình 5 bước
+## Overview
+This skill provides a structured approach to debugging that prevents random guessing and ensures problems are properly understood before solving.
 
-### 1. Reproduce
-- Xác định steps để reproduce
-- Minimal reproduction case
+## 4-Phase Debugging Process
 
-### 2. Isolate
-- Thu hẹp phạm vi
-- Binary search qua code
+### Phase 1: Reproduce
+Before fixing, reliably reproduce the issue.
 
-### 3. Analyze
-- Đọc error messages kỹ
-- Check logs
-- Breakpoints
+```markdown
+## Reproduction Steps
+1. [Exact step to reproduce]
+2. [Next step]
+3. [Expected vs actual result]
 
-### 4. Fix
-- Fix root cause, không patch symptoms
-- Viết test case trước
+## Reproduction Rate
+- [ ] Always (100%)
+- [ ] Often (50-90%)
+- [ ] Sometimes (10-50%)
+- [ ] Rare (<10%)
+```
 
-### 5. Verify
-- Reproduce không còn bug
-- Không regression
+### Phase 2: Isolate
+Narrow down the source.
 
-## Debug Tools
+```markdown
+## Isolation Questions
+- When did this start happening?
+- What changed recently?
+- Does it happen in all environments?
+- Can we reproduce with minimal code?
+- What's the smallest change that triggers it?
+```
 
-| Tool | Purpose |
-|------|---------|
-| console.log | Quick inspection |
-| debugger | Step-through |
-| Chrome DevTools | Frontend |
-| Node inspect | Backend |
-| Logging | Production |
+### Phase 3: Understand
+Find the root cause, not just symptoms.
 
-## Common Patterns
-- Race condition → Add delays, check order
-- Memory leak → Profile heap snapshots
-- Null reference → Check data flow
+```markdown
+## Root Cause Analysis
+### The 5 Whys
+1. Why: [First observation]
+2. Why: [Deeper reason]
+3. Why: [Still deeper]
+4. Why: [Getting closer]
+5. Why: [Root cause]
+```
+
+### Phase 4: Fix & Verify
+Fix and verify it's truly fixed.
+
+```markdown
+## Fix Verification
+- [ ] Bug no longer reproduces
+- [ ] Related functionality still works
+- [ ] No new issues introduced
+- [ ] Test added to prevent regression
+```
+
+## Debugging Checklist
+
+```markdown
+## Before Starting
+- [ ] Can reproduce consistently
+- [ ] Have minimal reproduction case
+- [ ] Understand expected behavior
+
+## During Investigation
+- [ ] Check recent changes (git log)
+- [ ] Check logs for errors
+- [ ] Add logging if needed
+- [ ] Use debugger/breakpoints
+
+## After Fix
+- [ ] Root cause documented
+- [ ] Fix verified
+- [ ] Regression test added
+- [ ] Similar code checked
+```
+
+## Common Debugging Commands
+
+```bash
+# Recent changes
+git log --oneline -20
+git diff HEAD~5
+
+# Search for pattern
+grep -r "errorPattern" --include="*.ts"
+
+# Check logs
+pm2 logs app-name --err --lines 100
+```
+
+## Anti-Patterns
+
+❌ **Random changes** - "Maybe if I change this..."
+❌ **Ignoring evidence** - "That can't be the cause"
+❌ **Assuming** - "It must be X" without proof
+❌ **Not reproducing first** - Fixing blindly
+❌ **Stopping at symptoms** - Not finding root cause

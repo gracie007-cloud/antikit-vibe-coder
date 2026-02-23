@@ -1,50 +1,167 @@
-# PowerShell Windows
+---
+name: powershell-windows
+description: PowerShell Windows patterns. Critical pitfalls, operator syntax, error handling.
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+---
 
-> PowerShell và Windows scripting
+# PowerShell Windows Patterns
 
-## Common Commands
+> Critical patterns and pitfalls for Windows PowerShell.
 
-```powershell
-# File operations
-Get-ChildItem -Recurse
-Copy-Item src dst
-Remove-Item -Recurse -Force dir
+---
 
-# Environment
-$env:PATH
-[Environment]::SetEnvironmentVariable("VAR", "value", "User")
+## 1. Operator Syntax Rules
 
-# Processes
-Get-Process | Where-Object { $_.Name -like "node*" }
-Stop-Process -Name "process"
+### CRITICAL: Parentheses Required
 
-# Network
-Invoke-WebRequest -Uri "url" -OutFile "file"
-Test-Connection "hostname"
+| ❌ Wrong | ✅ Correct |
+|----------|-----------|
+| `if (Test-Path "a" -or Test-Path "b")` | `if ((Test-Path "a") -or (Test-Path "b"))` |
+| `if (Get-Item $x -and $y -eq 5)` | `if ((Get-Item $x) -and ($y -eq 5))` |
+
+**Rule:** Each cmdlet call MUST be in parentheses when using logical operators.
+
+---
+
+## 2. Unicode/Emoji Restriction
+
+### CRITICAL: No Unicode in Scripts
+
+| Purpose | ❌ Don't Use | ✅ Use |
+|---------|-------------|--------|
+| Success | ✅ ✓ | [OK] [+] |
+| Error | ❌ ✗ 🔴 | [!] [X] |
+| Warning | ⚠️ 🟡 | [*] [WARN] |
+| Info | ℹ️ 🔵 | [i] [INFO] |
+| Progress | ⏳ | [...] |
+
+**Rule:** Use ASCII characters only in PowerShell scripts.
+
+---
+
+## 3. Null Check Patterns
+
+### Always Check Before Access
+
+| ❌ Wrong | ✅ Correct |
+|----------|-----------|
+| `$array.Count -gt 0` | `$array -and $array.Count -gt 0` |
+| `$text.Length` | `if ($text) { $text.Length }` |
+
+---
+
+## 4. String Interpolation
+
+### Complex Expressions
+
+| ❌ Wrong | ✅ Correct |
+|----------|-----------|
+| `"Value: $($obj.prop.sub)"` | Store in variable first |
+
+**Pattern:**
+```
+$value = $obj.prop.sub
+Write-Output "Value: $value"
 ```
 
-## Script Template
+---
+
+## 5. Error Handling
+
+### ErrorActionPreference
+
+| Value | Use |
+|-------|-----|
+| Stop | Development (fail fast) |
+| Continue | Production scripts |
+| SilentlyContinue | When errors expected |
+
+### Try/Catch Pattern
+
+- Don't return inside try block
+- Use finally for cleanup
+- Return after try/catch
+
+---
+
+## 6. File Paths
+
+### Windows Path Rules
+
+| Pattern | Use |
+|---------|-----|
+| Literal path | `C:\Users\User\file.txt` |
+| Variable path | `Join-Path $env:USERPROFILE "file.txt"` |
+| Relative | `Join-Path $ScriptDir "data"` |
+
+**Rule:** Use Join-Path for cross-platform safety.
+
+---
+
+## 7. Array Operations
+
+### Correct Patterns
+
+| Operation | Syntax |
+|-----------|--------|
+| Empty array | `$array = @()` |
+| Add item | `$array += $item` |
+| ArrayList add | `$list.Add($item) | Out-Null` |
+
+---
+
+## 8. JSON Operations
+
+### CRITICAL: Depth Parameter
+
+| ❌ Wrong | ✅ Correct |
+|----------|-----------|
+| `ConvertTo-Json` | `ConvertTo-Json -Depth 10` |
+
+**Rule:** Always specify `-Depth` for nested objects.
+
+### File Operations
+
+| Operation | Pattern |
+|-----------|---------|
+| Read | `Get-Content "file.json" -Raw | ConvertFrom-Json` |
+| Write | `$data | ConvertTo-Json -Depth 10 | Out-File "file.json" -Encoding UTF8` |
+
+---
+
+## 9. Common Errors
+
+| Error Message | Cause | Fix |
+|---------------|-------|-----|
+| "parameter 'or'" | Missing parentheses | Wrap cmdlets in () |
+| "Unexpected token" | Unicode character | Use ASCII only |
+| "Cannot find property" | Null object | Check null first |
+| "Cannot convert" | Type mismatch | Use .ToString() |
+
+---
+
+## 10. Script Template
 
 ```powershell
-#Requires -Version 5.1
+# Strict mode
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Continue"
 
-param(
-    [string]$Path = ".",
-    [switch]$Force
-)
+# Paths
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-function Main {
-    Write-Host "Starting..."
-    # ... logic
-    Write-Host "Done!"
+# Main
+try {
+    # Logic here
+    Write-Output "[OK] Done"
+    exit 0
 }
-
-Main
+catch {
+    Write-Warning "Error: $_"
+    exit 1
+}
 ```
 
-## Tips
+---
 
-- Use `-WhatIf` for dry run
-- Use `-Verbose` for details
-- Error handling with try/catch
-- Profile customization
+> **Remember:** PowerShell has unique syntax rules. Parentheses, ASCII-only, and null checks are non-negotiable.

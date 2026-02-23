@@ -1,61 +1,109 @@
+---
+name: code-review-checklist
+description: Code review guidelines covering code quality, security, and best practices.
+allowed-tools: Read, Glob, Grep
+---
+
 # Code Review Checklist
 
-> Checklist review code hiệu quả
+## Quick Review Checklist
 
-## General
+### Correctness
+- [ ] Code does what it's supposed to do
+- [ ] Edge cases handled
+- [ ] Error handling in place
+- [ ] No obvious bugs
+
+### Security
+- [ ] Input validated and sanitized
+- [ ] No SQL/NoSQL injection vulnerabilities
+- [ ] No XSS or CSRF vulnerabilities
+- [ ] No hardcoded secrets or sensitive credentials
+- [ ] **AI-Specific:** Protection against Prompt Injection (if applicable)
+- [ ] **AI-Specific:** Outputs are sanitized before being used in critical sinks
+
+### Performance
+- [ ] No N+1 queries
+- [ ] No unnecessary loops
+- [ ] Appropriate caching
+- [ ] Bundle size impact considered
+
+### Code Quality
+- [ ] Clear naming
+- [ ] DRY - no duplicate code
+- [ ] SOLID principles followed
+- [ ] Appropriate abstraction level
+
+### Testing
+- [ ] Unit tests for new code
+- [ ] Edge cases tested
+- [ ] Tests readable and maintainable
+
+### Documentation
+- [ ] Complex logic commented
+- [ ] Public APIs documented
+- [ ] README updated if needed
+
+## AI & LLM Review Patterns (2025)
+
+### Logic & Hallucinations
+- [ ] **Chain of Thought:** Does the logic follow a verifiable path?
+- [ ] **Edge Cases:** Did the AI account for empty states, timeouts, and partial failures?
+- [ ] **External State:** Is the code making safe assumptions about file systems or networks?
+
+### Prompt Engineering Review
+```markdown
+// ❌ Vague prompt in code
+const response = await ai.generate(userInput);
+
+// ✅ Structured & Safe prompt
+const response = await ai.generate({
+  system: "You are a specialized parser...",
+  input: sanitize(userInput),
+  schema: ResponseSchema
+});
+```
+
+## Anti-Patterns to Flag
+
+```typescript
+// ❌ Magic numbers
+if (status === 3) { ... }
+
+// ✅ Named constants
+if (status === Status.ACTIVE) { ... }
+
+// ❌ Deep nesting
+if (a) { if (b) { if (c) { ... } } }
+
+// ✅ Early returns
+if (!a) return;
+if (!b) return;
+if (!c) return;
+// do work
+
+// ❌ Long functions (100+ lines)
+// ✅ Small, focused functions
+
+// ❌ any type
+const data: any = ...
+
+// ✅ Proper types
+const data: UserData = ...
+```
+
+## Review Comments Guide
 
 ```
-[ ] Code compiles/runs?
-[ ] Follows coding standards?
-[ ] No obvious bugs?
-[ ] Tests included?
-```
+// Blocking issues use 🔴
+🔴 BLOCKING: SQL injection vulnerability here
 
-## Logic
+// Important suggestions use 🟡
+🟡 SUGGESTION: Consider using useMemo for performance
 
-```
-[ ] Edge cases handled?
-[ ] Error handling proper?
-[ ] No race conditions?
-[ ] Correct algorithm?
-```
+// Minor nits use 🟢
+🟢 NIT: Prefer const over let for immutable variable
 
-## Security
-
-```
-[ ] Input validated?
-[ ] Auth/authz checked?
-[ ] No sensitive data logged?
-[ ] No hardcoded secrets?
-```
-
-## Performance
-
-```
-[ ] No N+1 queries?
-[ ] Proper indexing?
-[ ] No memory leaks?
-[ ] Efficient algorithms?
-```
-
-## Maintainability
-
-```
-[ ] Readable code?
-[ ] Good naming?
-[ ] Not over-engineered?
-[ ] Documentation added?
-```
-
-## Feedback Template
-
-```
-✅ LGTM after minor changes
-
-**Suggestions:**
-- Line X: Consider using Y
-- Line Z: Add error handling
-
-**Questions:**
-- Why did you choose A over B?
+// Questions use ❓
+❓ QUESTION: What happens if user is null here?
 ```

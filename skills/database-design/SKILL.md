@@ -1,55 +1,52 @@
+---
+name: database-design
+description: Database design principles and decision-making. Schema design, indexing strategy, ORM selection, serverless databases.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # Database Design
 
-> Chuyên gia thiết kế database schema
+> **Learn to THINK, not copy SQL patterns.**
 
-## Normalization
+## 🎯 Selective Reading Rule
 
-### 1NF: Atomic values
-### 2NF: No partial dependencies  
-### 3NF: No transitive dependencies
+**Read ONLY files relevant to the request!** Check the content map, find what you need.
 
-## Schema Design Checklist
+| File | Description | When to Read |
+|------|-------------|--------------|
+| `database-selection.md` | PostgreSQL vs Neon vs Turso vs SQLite | Choosing database |
+| `orm-selection.md` | Drizzle vs Prisma vs Kysely | Choosing ORM |
+| `schema-design.md` | Normalization, PKs, relationships | Designing schema |
+| `indexing.md` | Index types, composite indexes | Performance tuning |
+| `optimization.md` | N+1, EXPLAIN ANALYZE | Query optimization |
+| `migrations.md` | Safe migrations, serverless DBs | Schema changes |
 
-```
-[ ] Primary keys (cuid/uuid)
-[ ] Foreign keys with indexes
-[ ] createdAt/updatedAt
-[ ] Soft delete (deletedAt)
-[ ] Unique constraints
-[ ] Default values
-```
+---
 
-## Relationships
+## ⚠️ Core Principle
 
-```prisma
-// 1-to-Many
-model User {
-  id    String @id
-  posts Post[]
-}
+- ASK user for database preferences when unclear
+- Choose database/ORM based on CONTEXT
+- Don't default to PostgreSQL for everything
 
-model Post {
-  userId String
-  user   User @relation(fields: [userId], references: [id])
-}
+---
 
-// Many-to-Many
-model Post {
-  tags PostTag[]
-}
+## Decision Checklist
 
-model Tag {
-  posts PostTag[]
-}
+Before designing schema:
 
-model PostTag {
-  postId String
-  tagId  String
-  @@id([postId, tagId])
-}
-```
+- [ ] Asked user about database preference?
+- [ ] Chosen database for THIS context?
+- [ ] Considered deployment environment?
+- [ ] Planned index strategy?
+- [ ] Defined relationship types?
 
-## Performance
-- Index frequently queried columns
-- Composite indexes for multi-column queries
-- Avoid over-indexing
+---
+
+## Anti-Patterns
+
+❌ Default to PostgreSQL for simple apps (SQLite may suffice)
+❌ Skip indexing
+❌ Use SELECT * in production
+❌ Store JSON when structured data is better
+❌ Ignore N+1 queries

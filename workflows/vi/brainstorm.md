@@ -88,6 +88,59 @@ Tạo file `docs/BRIEF.md` với:
 
 ---
 
+## Giai đoạn 5.5: Output Format (Brainstorm Kỹ Thuật)
+
+Khi brainstorm giải pháp kỹ thuật, sử dụng format so sánh:
+
+```markdown
+## 🧠 Brainstorm: [Chủ đề]
+
+### Context
+[Mô tả ngắn vấn đề]
+
+---
+
+### Option A: [Tên]
+[Mô tả]
+
+✅ **Pros:**
+- [Ưu điểm 1]
+- [Ưu điểm 2]
+
+❌ **Cons:**
+- [Nhược điểm 1]
+
+📊 **Effort:** Low | Medium | High
+
+---
+
+### Option B: [Tên]
+[Mô tả]
+
+✅ **Pros:**
+- [Ưu điểm 1]
+
+❌ **Cons:**
+- [Nhược điểm 1]
+
+📊 **Effort:** Low | Medium | High
+
+---
+
+### 💡 Recommendation
+**Option [X]** vì [lý do].
+```
+
+### Ví dụ sử dụng
+```
+/brainstorm authentication system
+/brainstorm state management cho complex form
+/brainstorm database schema cho social app
+/brainstorm caching strategy
+```
+
+---
+
 ## 🔗 Kết Nối Workflows
 ```
 /brainstorm → BRIEF.md → /plan → /visualize → /code

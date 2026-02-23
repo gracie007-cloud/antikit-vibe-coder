@@ -1,41 +1,81 @@
+---
+name: api-patterns
+description: API design principles and decision-making. REST vs GraphQL vs tRPC selection, response formats, versioning, pagination.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # API Patterns
 
-> Chuyên gia thiết kế RESTful và GraphQL APIs
+> API design principles and decision-making for 2025.
+> **Learn to THINK, not copy fixed patterns.**
 
-## RESTful Best Practices
+## 🎯 Selective Reading Rule
 
-### URL Convention
-```
-GET    /api/users          # List
-POST   /api/users          # Create
-GET    /api/users/:id      # Read
-PUT    /api/users/:id      # Update
-DELETE /api/users/:id      # Delete
-```
+**Read ONLY files relevant to the request!** Check the content map, find what you need.
 
-### Response Format
-```json
-{
-  "success": true,
-  "data": { ... },
-  "pagination": { "page": 1, "limit": 20, "total": 100 }
-}
-```
+---
 
-### Error Format
-```json
-{
-  "success": false,
-  "message": "User not found",
-  "code": "USER_NOT_FOUND"
-}
-```
+## 📑 Content Map
 
-### HTTP Status Codes
-- 200 OK
-- 201 Created
-- 400 Bad Request
-- 401 Unauthorized
-- 403 Forbidden
-- 404 Not Found
-- 500 Server Error
+| File | Description | When to Read |
+|------|-------------|--------------|
+| `api-style.md` | REST vs GraphQL vs tRPC decision tree | Choosing API type |
+| `rest.md` | Resource naming, HTTP methods, status codes | Designing REST API |
+| `response.md` | Envelope pattern, error format, pagination | Response structure |
+| `graphql.md` | Schema design, when to use, security | Considering GraphQL |
+| `trpc.md` | TypeScript monorepo, type safety | TS fullstack projects |
+| `versioning.md` | URI/Header/Query versioning | API evolution planning |
+| `auth.md` | JWT, OAuth, Passkey, API Keys | Auth pattern selection |
+| `rate-limiting.md` | Token bucket, sliding window | API protection |
+| `documentation.md` | OpenAPI/Swagger best practices | Documentation |
+| `security-testing.md` | OWASP API Top 10, auth/authz testing | Security audits |
+
+---
+
+## 🔗 Related Skills
+
+| Need | Skill |
+|------|-------|
+| API implementation | `@[skills/backend-development]` |
+| Data structure | `@[skills/database-design]` |
+| Security details | `@[skills/security-hardening]` |
+
+---
+
+## ✅ Decision Checklist
+
+Before designing an API:
+
+- [ ] **Asked user about API consumers?**
+- [ ] **Chosen API style for THIS context?** (REST/GraphQL/tRPC)
+- [ ] **Defined consistent response format?**
+- [ ] **Planned versioning strategy?**
+- [ ] **Considered authentication needs?**
+- [ ] **Planned rate limiting?**
+- [ ] **Documentation approach defined?**
+
+---
+
+## ❌ Anti-Patterns
+
+**DON'T:**
+- Default to REST for everything
+- Use verbs in REST endpoints (/getUsers)
+- Return inconsistent response formats
+- Expose internal errors to clients
+- Skip rate limiting
+
+**DO:**
+- Choose API style based on context
+- Ask about client requirements
+- Document thoroughly
+- Use appropriate status codes
+
+---
+
+## Script
+
+| Script | Purpose | Command |
+|--------|---------|---------|
+| `scripts/api_validator.py` | API endpoint validation | `python scripts/api_validator.py <project_path>` |
+
