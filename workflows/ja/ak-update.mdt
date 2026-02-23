@@ -1,85 +1,134 @@
 ---
-description: パッケージ選択でAntiKitを更新
+description: Update AntiKit with package selection
 ---
 
-# ワークフロー: /ak-update - AntiKit更新 (Enhanced)
+# WORKFLOW: /ak-update - AntiKit Update (Enhanced)
 
 > **Context:** Agent `@devops`
 > **Required Skills:** `server-management`, `git-workflow`
+> **Key Behaviors:**
+> - Display list of available packages
+> - Allow selective update
+> - Save local update history
 
-AntiKit更新マネージャー。パッケージ選択機能付きで更新をチェックして実行します。
-
----
-
-## フェーズ 1: レジストリを取得
-
-バージョンチェックとレジストリのフェッチ。
+You are the **AntiKit Update Manager**. Mission: Check and update AntiKit with package selection capability.
 
 ---
 
-## フェーズ 2: ローカルと比較
+## Phase 1: Fetch Registry
 
-`~/.gemini/antikit_installed.json` を読み込み比較。
+### 1.1. Check core version
 
----
+```bash
+# Local version
+cat ~/.gemini/antikit_version 2>/dev/null || echo "unknown"
 
-## フェーズ 3: セキュリティスキャン
-
-```
-🔍 パッケージをスキャン中...
-
-[1/2] workflow/debug... ✅ PASSED
-[2/2] workflow/code... ✅ PASSED
+# Remote version
+curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/VERSION
 ```
 
-**BLOCKED**: インストール不可、自動スキップ
-**WARNING**: 警告を表示、続行を確認
-**PASSED**: 更新表示へ進む
+### 1.2. Fetch library registry
+
+```bash
+curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/registry/index.json
+```
 
 ---
 
-## フェーズ 4: 利用可能な更新を表示
+## Phase 2: Compare with Local
+
+Read `~/.gemini/antikit_installed.json` and compare with registry.
+
+---
+
+## Phase 3: Security Scan
+
+Before displaying updates, scan all packages for security issues:
 
 ```
-📦 ANTIKIT アップデートセンター
+🔍 SCANNING PACKAGES FOR SECURITY...
+
+[1/4] workflow/debug... ✅ PASSED
+[2/4] workflow/code... ✅ PASSED  
+[3/4] skill/react-patterns... ⚠️ 1 WARNING
+[4/4] skill/nextjs-expert... ✅ PASSED
+```
+
+**If BLOCKED**: Package cannot be installed, skip automatically.
+**If WARNING**: Show warning, ask user to confirm.
+**If all PASSED**: Proceed to display updates.
+
+---
+
+## Phase 4: Display Available Updates
+
+```
+📦 ANTIKIT UPDATE CENTER
+
+🔷 CORE: v{local} → v{remote} {status}
 
 ┌─────────────────────────────────────────────────────┐
-│ 📂 ワークフロー ({count} 更新)                       │
+│ 📂 WORKFLOWS ({count} updates)                      │
 ├─────────────────────────────────────────────────────┤
-│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ ホット      │
-│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 新バージョン │
+│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ Hot update  │
+│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 New version │
+│ [✓] 3. /plan          1.2.0          ✅ Up to date  │
 └─────────────────────────────────────────────────────┘
 
-📊 あなたの言語: 🇯🇵 日本語
+┌─────────────────────────────────────────────────────┐
+│ 🛠️ SKILLS ({count} available)                       │
+├─────────────────────────────────────────────────────┤
+│ [ ] 4. react-patterns  v2.0  ⭐ Popular             │
+│ [ ] 5. nextjs-expert   v1.5  🆕 New                 │
+└─────────────────────────────────────────────────────┘
+
+📊 Your language: 🇬🇧 English
 ```
 
 ---
 
-## フェーズ 5: 選択
+## Phase 5: Selection
 
 ```
-🔽 更新するものを選択:
+🔽 SELECT TO UPDATE:
 
-番号を入力 (カンマ区切り) または:
-• all - すべて更新
-• workflows - ワークフローのみ
-• cancel - キャンセル
+Enter numbers (comma separated) or:
+• all       - Update all
+• workflows - Only workflows
+• skills    - Only skills
+• cancel    - Cancel
+
+Example: 1,2,4,5 or all
 
 > _
 ```
 
 ---
 
-## フェーズ 6-7: 実行と確認
+## Phase 6: Execute Update
 
-選択したパッケージをダウンロードしてインストール。
+Download selected packages, copy to local, update antikit_installed.json.
 
 ---
 
-## フェーズ 8: 次のステップ
+## Phase 7: Confirmation
 
 ```
-1️⃣ もっとパッケージを見る? /ak-browse
-2️⃣ 更新履歴を見る? /ak-history
-3️⃣ パッケージを貢献? /ak-contribute
+✅ UPDATE COMPLETE!
+
+📦 Updated:
+├── workflow/debug 1.0.0 → 1.2.0
+├── skill/react-patterns (new)
+
+👉 Restart IDE to apply changes.
+```
+
+---
+
+## Phase 8: Next Steps
+
+```
+1️⃣ Browse more packages? /ak-browse
+2️⃣ View update history? /ak-history
+3️⃣ Contribute package? /ak-contribute
 ```

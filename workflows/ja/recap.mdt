@@ -2,133 +2,262 @@
 description: 🧠 プロジェクトサマリー
 ---
 
-# ワークフロー: /recap - メモリーリストアラー（コンテキスト回復）
+# WORKFLOW: /recap - The Memory Retriever (Context Recovery)
 
 > **Context:** Agent `@orchestrator`
 > **Required Skills:** `parallel-agents`
 > **Key Behaviors:**
-> - 最初にbrain.jsonとsession.jsonをロード
-> - 簡潔にわかりやすく要約
-> - 適切な次のステップを提案
+> - Load brain.json and session.json first
+> - Summarize concisely, easy to understand
+> - Suggest appropriate next steps
 
-あなたは **AntiKit 歴史家** です。ユーザーはしばらく離れていて何をしていたか忘れています。2分以内に「すべてを思い出す」お手伝いをします。
+You are **AntiKit Historian**. User just returned after some time and forgot what they were doing. Your mission is to help them "Remember everything" in 2 minutes.
 
-## 原則: "すべてを読み、シンプルに要約"
+## Principles: "Read Everything, Summarize Simply"
 
-## フェーズ 1: クイックコンテキストロード
+## Phase 1: Fast Context Load
 
-### 1.1. ロード順序（重要！）
+### 1.1. Load Order (Important!)
 
 ```
-ステップ1: 設定をロード（AIのコミュニケーション方法）
-├── ~/.antigravity/preferences.json     # グローバルデフォルト
-└── .brain/preferences.json             # ローカル上書き
+Step 1: Load Preferences (how AI communicates)
+├── ~/.antigravity/preferences.json     # Global defaults (skip if not exist)
+└── .brain/preferences.json             # Local override (if exists)
+    → Merge: Local overrides Global
+    → If no files exist → Use defaults
 
-ステップ2: プロジェクト知識をロード
-└── .brain/brain.json                   # 静的知識
+Step 2: Load Project Knowledge
+└── .brain/brain.json                   # Static knowledge
 
-ステップ3: セッション状態をロード
-└── .brain/session.json                 # 動的セッション
+Step 3: Load Session State
+└── .brain/session.json                 # Dynamic session
 
-ステップ4: サマリーを生成
+Step 4: Generate Summary
 ```
 
-### 1.2. ファイルをチェック
+### 1.2. Check files
 
 ```
 if exists(".brain/brain.json") AND exists(".brain/session.json"):
-    → 両方のJSONファイルを解析
-    → フェーズ2へスキップ（サマリー生成）
+    → Parse both JSON files
+    → Skip to Phase 2 (Summary Generation)
+elif exists(".brain/brain.json"):
+    → Parse brain.json
+    → Session info from git status
 else:
-    → ディープスキャンにフォールバック
+    → Fallback to Deep Scan (1.3)
 ```
 
-## フェーズ 2: エグゼクティブサマリー生成
+**Benefits of split files:**
+- `brain.json` (~2KB): Rarely changes, project knowledge
+- `session.json` (~1KB): Changes frequently, current state
+- Total: ~3KB vs ~10KB scattered markdown
 
-### 2.1. brain.json + session.json がある場合（高速モード）
+### 1.3. Fallback: Deep Context Scan (If no .brain/)
+1.  **Automatically scan info sources (WITHOUT asking User):**
+    *   `docs/specs/` → Find "In Progress" or latest Spec.
+    *   `docs/architecture/system_overview.md` → Understand architecture.
+    *   `docs/reports/` → Check latest audit report.
+    *   `package.json` → Know tech stack.
+2.  **Analyze Git (if exists):**
+    *   `git log -10 --oneline` → See last 10 commits.
+    *   `git status` → See if any files are mid-change.
+3.  **Suggest creating brain:**
+    *   "I see there's no `.brain/` folder yet. After finishing work, run `/save-brain` to create it!"
+
+## Phase 2: Executive Summary Generation
+
+### 2.1. If brain.json + session.json exist (Fast Mode)
+Extract from both files:
 
 ```
-📋 **{プロジェクト名}** | {プロジェクトタイプ} | {プロジェクト状態}
+📋 **{brain.project.name}** | {brain.project.type} | {brain.project.status}
 
-🛠️ **技術:** {フロントエンド} + {バックエンド} + {データベース}
+🛠️ **Tech:** {frontend} + {backend} + {database}
 
-📍 **作業中:** {session.working_on.feature}
-   └─ タスク: {session.working_on.task} ({session.working_on.status})
+📊 **Stats:** {tables} tables | {APIs} APIs | {features} features
 
-⏭️ **保留中 ({数量}):**
-   - [優先度] タスク
+📍 **Working on:** {session.working_on.feature}
+   └─ Task: {session.working_on.task} ({session.working_on.status})
+   └─ Files: {session.working_on.files}
 
-🕐 **最終保存:** {タイムスタンプ}
+⏭️ **Pending ({count}):**
+   - [priority] task
+
+⚠️ **Gotchas ({count}):**
+   - issue → solution
+
+🔧 **Recent Decisions:**
+   - decision (reason)
+
+❌ **Skipped Tests (blocks deploy!):**
+   📌 There are {count} skipped tests - MUST fix before deploy!
+   - test_name (skipped: date)
+
+🕐 **Last saved:** {timestamp}
 ```
 
-## フェーズ 3: 確認と方向性
-1.  ユーザーにサマリーを見せる。
-2.  聞く: 「次に何をしたいですか？」
-    *   A) 未完了の作業を続ける → `/code` または `/debug` を提案。
-    *   B) 新機能を始める → `/plan` を提案。
-    *   C) 全体状態を確認 → `/audit` を提案。
+### 2.2. If no brain.json (Legacy Mode)
+Create summary from scan:
+
+```
+📋 **PROJECT SUMMARY: [Project name]**
+
+🎯 **What this project does:** [1-2 sentence description]
+
+📍 **Last time we were working on:**
+   - [Feature/Module being built]
+   - [Status: Coding / Testing / Fixing bugs]
+
+📂 **Important files in focus:**
+   1. [File 1] - [Role]
+   2. [File 2] - [Role]
+
+⏭️ **Next tasks:**
+   - [Task 1]
+   - [Task 2]
+
+⚠️ **Important notes:**
+   - [If pending bugs exist]
+   - [If deadline exists]
+```
+
+## Phase 3: Confirmation & Direction
+1.  Present Summary to User.
+2.  Ask: "What do you want to do next?"
+    *   A) Continue unfinished work → Suggest `/code` or `/debug`.
+    *   B) Start new feature → Suggest `/plan`.
+    *   C) Check overall status first → Suggest `/audit`.
 
 ---
 
-## フェーズ 4: 📅 デイリースタンダップ形式 (⭐ NEW)
+## Phase 4: 📅 Daily Standup Format (⭐ NEW)
 
-### 4.1. スタンダップサマリー
-ユーザーが新しい日を始めるとき、スタンダップ形式で表示:
-
-```
-📅 デイリースタンダップ - [日付]
-
-✅ 完了 (昨日完了):
-- [タスク1] ✓
-- [タスク2] ✓
-- [バグ修正: 問題の説明] ✓
-
-🔄 進行中 (今日作業):
-- [現在のタスク] (50%完了)
-- [保留リストからの次のタスク]
-
-🚫 ブロック (現在ブロック中):
-- [ブロッカー1]: [理由] ⚠️ ヘルプが必要
-- [ブロッカー2]: [外部依存待ち]
-
-📊 進捗:
-- フェーズX: 70%完了
-- 全体: 計画の45%完了
-```
-
-### 4.2. ブロッカーハイライト
-**重要:** 常にブロッカーを最初にハイライト!
+### 4.1. Standup Summary
+When User starts a new day, display in standup format:
 
 ```
-🚨 解決すべきブロッカー:
+📅 DAILY STANDUP - [Date]
 
-| # | ブロッカー | タイプ | 待機日数 | アクション |
-|---|-----------|--------|---------|-----------|
-| 1 | APIレスポンス形式がない | 外部 | 2日 | バックエンドチームに連絡 |
-| 2 | 支払いテスト失敗 | 技術的 | 1日 | /debug が必要 |
+✅ DONE (Yesterday completed):
+- [Task 1] ✓
+- [Task 2] ✓
+- [Bug fix: issue description] ✓
 
-💡 提案: #2は自分で修正できる技術問題なので先に解決。
+🔄 DOING (Today will work on):
+- [Current task] (50% done)
+- [Next task from pending list]
+
+🚫 BLOCKED (Currently blocked):
+- [Blocker 1]: [Reason] ⚠️ NEEDS HELP
+- [Blocker 2]: [Waiting for external dependency]
+
+📊 PROGRESS:
+- Phase X: 70% complete
+- Overall: 45% of plan done
 ```
 
-### 4.3. ブロッカー自動検出
-AIが自動的に潜在的ブロッカーを検出:
-- `session.json` → errors_encountered (未修正バグ)
-- `session.json` → pending_tasks でステータス "blocked"
-- "WIP", "TODO", "FIXME" を含む最近のコミット
-- スキップ中または失敗中のテスト
+### 4.2. Blockers Highlight
+**IMPORTANT:** Always highlight blockers first!
+
+```
+🚨 BLOCKERS TO RESOLVE:
+
+| # | Blocker | Type | Waiting | Action |
+|---|---------|------|---------|--------|
+| 1 | API missing response format | External | 2 days | Contact backend team |
+| 2 | Payment test failing | Technical | 1 day | Need /debug |
+| 3 | Waiting for design approval | Process | 3 days | Follow up |
+
+💡 Suggestion: Resolve blocker #2 first since it's a tech issue you can self-fix.
+```
+
+### 4.3. Auto-Detect Blockers
+AI automatically detects potential blockers from:
+- `session.json` → errors_encountered (unfixed bugs)
+- `session.json` → pending_tasks with status "blocked"
+- Recent commits with messages containing "WIP", "TODO", "FIXME"
+- Tests being skipped or failing
 
 ---
 
-## ⚠️ 次のステップ:
+## Phase 5: 📊 Quick Dashboard (Agent + Files + Preview)
+
+### 5.1. Agent Status Board
+Display status of agents that have been/are/waiting to work:
+
 ```
-1️⃣ 未完了の作業を続ける? /code または /debug
-2️⃣ 新機能を始める? /plan
-3️⃣ 全体状態を確認? /audit
-4️⃣ ブロッカーがある? まずブロッカーを解決!
-5️⃣ 一日の終わり? /save-brain で進捗保存
+=== Agent Status ===
+
+✅ database-architect → Complete
+✅ backend-specialist → Complete
+🔄 frontend-specialist → Dashboard components (60%)
+⏳ test-engineer → Waiting
 ```
 
-## 💡 ヒント:
-*   毎朝作業前に `/recap` を使用。
-*   `/recap` 後、一日の終わりに `/save-brain` を忘れずに。
-*   新しいタスクを始める前にブロッカーの解決に集中!
+### 5.2. File Statistics
+```
+📄 Files: [X] created, [Y] modified
+```
+*   Get from: `python .agent/scripts/session_manager.py status`
+
+### 5.3. Preview Health Check
+```
+=== Preview ===
+🌐 URL: http://localhost:3000
+💚 Health: OK
+```
+*   Get from: `python .agent/scripts/auto_preview.py status`
+*   If server not running → Suggest `/preview start`
+
+---
+
+## ⚠️ NEXT STEPS:
+```
+1️⃣ Continue unfinished work? /code or /debug
+2️⃣ Start new feature? /plan
+3️⃣ Check overall status? /audit
+4️⃣ Have blockers? Resolve blockers first!
+5️⃣ End of day? /save-brain to save progress
+```
+
+## 💡 TIPS:
+*   Use `/recap` every morning before starting work.
+*   After `/recap`, remember `/save-brain` at end of day for easier recap tomorrow.
+*   Focus on resolving blockers before starting new tasks!
+
+---
+
+## 🛡️ RESILIENCE PATTERNS (Hidden from User)
+
+### When can't read .brain/:
+```
+If brain.json corrupted or missing:
+→ "No memory file found. Let me scan the project quickly!"
+→ Auto-fallback to Deep Context Scan (1.3)
+```
+
+### When preferences conflict:
+```
+If global and local preferences differ:
+→ Silent merge, local wins
+→ DO NOT inform user about conflict
+```
+
+### When scan fails:
+```
+If git log fails:
+→ Skip git analysis, use file timestamps
+
+If docs/ doesn't exist:
+→ "Project doesn't have docs yet. Run /save-brain when done!"
+```
+
+### Simplified error messages:
+```
+❌ "JSON.parse: Unexpected token"
+✅ "brain.json file has errors, let me scan from scratch!"
+
+❌ "ENOENT: no such file or directory"
+✅ "No context file yet, let me learn from the code!"
+```

@@ -1,158 +1,276 @@
 ---
-description: ✨ 新規プロジェクト作成
+description: ✨ プロジェクト作成
 ---
 
-# ワークフロー: /init - プロジェクトブートストラッパー（完全セットアップ）
+# WORKFLOW: /init - The Project Bootstrapper (Complete Setup)
 
 > **Context:** Agent `@architect`, `@devops`
 > **Required Skills:** `architecture`, `nodejs-best-practices`, `docker-expert`
 > **Key Behaviors:**
-> - スタック選択前に要件を分析
-> - スケーラブルな構造を設計
-> - すぐに実行できる開発環境を作成
+> - Analyze requirements before choosing stack
+> - Design scalable structure
+> - Create dev environment ready to run immediately
 
-あなたは **AntiKit プロジェクト初期化担当** です。ユーザーはゼロからプロジェクトを始めたいですが、パッケージマネージャー、環境変数、gitなどの技術的詳細を知りません。
+You are the **AntiKit Project Initializer**. User wants to start a project from scratch, WITHOUT knowing technical things like package manager, environment variables, git.
 
-**ミッション:** 完全な「スケルトン」を構築し、段階的にガイドします。
+**Mission:** Build a complete "Skeleton" and guide step by step.
 
 ---
 
-## ⚡ パワーモード (高度なFlags)
+## ⚡ Power Mode (Advanced Flags)
 
 ```
-/init --mobile        モバイルプロジェクト初期化 (React Native / Expo)
-/init --game          ゲームプロジェクト初期化
-/init --api           APIバックエンドのみ初期化
-/init --mcp           MCP Server初期化
-/init --docker        最初からDockerセットアップ追加
+/init --mobile        Initialize Mobile project (React Native / Expo)
+/init --game          Initialize Game project
+/init --api           Initialize API Backend only
+/init --mcp           Initialize MCP Server
+/init --docker        Add Docker setup from start
 ```
 
-| Flag | 有効化されるAgent + Skill | 説明 |
-|------|-------------------------|------|
-| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expoスキャフォールド |
-| `--game` | `game-developer` + `game-development` | ゲームプロジェクト (Phaser, Unity, Godot) |
-| `--api` | `backend-specialist` + `api-patterns` + `database-design` | REST/GraphQL API + データベース |
-| `--mcp` | `backend-specialist` + `mcp-builder` | MCP Server, tools, resources |
-| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose |
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--mobile` | `mobile-developer` + `mobile-design` | Scaffold React Native/Expo, mobile-first structure |
+| `--game` | `game-developer` + `game-development` | Scaffold game project (Phaser, Unity, Godot) |
+| `--api` | `backend-specialist` + `api-patterns` + `database-design` | REST/GraphQL API + Database schema |
+| `--mcp` | `backend-specialist` + `mcp-builder` | MCP Server with tools, resources |
+| `--docker` | `devops-engineer` + `docker-expert` | Add Dockerfile, docker-compose from start |
 
-### どのFlagを選べばいい？
+### Don't know which flag to use?
 
-Flagを使わない場合、アプリタイプ選択後に拡張メニーを表示：
+If user doesn't use flags, show expanded menu **after app type selection (Phase 1.1)**:
 
 ```
-"💡 特別な機能を追加しますか？
+"💡 Want to add any special capabilities?
 
-1️⃣ 📱 モバイルApp (React Native/Expo)
-2️⃣ 🎮 ゲーム (Phaser, Unity, Godot)
-3️⃣ 🔌 APIバックエンドのみ (UIなし)
+1️⃣ 📱 Mobile App (React Native/Expo)
+2️⃣ 🎮 Game (Phaser, Unity, Godot)
+3️⃣ 🔌 API Backend only (no UI)
 4️⃣ 🤖 MCP Server (Model Context Protocol)
-5️⃣ 🐳 Dockerセットアップ (コンテナ対応)
-6️⃣ ⏭️ 不要 — 通常通り続行"
+5️⃣ 🐳 Docker setup (container-ready)
+6️⃣ ⏭️ None — continue normally"
 ```
 
 ---
 
-## フェーズ 0: 言語ノート
+## Phase 0: Language Note
 
-> **💡 注意:** 言語はAntiKitのインストール時に選択されています。言語を変更するには、`/config language [en/vi/zh/ja]`を使用してください。
-
----
-
-## フェーズ 1: ビジョンキャプチャ
-
-### 1.1. アプリタイプ
-*   「どのようなアプリを作りたいですか？」
-    *   A) **シンプルなウェブサイト**（ランディングページ、ブログ、ポートフォリオ）
-    *   B) **Webアプリ**（ログイン、ダッシュボード、データ管理あり）
-    *   C) **APIバックエンド**（サーバーのみ、UIなし）
-    *   D) **フルスタック**（フロントエンド + バックエンド + データベース）
-    *   E) **モバイルアプリ**（スマートフォンアプリ）
-
-### 1.2. プロジェクト名
-*   「プロジェクト名は何ですか？（小文字、スペースなし、例: my-cool-app）」
-
-### 1.3. ディレクトリ
-*   「プロジェクトをどこに作成しますか？」
-*   または現在のディレクトリに自動作成。
+> **💡 Note:** Language was already selected during AntiKit installation. To change language, use `/config language [en/vi/zh/ja]`.
 
 ---
 
-## フェーズ 2: 技術スタック選択（AIが決定）
+## Phase 1: Vision Capture
 
-AIが最適な技術を自動選択（ユーザーは知る必要なし）:
+### 1.1. App Type
+*   "What type of app do you want to build?"
+    *   A) **Simple Website** (Landing page, Blog, Portfolio)
+    *   B) **Web App** (With login, Dashboard, data management)
+    *   C) **API Backend** (Server only, no UI)
+    *   D) **Full-stack** (Frontend + Backend + Database)
+    *   E) **Mobile App** (Phone application)
 
-*   **シンプルなウェブサイト:** Next.js + TailwindCSS
-*   **Webアプリ:** Next.js + TailwindCSS + PostgreSQL + Prisma + NextAuth
-*   **APIバックエンド:** Node.js + Fastify + PostgreSQL + Prisma
-*   **フルスタック:** Next.js フルスタック + PostgreSQL
-*   **モバイル:** React Native または Expo
+### 1.2. Project Name
+*   "What's the project name? (lowercase, no spaces, e.g: my-cool-app)"
 
----
-
-## フェーズ 3: 隠れたセットアップ（ユーザーが必要と知らないもの）
-
-AIがユーザーが忘れがちな重要なものを自動セットアップ:
-
-### 3.1. 環境変数
-*   すべての必要な変数を含む `.env.example` ファイルを作成。
-*   ユーザーが実際の値を入力する `.env.local` を作成。
-
-### 3.2. Gitセットアップ
-*   Gitリポジトリを初期化。
-*   標準的な `.gitignore` を作成。
-*   最初のコミット: "Initial project setup"。
-
-### 3.3. コード品質ツール
-*   ESLintをインストール（コードエラーチェック）。
-*   Prettierをインストール（コードフォーマット）。
-
-### 3.4. フォルダ構造
-*   企業標準のフォルダ構造を作成。
-
-### 3.5. README.md
-*   説明付きREADMEを作成:
-    *   インストール方法
-    *   開発サーバーの実行方法
-    *   本番ビルドの作成方法
+### 1.3. Directory
+*   "Where do you want to create the project?"
+*   Or automatically create in current directory.
 
 ---
 
-## フェーズ 4: 依存関係のインストール
+## Phase 2: Tech Stack Selection (AI decides)
 
-*   `npm install` を実行。
-*   必要なライブラリをインストール。
+AI automatically selects the best technology (User doesn't need to know):
 
----
-
-## フェーズ 5: データベースセットアップ（必要な場合）
-
-### 5.1. データベース選択
-*   **SQLite:** シンプル、インストール不要。
-*   **PostgreSQL:** プロフェッショナル、別途インストールが必要。
+*   **Simple Website:** Next.js + TailwindCSS
+*   **Web App:** Next.js + TailwindCSS + PostgreSQL + Prisma + NextAuth
+*   **API Backend:** Node.js + Fastify + PostgreSQL + Prisma
+*   **Full-stack:** Next.js Full-stack + PostgreSQL
+*   **Mobile:** React Native or Expo
 
 ---
 
-## フェーズ 6: 初回実行テスト
+## Phase 3: Hidden Setup (Things User doesn't know they need)
 
-1.  `npm run dev` を実行して確認。
-2.  ブラウザで `http://localhost:3000` を開く。
-3.  アプリが正常に動作することを確認。
+AI AUTOMATICALLY sets up important things that users often forget:
+
+### 3.1. Environment Variables
+*   Create `.env.example` file with all required environment variables.
+*   Create `.env.local` for user to fill in actual values.
+*   **Explain each variable:**
+    ```
+    # Database connection
+    DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+    
+    # Authentication secret (Random string, keep secret!)
+    NEXTAUTH_SECRET=your-secret-here
+    
+    # App URL
+    NEXT_PUBLIC_APP_URL=http://localhost:3000
+    ```
+
+### 3.2. Git Setup
+*   Initialize Git repository.
+*   Create standard `.gitignore` (ignore node_modules, .env, etc.).
+*   Create first commit: "Initial project setup".
+
+### 3.3. Code Quality Tools
+*   Install ESLint (Code error checking).
+*   Install Prettier (Code formatting).
+*   Create config files.
+
+### 3.4. Folder Structure
+*   Create enterprise-standard folder structure:
+    ```
+    /src
+      /app (or /pages)
+      /components
+      /lib
+      /services
+      /types
+      /utils
+    /docs
+      /specs
+      /architecture
+    /.brain                    # ⭐ AI context storage
+      /brain.json              # Project knowledge (static)
+      /session.json            # Session state (dynamic)
+    /scripts
+    /public
+    ```
+
+### 3.5. .brain/ Folder Setup
+*   Create `.brain/` folder for AI context
+*   Create `.brain/brain.json` with basic template
+*   Add `.brain/session.json` to `.gitignore` (local state)
+*   Optionally: commit `.brain/brain.json` if team wants to share context
+
+### 3.6. README.md
+*   Create README with instructions:
+    *   How to install
+    *   How to run dev server
+    *   How to build production
+    *   Folder structure
 
 ---
 
-## フェーズ 7: ハンドオーバー
+## Phase 4: Dependencies Installation
 
-1.  ユーザーに伝える: 「プロジェクトの準備ができました！」
-2.  サマリー: 「技術スタック: [リスト]」
-3.  次のステップ:
-    *   「`/plan` を入力して最初の機能を設計してください。」
-    *   「`/visualize` を入力してUIを先に設計したい場合。」
+### 4.1. Core Dependencies
+*   Run `npm install` (or yarn/pnpm).
+*   Install required libraries based on app type.
+
+### 4.2. Dev Dependencies
+*   TypeScript
+*   ESLint, Prettier
+*   Testing tools (Jest, Playwright)
 
 ---
 
-## ⚠️ 次のステップ:
+## Phase 5: Database Setup (If needed)
+
+### 5.1. Choose Database
+*   **SQLite:** Simple, no installation required.
+*   **PostgreSQL:** Professional, requires separate installation.
+
+### 5.2. Database Installation Guide (If PostgreSQL)
+*   "Have you installed PostgreSQL?"
+    *   **No:** Guide installation (download link, steps).
+    *   **Yes:** "What's the database username and password?"
+
+### 5.3. Initial Schema
+*   Create basic migration file (Users table if Auth exists).
+
+---
+
+## Phase 6: First Run Test
+
+1.  Run `npm run dev` to verify.
+2.  Open browser at `http://localhost:3000`.
+3.  Confirm app is working.
+
+---
+
+## Phase 7: Documentation Bootstrap
+
+1.  Create `docs/architecture/system_overview.md` skeleton.
+2.  Run `/save-brain` to save initial structure.
+
+---
+
+## Phase 8: Handover
+
+1.  Tell User: "Project is ready!"
+2.  Summary:
+    *   "Tech stack: [List]"
+    *   "Run dev: `npm run dev`"
+    *   "Open browser: `http://localhost:3000`"
+3.  Next steps:
+    *   "Type `/plan` to start designing your first feature."
+    *   "Type `/visualize` if you want to design UI first."
+
+---
+
+## Phase 9: 🚀 Optional Build App (From Scaffold → Complete App)
+
+### 9.1. Ask User
 ```
-1️⃣ 最初の機能を始める? /plan
-2️⃣ 先にUIを設計? /visualize
-3️⃣ アプリを実行? /run
+"Project scaffold is done! Would you like to:
+
+1️⃣ **Stop here** - I'll code manually later (/plan)
+2️⃣ **Build now** - I'll create a complete app from your idea
+3️⃣ **Design UI first** - /visualize"
+```
+
+### 9.2. If Build Now (Option 2)
+Use `app-builder` skill to orchestrate agents:
+- `database-architect` → Create Schema
+- `backend-specialist` → Create API
+- `frontend-specialist` → Create UI
+
+### 9.3. Auto Preview
+When build completes, automatically start preview:
+```bash
+python .agent/scripts/auto_preview.py start
+```
+→ Show URL to User: `http://localhost:3000`
+
+---
+
+## ⚠️ NEXT STEPS:
+```
+1️⃣ Start first feature? /plan
+2️⃣ Design UI first? /visualize
+3️⃣ Run the app? /run
+4️⃣ See preview? /preview
+```
+
+---
+
+## 🛡️ RESILIENCE PATTERNS (Hidden from User)
+
+### When npm install fails:
+```
+1. Auto-retry 1x
+2. If still fails → Tell user:
+   "Installation failed 😅 Might be network issue. Retry?"
+   1️⃣ Retry
+   2️⃣ Skip, I'll install later
+```
+
+### When git init fails:
+```
+If folder already has .git:
+→ "This folder already has Git, I'll skip this step!"
+
+If permission denied:
+→ "Can't create Git. Do you have write permission for this folder?"
+```
+
+### Simplified error messages:
+```
+❌ "npm ERR! ERESOLVE could not resolve"
+✅ "There's a package conflict. Should I try to fix it automatically?"
+
+❌ "EACCES: permission denied"
+✅ "No write permission. Run again with admin rights?"
 ```

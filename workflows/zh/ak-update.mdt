@@ -1,85 +1,134 @@
 ---
-description: 选择性更新AntiKit包
+description: Update AntiKit with package selection
 ---
 
-# 工作流: /ak-update - AntiKit更新 (Enhanced)
+# WORKFLOW: /ak-update - AntiKit Update (Enhanced)
 
 > **Context:** Agent `@devops`
 > **Required Skills:** `server-management`, `git-workflow`
+> **Key Behaviors:**
+> - Display list of available packages
+> - Allow selective update
+> - Save local update history
 
-AntiKit更新管理器。检查并更新，支持包选择功能。
-
----
-
-## 阶段 1: 获取注册表
-
-检查版本并获取注册表。
+You are the **AntiKit Update Manager**. Mission: Check and update AntiKit with package selection capability.
 
 ---
 
-## 阶段 2: 与本地比较
+## Phase 1: Fetch Registry
 
-读取 `~/.gemini/antikit_installed.json` 并比较。
+### 1.1. Check core version
 
----
+```bash
+# Local version
+cat ~/.gemini/antikit_version 2>/dev/null || echo "unknown"
 
-## 阶段 3: 安全扫描
-
-```
-🔍 正在扫描软件包...
-
-[1/2] workflow/debug... ✅ 通过
-[2/2] workflow/code... ✅ 通过
+# Remote version
+curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/VERSION
 ```
 
-**封锁**: 无法安装，自动跳过
-**警告**: 显示警告，确认继续
-**通过**: 继续显示更新
+### 1.2. Fetch library registry
+
+```bash
+curl -s https://raw.githubusercontent.com/hasugoii/antikit/main/registry/index.json
+```
 
 ---
 
-## 阶段 4: 显示可用更新
+## Phase 2: Compare with Local
+
+Read `~/.gemini/antikit_installed.json` and compare with registry.
+
+---
+
+## Phase 3: Security Scan
+
+Before displaying updates, scan all packages for security issues:
 
 ```
-📦 ANTIKIT 更新中心
+🔍 SCANNING PACKAGES FOR SECURITY...
+
+[1/4] workflow/debug... ✅ PASSED
+[2/4] workflow/code... ✅ PASSED  
+[3/4] skill/react-patterns... ⚠️ 1 WARNING
+[4/4] skill/nextjs-expert... ✅ PASSED
+```
+
+**If BLOCKED**: Package cannot be installed, skip automatically.
+**If WARNING**: Show warning, ask user to confirm.
+**If all PASSED**: Proceed to display updates.
+
+---
+
+## Phase 4: Display Available Updates
+
+```
+📦 ANTIKIT UPDATE CENTER
+
+🔷 CORE: v{local} → v{remote} {status}
 
 ┌─────────────────────────────────────────────────────┐
-│ 📂 工作流 ({count} 更新)                             │
+│ 📂 WORKFLOWS ({count} updates)                      │
 ├─────────────────────────────────────────────────────┤
-│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ 热门更新    │
-│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 新版本      │
+│ [ ] 1. /debug         1.0.0 → 1.2.0  ⭐ Hot update  │
+│ [ ] 2. /code          1.1.0 → 1.2.1  🆕 New version │
+│ [✓] 3. /plan          1.2.0          ✅ Up to date  │
 └─────────────────────────────────────────────────────┘
 
-📊 您的语言: 🇨🇳 中文
+┌─────────────────────────────────────────────────────┐
+│ 🛠️ SKILLS ({count} available)                       │
+├─────────────────────────────────────────────────────┤
+│ [ ] 4. react-patterns  v2.0  ⭐ Popular             │
+│ [ ] 5. nextjs-expert   v1.5  🆕 New                 │
+└─────────────────────────────────────────────────────┘
+
+📊 Your language: 🇬🇧 English
 ```
 
 ---
 
-## 阶段 5: 选择
+## Phase 5: Selection
 
 ```
-🔽 选择要更新的内容:
+🔽 SELECT TO UPDATE:
 
-输入数字 (逗号分隔) 或:
-• all - 全部更新
-• workflows - 仅工作流
-• cancel - 取消
+Enter numbers (comma separated) or:
+• all       - Update all
+• workflows - Only workflows
+• skills    - Only skills
+• cancel    - Cancel
+
+Example: 1,2,4,5 or all
 
 > _
 ```
 
 ---
 
-## 阶段 6-7: 执行和确认
+## Phase 6: Execute Update
 
-下载选定的包并安装。
+Download selected packages, copy to local, update antikit_installed.json.
 
 ---
 
-## 阶段 8: 下一步
+## Phase 7: Confirmation
 
 ```
-1️⃣ 浏览更多包? /ak-browse
-2️⃣ 查看更新历史? /ak-history
-3️⃣ 贡献包? /ak-contribute
+✅ UPDATE COMPLETE!
+
+📦 Updated:
+├── workflow/debug 1.0.0 → 1.2.0
+├── skill/react-patterns (new)
+
+👉 Restart IDE to apply changes.
+```
+
+---
+
+## Phase 8: Next Steps
+
+```
+1️⃣ Browse more packages? /ak-browse
+2️⃣ View update history? /ak-history
+3️⃣ Contribute package? /ak-contribute
 ```

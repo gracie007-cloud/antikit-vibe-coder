@@ -1,174 +1,263 @@
 ---
-description: 🧠 项目摘要
+description: 🧠 项目总结
 ---
 
-# 工作流: /recap - 记忆恢复器 (上下文恢复)
+# WORKFLOW: /recap - The Memory Retriever (Context Recovery)
 
 > **Context:** Agent `@orchestrator`
 > **Required Skills:** `parallel-agents`
 > **Key Behaviors:**
-> - 首先加载brain.json和session.json
-> - 简洁易懂地总结
-> - 建议适当的下一步
+> - Load brain.json and session.json first
+> - Summarize concisely, easy to understand
+> - Suggest appropriate next steps
 
-你是 **AntiKit 历史学家**。用户刚回来一段时间后忘记了正在做什么。您的任务是帮助他们在2分钟内"回忆一切"。
+You are **AntiKit Historian**. User just returned after some time and forgot what they were doing. Your mission is to help them "Remember everything" in 2 minutes.
 
-## 原则: "读取一切，简单总结"
+## Principles: "Read Everything, Summarize Simply"
 
-## 阶段 1: 快速上下文加载
+## Phase 1: Fast Context Load
 
-### 1.1. 加载顺序 (重要!)
+### 1.1. Load Order (Important!)
 
 ```
-步骤1: 加载偏好设置 (AI如何沟通)
-├── ~/.antigravity/preferences.json     # 全局默认
-└── .brain/preferences.json             # 本地覆盖
+Step 1: Load Preferences (how AI communicates)
+├── ~/.antigravity/preferences.json     # Global defaults (skip if not exist)
+└── .brain/preferences.json             # Local override (if exists)
+    → Merge: Local overrides Global
+    → If no files exist → Use defaults
 
-步骤2: 加载项目知识
-└── .brain/brain.json                   # 静态知识
+Step 2: Load Project Knowledge
+└── .brain/brain.json                   # Static knowledge
 
-步骤3: 加载会话状态
-└── .brain/session.json                 # 动态会话
+Step 3: Load Session State
+└── .brain/session.json                 # Dynamic session
 
-步骤4: 生成摘要
+Step 4: Generate Summary
 ```
 
-### 1.2. 检查文件
+### 1.2. Check files
 
 ```
 if exists(".brain/brain.json") AND exists(".brain/session.json"):
-    → 解析两个JSON文件
-    → 跳到阶段2 (摘要生成)
+    → Parse both JSON files
+    → Skip to Phase 2 (Summary Generation)
 elif exists(".brain/brain.json"):
-    → 解析 brain.json
-    → 从 git status 获取会话信息
+    → Parse brain.json
+    → Session info from git status
 else:
-    → 回退到深度扫描 (1.3)
+    → Fallback to Deep Scan (1.3)
 ```
 
-### 1.3. 回退: 深度上下文扫描 (如果没有 .brain/)
-1.  **自动扫描信息源 (不询问用户):**
-    *   `docs/specs/` → 查找"进行中"或最新的规格。
-    *   `docs/architecture/system_overview.md` → 理解架构。
-    *   `package.json` → 了解技术栈。
-2.  **分析Git (如果存在):**
-    *   `git log -10 --oneline` → 查看最近10次提交。
-    *   `git status` → 查看是否有文件正在更改。
-3.  **建议创建brain:**
-    *   "我看到还没有 `.brain/` 文件夹。完成工作后，运行 `/save-brain` 创建它!"
+**Benefits of split files:**
+- `brain.json` (~2KB): Rarely changes, project knowledge
+- `session.json` (~1KB): Changes frequently, current state
+- Total: ~3KB vs ~10KB scattered markdown
 
-## 阶段 2: 执行摘要生成
+### 1.3. Fallback: Deep Context Scan (If no .brain/)
+1.  **Automatically scan info sources (WITHOUT asking User):**
+    *   `docs/specs/` → Find "In Progress" or latest Spec.
+    *   `docs/architecture/system_overview.md` → Understand architecture.
+    *   `docs/reports/` → Check latest audit report.
+    *   `package.json` → Know tech stack.
+2.  **Analyze Git (if exists):**
+    *   `git log -10 --oneline` → See last 10 commits.
+    *   `git status` → See if any files are mid-change.
+3.  **Suggest creating brain:**
+    *   "I see there's no `.brain/` folder yet. After finishing work, run `/save-brain` to create it!"
 
-### 2.1. 如果有 brain.json + session.json (快速模式)
-从两个文件提取:
+## Phase 2: Executive Summary Generation
 
-```
-📋 **{项目名称}** | {项目类型} | {项目状态}
-
-🛠️ **技术:** {前端} + {后端} + {数据库}
-
-📍 **正在做:** {session.working_on.feature}
-   └─ 任务: {session.working_on.task} ({session.working_on.status})
-   └─ 文件: {session.working_on.files}
-
-⏭️ **待办 ({数量}):**
-   - [优先级] 任务
-
-⚠️ **注意事项 ({数量}):**
-   - 问题 → 解决方案
-
-🕐 **上次保存:** {时间戳}
-```
-
-### 2.2. 如果没有 brain.json (传统模式)
-从扫描创建摘要:
+### 2.1. If brain.json + session.json exist (Fast Mode)
+Extract from both files:
 
 ```
-📋 **项目摘要: [项目名称]**
+📋 **{brain.project.name}** | {brain.project.type} | {brain.project.status}
 
-🎯 **这个项目做什么:** [1-2句描述]
+🛠️ **Tech:** {frontend} + {backend} + {database}
 
-📍 **上次我们在做:**
-   - [正在构建的功能/模块]
-   - [状态: 编码中 / 测试中 / 修复Bug]
+📊 **Stats:** {tables} tables | {APIs} APIs | {features} features
 
-📂 **重点文件:**
-   1. [文件1] - [角色]
-   2. [文件2] - [角色]
+📍 **Working on:** {session.working_on.feature}
+   └─ Task: {session.working_on.task} ({session.working_on.status})
+   └─ Files: {session.working_on.files}
 
-⏭️ **下一步任务:**
-   - [任务1]
-   - [任务2]
+⏭️ **Pending ({count}):**
+   - [priority] task
+
+⚠️ **Gotchas ({count}):**
+   - issue → solution
+
+🔧 **Recent Decisions:**
+   - decision (reason)
+
+❌ **Skipped Tests (blocks deploy!):**
+   📌 There are {count} skipped tests - MUST fix before deploy!
+   - test_name (skipped: date)
+
+🕐 **Last saved:** {timestamp}
 ```
 
-## 阶段 3: 确认和方向
-1.  向用户展示摘要。
-2.  问: "您下一步想做什么?"
-    *   A) 继续未完成的工作 → 建议 `/code` 或 `/debug`。
-    *   B) 开始新功能 → 建议 `/plan`。
-    *   C) 先检查整体状态 → 建议 `/audit`。
+### 2.2. If no brain.json (Legacy Mode)
+Create summary from scan:
+
+```
+📋 **PROJECT SUMMARY: [Project name]**
+
+🎯 **What this project does:** [1-2 sentence description]
+
+📍 **Last time we were working on:**
+   - [Feature/Module being built]
+   - [Status: Coding / Testing / Fixing bugs]
+
+📂 **Important files in focus:**
+   1. [File 1] - [Role]
+   2. [File 2] - [Role]
+
+⏭️ **Next tasks:**
+   - [Task 1]
+   - [Task 2]
+
+⚠️ **Important notes:**
+   - [If pending bugs exist]
+   - [If deadline exists]
+```
+
+## Phase 3: Confirmation & Direction
+1.  Present Summary to User.
+2.  Ask: "What do you want to do next?"
+    *   A) Continue unfinished work → Suggest `/code` or `/debug`.
+    *   B) Start new feature → Suggest `/plan`.
+    *   C) Check overall status first → Suggest `/audit`.
 
 ---
 
-## 阶段 4: 📅 每日站会格式 (⭐ NEW)
+## Phase 4: 📅 Daily Standup Format (⭐ NEW)
 
-### 4.1. 站会摘要
-当用户开始新的一天时，以站会格式显示:
-
-```
-📅 每日站会 - [日期]
-
-✅ 完成 (昨天完成):
-- [任务1] ✓
-- [任务2] ✓
-- [Bug修复: 问题描述] ✓
-
-🔄 进行中 (今天将做):
-- [当前任务] (50%完成)
-- [待办列表中的下一个任务]
-
-🚫 阻塞 (目前被阻塞):
-- [阻塞1]: [原因] ⚠️ 需要帮助
-- [阻塞2]: [等待外部依赖]
-
-📊 进度:
-- 阶段X: 70%完成
-- 总体: 计划的45%完成
-```
-
-### 4.2. 阻塞项高亮
-**重要:** 始终首先高亮阻塞项!
+### 4.1. Standup Summary
+When User starts a new day, display in standup format:
 
 ```
-🚨 需要解决的阻塞:
+📅 DAILY STANDUP - [Date]
 
-| # | 阻塞项 | 类型 | 等待天数 | 行动 |
-|---|--------|------|---------|------|
-| 1 | API缺少响应格式 | 外部 | 2天 | 联系后端团队 |
-| 2 | 支付测试失败 | 技术 | 1天 | 需要 /debug |
+✅ DONE (Yesterday completed):
+- [Task 1] ✓
+- [Task 2] ✓
+- [Bug fix: issue description] ✓
 
-💡 建议: #2是可以自己修复的技术问题，先解决它。
+🔄 DOING (Today will work on):
+- [Current task] (50% done)
+- [Next task from pending list]
+
+🚫 BLOCKED (Currently blocked):
+- [Blocker 1]: [Reason] ⚠️ NEEDS HELP
+- [Blocker 2]: [Waiting for external dependency]
+
+📊 PROGRESS:
+- Phase X: 70% complete
+- Overall: 45% of plan done
 ```
 
-### 4.3. 自动检测阻塞
-AI自动检测潜在阻塞:
-- `session.json` → errors_encountered (未修复的bug)
-- `session.json` → pending_tasks 状态为 "blocked"
-- 包含 "WIP", "TODO", "FIXME" 的最近提交
-- 正在跳过或失败的测试
+### 4.2. Blockers Highlight
+**IMPORTANT:** Always highlight blockers first!
+
+```
+🚨 BLOCKERS TO RESOLVE:
+
+| # | Blocker | Type | Waiting | Action |
+|---|---------|------|---------|--------|
+| 1 | API missing response format | External | 2 days | Contact backend team |
+| 2 | Payment test failing | Technical | 1 day | Need /debug |
+| 3 | Waiting for design approval | Process | 3 days | Follow up |
+
+💡 Suggestion: Resolve blocker #2 first since it's a tech issue you can self-fix.
+```
+
+### 4.3. Auto-Detect Blockers
+AI automatically detects potential blockers from:
+- `session.json` → errors_encountered (unfixed bugs)
+- `session.json` → pending_tasks with status "blocked"
+- Recent commits with messages containing "WIP", "TODO", "FIXME"
+- Tests being skipped or failing
 
 ---
 
-## ⚠️ 下一步:
+## Phase 5: 📊 Quick Dashboard (Agent + Files + Preview)
+
+### 5.1. Agent Status Board
+Display status of agents that have been/are/waiting to work:
+
 ```
-1️⃣ 继续未完成的工作? /code 或 /debug
-2️⃣ 开始新功能? /plan
-3️⃣ 检查整体状态? /audit
-4️⃣ 有阻塞? 先解决阻塞!
-5️⃣ 一天结束? /save-brain 保存进度
+=== Agent Status ===
+
+✅ database-architect → Complete
+✅ backend-specialist → Complete
+🔄 frontend-specialist → Dashboard components (60%)
+⏳ test-engineer → Waiting
 ```
 
-## 💡 提示:
-*   每天早上工作前使用 `/recap`。
-*   `/recap` 后，记得在一天结束时 `/save-brain` 以便明天更容易recap。
-*   开始新任务前先专注解决阻塞!
+### 5.2. File Statistics
+```
+📄 Files: [X] created, [Y] modified
+```
+*   Get from: `python .agent/scripts/session_manager.py status`
+
+### 5.3. Preview Health Check
+```
+=== Preview ===
+🌐 URL: http://localhost:3000
+💚 Health: OK
+```
+*   Get from: `python .agent/scripts/auto_preview.py status`
+*   If server not running → Suggest `/preview start`
+
+---
+
+## ⚠️ NEXT STEPS:
+```
+1️⃣ Continue unfinished work? /code or /debug
+2️⃣ Start new feature? /plan
+3️⃣ Check overall status? /audit
+4️⃣ Have blockers? Resolve blockers first!
+5️⃣ End of day? /save-brain to save progress
+```
+
+## 💡 TIPS:
+*   Use `/recap` every morning before starting work.
+*   After `/recap`, remember `/save-brain` at end of day for easier recap tomorrow.
+*   Focus on resolving blockers before starting new tasks!
+
+---
+
+## 🛡️ RESILIENCE PATTERNS (Hidden from User)
+
+### When can't read .brain/:
+```
+If brain.json corrupted or missing:
+→ "No memory file found. Let me scan the project quickly!"
+→ Auto-fallback to Deep Context Scan (1.3)
+```
+
+### When preferences conflict:
+```
+If global and local preferences differ:
+→ Silent merge, local wins
+→ DO NOT inform user about conflict
+```
+
+### When scan fails:
+```
+If git log fails:
+→ Skip git analysis, use file timestamps
+
+If docs/ doesn't exist:
+→ "Project doesn't have docs yet. Run /save-brain when done!"
+```
+
+### Simplified error messages:
+```
+❌ "JSON.parse: Unexpected token"
+✅ "brain.json file has errors, let me scan from scratch!"
+
+❌ "ENOENT: no such file or directory"
+✅ "No context file yet, let me learn from the code!"
+```

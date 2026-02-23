@@ -1,159 +1,221 @@
 ---
-description: 🏥 代码和安全审计
+description: 🏥 Code & security audit
 ---
 
-# 工作流: /audit - 代码医生 (全面健康检查)
+# WORKFLOW: /audit - The Code Doctor (Comprehensive Health Check)
 
 > **Context:** Agent `@security`, `@performance`
 > **Required Skills:** `vulnerability-scanner`, `red-team-tactics`, `code-review-checklist`, `performance-profiling`
 > **Key Behaviors:**
-> - 首先扫描OWASP Top 10
-> - 分析威胁模型和攻击向量
-> - 用简单的语言解释危险等级
+> - Scan OWASP Top 10 first
+> - Analyze threat model and attack vectors
+> - Explain danger levels in simple language
 
-你是 **AntiKit 代码审计员**。项目可能"生病"了而用户不知道。
+You are **AntiKit Code Auditor**. The project may be "sick" without User knowing.
 
-**任务:** 进行全面检查并提供易于理解的"治疗计划"。
+**Mission:** Give a full checkup and provide easy-to-understand "Treatment Plan".
 
 ---
 
-## ⚡ 增强模式 (高级Flags)
+## ⚡ Power Mode (Advanced Flags)
 
 ```
-/audit --seo          SEO深度审计
-/audit --perf         性能审计 (Core Web Vitals)
-/audit --pentest      渗透测试 (攻击性)
-/audit --docs         文档审计
-/audit --i18n         国际化审计
-/audit --deps         依赖和供应链审计
-/audit --full         运行以上所有审计
+/audit --seo          Deep SEO audit
+/audit --perf         Performance audit (Core Web Vitals)
+/audit --pentest      Penetration testing (offensive)
+/audit --docs         Documentation audit
+/audit --i18n         Internationalization audit
+/audit --deps         Dependencies & supply chain audit
+/audit --full         Run ALL audits above
 ```
 
-| Flag | 激活的Agent + Skill | 说明 |
-|------|-------------------|------|
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
 | `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | E-E-A-T, Core Web Vitals, GenAI SEO |
-| `--perf` | `performance-optimizer` + `performance-profiling` | Lighthouse, bundle大小, 渲染 |
-| `--pentest` | `penetration-tester` + `red-team-tactics` | MITRE ATT&CK, 攻击模拟 |
-| `--docs` | `documentation-writer` + `documentation-templates` | README, API文档, 内联注释 |
-| `--i18n` | `i18n-localization` | 硬编码字符串, RTL, 语言文件 |
-| `--deps` | `vulnerability-scanner` | 供应链安全, 过时的依赖 |
-| `--full` | 以上所有agents + skills | 全面审计所有方面 |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Lighthouse, bundle size, rendering |
+| `--pentest` | `penetration-tester` + `red-team-tactics` | MITRE ATT&CK, attack simulation |
+| `--docs` | `documentation-writer` + `documentation-templates` | README, API docs, inline comments |
+| `--i18n` | `i18n-localization` | Hardcoded strings, RTL, locale files |
+| `--deps` | `vulnerability-scanner` | Supply chain security, outdated packages |
+| `--full` | All agents + skills above | Comprehensive audit of everything |
 
-### 不知道选哪个Flag?
+### Don't know which flag to use?
+
+If user doesn't use flags, add options to Phase 1 menu:
 
 ```
-"您想检查哪个范围？
+"What scope do you want to check?
 
-A) 🚀 快速扫描 (5分钟)
-B) 🔍 全面审计 (15-30分钟)
-C) 🔒 安全聚焦
-D) ⚡ 性能聚焦
-E) 📈 SEO审计
-F) 🗡️ 渗透测试
-G) 📝 文档审计
-H) 🌍 国际化审计
-I) 📦 依赖审计
-J) 💪 全功率 (以上所有)"
+A) 🚀 Quick Scan (5 min - Serious issues only)
+B) 🔍 Full Audit (15-30 min - Comprehensive)
+C) 🔒 Security Focus
+D) ⚡ Performance Focus
+E) 📈 SEO Audit (Search optimization)
+F) 🗡️ Pentest (Penetration testing)
+G) 📝 Docs Audit (Documentation)
+H) 🌍 i18n Audit (Internationalization)
+I) 📦 Deps Audit (Dependencies)
+J) 💪 FULL POWER (All of the above)"
 ```
 
 ---
 
-## 阶段 1: 范围选择
+## Phase 1: Scope Selection
 
-*   "您想检查什么范围?"
-    *   A) **快速扫描** (5分钟 - 只检查严重问题)
-    *   B) **完整审计** (15-30分钟 - 全面检查)
-    *   C) **安全专注** (只专注安全)
-    *   D) **性能专注** (只专注性能)
-
----
-
-## 阶段 2: 深度扫描
-
-### 2.1. 安全审计
-*   **认证:**
-    *   密码是否哈希?
-    *   Sessions/Tokens是否安全?
-    *   登录有速率限制吗?
-*   **授权:**
-    *   返回数据前是否检查权限?
-    *   有RBAC(基于角色的访问)吗?
-*   **输入验证:**
-    *   用户输入是否净化?
-    *   有SQL注入漏洞吗?
-    *   有XSS漏洞吗?
-*   **密钥:**
-    *   代码中有硬编码的API密钥吗?
-    *   .env文件在.gitignore中吗?
-
-### 2.2. 代码质量审计
-*   **死代码:** 哪些文件没被导入?
-*   **代码重复:** 有代码重复>3次吗?
-*   **复杂度:** 有函数太长(>50行)吗?
-*   **命名:** 有无意义的变量名吗?
-
-### 2.3. 性能审计
-*   **数据库:** N+1查询? 缺少索引? 慢查询?
-*   **前端:** 不必要的组件重渲染? 未优化的图片?
-*   **API:** 响应太大? 有分页吗?
-
-### 2.4. 依赖审计
-*   有过时的包吗?
-*   有已知漏洞的包吗?
-*   有未使用的包吗?
+*   "What scope do you want to check?"
+    *   A) **Quick Scan** (5 min - Only check serious issues)
+    *   B) **Full Audit** (15-30 min - Comprehensive check)
+    *   C) **Security Focus** (Only focus on security)
+    *   D) **Performance Focus** (Only focus on performance)
 
 ---
 
-## 阶段 3: 报告生成
+## Phase 2: Deep Scan
 
-在 `docs/reports/audit_[date].md` 创建报告:
+### 2.1. Security Audit
+*   **Authentication:**
+    *   Are passwords hashed?
+    *   Are Sessions/Tokens secure?
+    *   Is there rate limiting for login?
+*   **Authorization:**
+    *   Are permissions checked before returning data?
+    *   Is there RBAC (Role-based access)?
+*   **Input Validation:**
+    *   Is user input sanitized?
+    *   Any SQL injection vulnerabilities?
+    *   Any XSS vulnerabilities?
+*   **Secrets:**
+    *   Any hardcoded API keys in code?
+    *   Is .env file in .gitignore?
 
+### 2.2. Code Quality Audit
+*   **Dead Code:**
+    *   Which files aren't imported?
+    *   Which functions aren't called?
+*   **Code Duplication:**
+    *   Any code repeated > 3 times?
+*   **Complexity:**
+    *   Any functions too long (> 50 lines)?
+    *   Any nested if/else too deep (> 3 levels)?
+*   **Naming:**
+    *   Any meaningless variable names (a, b, x, temp)?
+*   **Comments:**
+    *   Any forgotten TODO/FIXME?
+    *   Any outdated comments?
+
+### 2.3. Performance Audit
+*   **Database:**
+    *   Any N+1 queries?
+    *   Any missing indexes?
+    *   Any slow queries?
+*   **Frontend:**
+    *   Any unnecessary component re-renders?
+    *   Any unoptimized images?
+    *   Any missing lazy loading?
+*   **API:**
+    *   Any responses too large?
+    *   Is there pagination?
+
+### 2.4. Dependencies Audit
+*   Any outdated packages?
+*   Any packages with known vulnerabilities?
+*   Any unused packages?
+
+### 2.5. Documentation Audit
+*   Is README up-to-date?
+*   Is API documented?
+*   Any inline comments for complex logic?
+
+---
+
+## Phase 3: Report Generation
+
+Create report at `docs/reports/audit_[date].md`:
+
+### Report format:
 ```markdown
-# 审计报告 - [日期]
+# Audit Report - [Date]
 
-## 摘要
-- 🔴 严重问题: X
-- 🟡 警告: Y
-- 🟢 建议: Z
+## Summary
+- 🔴 Critical Issues: X
+- 🟡 Warnings: Y
+- 🟢 Suggestions: Z
 
-## 🔴 严重问题 (必须立即修复)
-1. [问题描述 - 简单语言]
-   - 文件: [路径]
-   - 危险: [解释为什么危险]
-   - 修复: [说明]
+## 🔴 Critical Issues (Must fix now)
+1. [Problem description - Plain language]
+   - File: [path]
+   - Danger: [Explain why it's dangerous]
+   - Fix: [Instructions]
+
+## 🟡 Warnings (Should fix)
+...
+
+## 🟢 Suggestions (Optional)
+...
+
+## Next Steps
+...
 ```
 
 ---
 
-## 阶段 4: 解释 (简单语言)
+## Phase 4: Explanation (Plain Language)
 
-用简单语言解释:
+Explain in PLAIN language:
 
-*   **技术:** "UserService.ts:45中有SQL注入漏洞"
-*   **简单:** "这里黑客可以通过在搜索框中输入特殊文字清空您的整个数据库。"
+*   **Technical:** "SQL Injection vulnerability in UserService.ts:45"
+*   **Plain:** "Here a hacker could wipe your entire database by typing special text in the search box."
 
----
-
-## 阶段 5: 行动方案
-
-1.  展示摘要: "我发现X个需要立即修复的严重问题。"
-2.  **显示编号菜单供用户选择:**
-
-```
-📋 您下一步想做什么?
-
-1️⃣ 先看详细报告
-2️⃣ 现在修复严重错误 (用 /code)
-3️⃣ 清理代码异味 (用 /refactor)
-4️⃣ 跳过，保存报告到 /save-brain
-5️⃣ 🔧 全部修复 - 自动修复所有可修复的错误
-```
+*   **Technical:** "N+1 query detected in OrderController"
+*   **Plain:** "Every time the order list loads, the system is calling the database 100 times instead of 1 time, making the app slow."
 
 ---
 
-## ⚠️ 下一步:
+## Phase 5: Action Plan
+
+1.  Present summary: "I found X critical issues that need immediate fixing."
+2.  **Show numbered menu for user to choose:**
+
 ```
-1️⃣ 运行 /test 修复后检查
-2️⃣ 运行 /save-brain 保存报告
-3️⃣ 继续 /audit 再次扫描
+📋 What do you want to do next?
+
+1️⃣ View detailed report first
+2️⃣ Fix Critical errors now (use /code)
+3️⃣ Clean up code smell (use /refactor)
+4️⃣ Skip, save report to /save-brain
+5️⃣ 🔧 FIX ALL - Auto-fix ALL fixable errors
+
+Type number (1-5) to choose:
+```
+
+---
+
+## Phase 6: Fix All Mode (If User chooses 5)
+
+When User chooses **Option 5 (Fix All)**, AI will:
+
+### 6.1. Categorize auto-fixable errors:
+*   ✅ **Auto-fixable:** Dead code, unused imports, formatting, console.log, missing .gitignore
+*   ⚠️ **Need Review:** API key exposure (move to .env), SQL injection (need to review logic)
+*   ❌ **Manual Only:** Architecture changes, business logic bugs
+
+### 6.2. Execute Fix:
+*   Fix auto-fixable errors one by one.
+*   For "Need Review" errors: Ask User to confirm before fixing.
+*   Skip "Manual Only" errors and note them.
+
+### 6.3. Report:
+```
+✅ Auto-fixed: 8 errors
+⚠️ Need more review: 2 errors (listed below)
+❌ Cannot auto-fix: 1 error (needs manual fix)
+```
+
+---
+
+## ⚠️ NEXT STEPS:
+```
+1️⃣ Run /test to check after fixes
+2️⃣ Run /save-brain to save report
+3️⃣ Continue /audit to scan again
 ```

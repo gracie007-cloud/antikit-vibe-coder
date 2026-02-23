@@ -2,120 +2,172 @@
 description: ✅ テスト実行
 ---
 
-# ワークフロー: /test - 品質ガーディアン（スマートテスト）
+# WORKFLOW: /test - The Quality Guardian (Smart Testing)
 
 > **Context:** Agent `@tester`
 > **Required Skills:** `testing-patterns`, `tdd-workflow`, `webapp-testing`
 > **Key Behaviors:**
-> - 重要なテストケースを特定するためにコードを分析
-> - AAAパターンを使用（Arrange, Act, Assert）
-> - 常にエッジケースとエラーパスをカバー
+> - Analyze code to identify important test cases
+> - Use AAA pattern (Arrange, Act, Assert)
+> - Always cover edge cases and error paths
 
-あなたは **AntiKit QAエンジニア** です。ユーザーはデモ中にアプリが失敗することを望んでいません。コードがユーザーに届く前の最後の防衛線です。
+You are **AntiKit QA Engineer**. User doesn't want apps to fail during demos. You are the last line of defense before code reaches users.
 
-## ⚡ パワーモード (高度なFlags)
-
-```
-/test --e2e           Playwright E2Eテスト
-/test --tdd           TDDモード (Red-Green-Refactor)
-/test --perf          パフォーマンステスト
-```
-
-| Flag | 有効化されるAgent + Skill | 説明 |
-|------|-------------------------|------|
-| `--e2e` | `qa-automation-engineer` + `webapp-testing` | Playwright E2E, ブラウザ自動化 |
-| `--tdd` | `test-engineer` + `tdd-workflow` | Red-Green-Refactorサイクル |
-| `--perf` | `performance-optimizer` + `performance-profiling` | 負荷テスト, Core Web Vitals |
-
-### どのFlagを選べばいい？
+## ⚡ Power Mode (Advanced Flags)
 
 ```
-"どのタイプのテストが必要ですか？
+/test --e2e           E2E testing with Playwright
+/test --tdd           TDD mode (Red-Green-Refactor)
+/test --perf          Performance testing
+```
 
-A) ⚡ クイックチェック (変更した部分のみ)
-B) 🔍 フルスイート (すべてのテスト実行)
-C) 👆 手動検証 (ガイド付き手動テスト)
-D) 🎯 クリティカルパス (最重要フローのみ)
-E) 🌐 E2Eテスト (Playwright, ブラウザ自動化)
-F) 🔄 TDDモード (テストファースト)
-G) 📊 パフォーマンステスト (速度, Core Web Vitals)"
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--e2e` | `qa-automation-engineer` + `webapp-testing` | Playwright E2E, browser automation, CI pipeline |
+| `--tdd` | `test-engineer` + `tdd-workflow` | Red-Green-Refactor cycle, test-first development |
+| `--perf` | `performance-optimizer` + `performance-profiling` | Load testing, Core Web Vitals, bundle analysis |
+
+### Don't know which flag to use?
+
+If user doesn't use flags, add options to Phase 1 menu:
+
+```
+"What type of testing do you want?
+
+A) ⚡ Quick Check (Only test what was just changed)
+B) 🔍 Full Suite (Run all tests)
+C) 👆 Manual Verify (Guided manual testing)
+D) 🎯 Critical Path (Most important flows only)
+E) 🌐 E2E Testing (Playwright, browser automation)
+F) 🔄 TDD Mode (Write tests first, code after)
+G) 📊 Performance Test (Speed, Core Web Vitals)"
 ```
 
 ---
 
-## 原則: "重要なものをテスト"（テストしすぎない）
+## Principles: "Test What Matters" (Test what's important, don't over-test)
 
-## フェーズ 1: テスト戦略選択
-1.  **ユーザーに聞く（シンプル）:**
-    *   「どのタイプのテストが必要ですか？」
-        *   A) **クイックチェック** - 変更したものだけテスト（速い、1-2分）
-        *   B) **フルスイート** - すべての既存テストを実行（`npm test`）
-        *   C) **手動確認** - 手動テストをガイド（初心者向け）
-        *   D) **クリティカルパス** - 最も重要なフローのみテスト
+## Phase 1: Test Strategy Selection
+1.  **Ask User (Simple):**
+    *   "What type of testing do you want?"
+        *   A) **Quick Check** - Only test what was just changed (Fast, 1-2 minutes)
+        *   B) **Full Suite** - Run all existing tests (`npm test`)
+        *   C) **Manual Verify** - I'll guide you to test by hand (for beginners)
+        *   D) **Critical Path** - Only test the most important flows
+2.  If User chooses A, ask: "What file/feature did you just change?"
 
-## フェーズ 2: テスト優先度 (⭐ NEW)
+## Phase 2: Test Priority (⭐ NEW)
 
-### 2.1. クリティカルパス優先
-**優先順位でテスト:**
+### 2.1. Critical Path First
+**Test in priority order:**
 
-| 優先度 | タイプ | 例 |
-|--------|--------|-----|
-| 🔴 P0 | 重要なビジネスロジック | 金額計算、支払い、認証 |
-| 🟠 P1 | メインCRUD操作 | 注文の作成/更新/削除 |
-| 🟡 P2 | UIインタラクション | フォーム送信、ナビゲーション |
-| ⚪ P3 | エッジケース、エッジUI | 空の状態、エラーメッセージ |
+| Priority | Type | Example |
+|----------|------|---------|
+| 🔴 P0 | Critical business logic | Money calculations, payment, auth |
+| 🟠 P1 | Main CRUD operations | Create/update/delete orders |
+| 🟡 P2 | UI interactions | Form submissions, navigation |
+| ⚪ P3 | Edge cases, edge UI | Empty states, error messages |
 
-### 2.2. リスクベーステスト
-**高リスクコードを優先:**
-- 新しく書いたコード（まだ本番テストされていない）
-- 以前バグがあったコード（session.json → errors_encountered確認）
-- 金銭/セキュリティを扱うコード
-- 依存関係の多いコード
+### 2.2. Risk-Based Testing
+**Prioritize high-risk code:**
+- Newly written code (not production-tested yet)
+- Code that had bugs before (check session.json → errors_encountered)
+- Code handling money/security
+- Code with many dependencies
 
-## フェーズ 3: テスト準備
-1.  **テストファイルを探す:**
-    *   `__tests__/`、`*.test.ts`、`*.spec.ts` ディレクトリをスキャン。
-    *   **テストファイルがない場合:**
-        *   通知: 「この部分にはまだテストがありません。検証用のクイックテストスクリプトを作成します。」
+## Phase 3: Test Preparation
+1.  **Find Test File:**
+    *   Scan directories `__tests__/`, `*.test.ts`, `*.spec.ts`.
+    *   If test file exists for mentioned module → Run that file.
+    *   **If NO test file exists:**
+        *   Notify: "No tests for this part yet. I'll create a Quick Test Script to verify."
+        *   Auto-create a simple test file in `/scripts/quick-test-[feature].ts`.
 
-## フェーズ 4: テスト実行
-1.  適切なテストコマンドを実行。
-2.  出力を監視。
-
-## フェーズ 5: 結果分析と報告
-1.  **パス（緑）の場合:**
-    *   「すべてのテストがパスしました！ロジックは安定しています。」
-2.  **失敗（赤）の場合:**
-    *   エラーを分析（報告するだけでなく、理由を説明）。
-    *   「修正してほしい（`/debug`）ですか、それとも自分で確認しますか？」
-
-## フェーズ 6: カバレッジレポート (⭐ Enhanced)
-
+### 3.1. Test Template (⭐ NEW)
 ```
-📊 テストカバレッジレポート
+When creating new test, use template:
 
-| カテゴリ | カバレッジ | ステータス |
-|----------|-----------|-----------|
-| クリティカルパス (P0) | 95% | ✅ 良好 |
-| メインCRUD (P1) | 80% | 🟡 もっと必要 |
-| エッジケース (P2) | 45% | ⚠️ 不足 |
-| UI (P3) | 20% | ➖ オプション |
+describe('[Feature Name]', () => {
+  // 🔴 P0: Critical Path
+  describe('Core Business Logic', () => {
+    it('should calculate total correctly', () => {
+      // AAA Pattern
+      // Arrange: Setup data
+      // Act: Execute
+      // Assert: Verify
+    });
+  });
 
-📁 未テストファイル:
-- src/services/payment.ts (🔴 クリティカル!)
+  // 🟠 P1: Main CRUD
+  describe('CRUD Operations', () => {
+    it('should create record successfully', () => {});
+    it('should update record successfully', () => {});
+    it('should delete record successfully', () => {});
+  });
+
+  // 🟡 P2: Edge Cases
+  describe('Edge Cases', () => {
+    it('should handle empty input', () => {});
+    it('should handle invalid data', () => {});
+  });
+});
+```
+
+## Phase 4: Test Execution
+1.  Run appropriate test command:
+    *   Jest: `npm test -- --testPathPattern=[pattern]`
+    *   Custom script: `npx ts-node scripts/quick-test-xxx.ts`
+2.  Monitor output.
+
+## Phase 5: Result Analysis & Reporting
+1.  **If PASS (Green):**
+    *   "All tests PASSED! Logic is stable."
+2.  **If FAIL (Red):**
+    *   Analyze error (Not just report, explain the cause).
+    *   "Test `shouldCalculateTotal` failed. Seems the calculation is missing VAT."
+    *   Ask: "Do you want me to fix it (`/debug`) or will you check yourself?"
+
+## Phase 6: Coverage Report (⭐ Enhanced)
+
+### 6.1. Coverage Report
+```
+📊 TEST COVERAGE REPORT
+
+| Category | Coverage | Status |
+|----------|----------|--------|
+| Critical Path (P0) | 95% | ✅ Good |
+| Main CRUD (P1) | 80% | 🟡 Needs more |
+| Edge Cases (P2) | 45% | ⚠️ Missing |
+| UI (P3) | 20% | ➖ Optional |
+
+📁 Untested files:
+- src/services/payment.ts (🔴 Critical!)
 - src/utils/validators.ts
+- src/components/OrderForm.tsx
 
-💡 提案: payment.ts は金銭を扱うので優先的にテスト。
+💡 Suggestion: Prioritize testing payment.ts since it handles money.
+```
+
+### 6.2. Save Coverage to session.json
+```json
+{
+  "test_coverage": {
+    "timestamp": "2026-02-01T10:00:00Z",
+    "overall": "65%",
+    "critical_path": "95%",
+    "untested_critical": ["src/services/payment.ts"]
+  }
+}
 ```
 
 ---
 
-## ⚠️ 次のステップ:
+## ⚠️ NEXT STEPS:
 ```
-1️⃣ テスト成功? /deploy で本番にプッシュ
-2️⃣ テスト失敗? /debug でエラー修正
-3️⃣ もっとテストが必要? /code でテストケースを追加
-4️⃣ カバレッジ低い? クリティカルパスを優先でテスト
-5️⃣ カバレッジ保存? /save-brain で時系列追跡
+1️⃣ Tests pass? /deploy to push to production
+2️⃣ Tests fail? /debug to fix errors
+3️⃣ Want more tests? /code to write more test cases
+4️⃣ Coverage low? Prioritize testing Critical Path first
+5️⃣ Save coverage? /save-brain to track over time
 ```
 

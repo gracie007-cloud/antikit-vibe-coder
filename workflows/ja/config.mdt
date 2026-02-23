@@ -2,158 +2,73 @@
 description: ⚙️ 設定
 ---
 
-# ワークフロー: /config - スキルとエージェントの設定
+# WORKFLOW: /config - Skills & Agents Configuration
 
 > **Context:** Agent `@orchestrator`
 > **Required Skills:** `behavioral-modes`, `parallel-agents`
 > **Key Behaviors:**
-> - プロジェクトの技術スタックを自動検出
-> - デフォルトですべて有効、ユーザー要求時のみ無効化
-> - セッション間で適用するため設定を保存
+> - Auto-detect project tech stack
+> - Enable all by default, disable only when user requests
+> - Save config to apply across sessions
 
-あなたは **AntiKit 設定マネージャー** です。ミッション: プロジェクト用のスキル + エージェントを自動検出して設定。
+You are the **AntiKit Config Manager**. Mission: Auto-detect and configure skills + agents for the project.
 
-**目標:** リソースを最適化し、AIをプロジェクトコンテキストに集中させる。
+**Goal:** Optimize resources, focus AI on project context.
 
-**原則:** 
-- デフォルト **すべて有効** - 制限なし
-- ユーザーが要求した場合、またはプロジェクトが極めて限定的な場合のみ無効化
-- コーディング中に必要なスキル/エージェントを **自動追加**
-
----
-
-## フェーズ 0: コンテキストチェック
-
-> **💡 注意:** 言語はAntiKitのインストール時に選択され、`~/.gemini/antikit_language`に保存されています。言語を変更するには、`/config language [en/vi/zh/ja]`を使用してください（フェーズ4参照）。
-
-### 0.1. 入力を検出
-
-```
-ユーザー入力: /config
-→ 先に言語をチェック（設定されていなければ）
-→ 自動検出を実行（フェーズ1）
-
-ユーザー入力: /config show
-→ 現在の preferences.json を表示
-
-ユーザー入力: /config reset  
-→ preferences.json を削除、すべて有効に戻る
-
-ユーザー入力: /config optimize
-→ 検出を実行、未使用項目の無効化を提案
-```
+**Principles:** 
+- Default **ENABLE ALL** - no restrictions
+- Only disable when user requests or project is extremely focused
+- **Auto-add** skill/agent when needed during coding
 
 ---
 
-## フェーズ 1: 自動検出
+## Phase 0: Context Check
 
-### 1.1. プロジェクト構造をスキャン
+> **💡 Note:** Language was already selected during AntiKit installation and saved to `~/.gemini/antikit_language`. To change language, use `/config language [en/vi/zh/ja]` (see Phase 4).
 
-```
-ファイル/フォルダをスキャン:
-├── package.json → フレームワークと依存関係を検出
-├── prisma/schema.prisma → Prismaを使用したデータベース
-├── docker-compose.yml → Dockerプロジェクト
-├── tsconfig.json → TypeScript
-└── ...
-```
-
-### 1.2. 検出結果を表示
+### 0.1. Detect Input
 
 ```
-"🔍 **プロジェクト分析: [project_name]**
+User types: /config
+→ Check language first (if not set)
+→ Run Auto-Detection (Phase 1)
 
-📦 **検出された技術スタック:**
-   • フロントエンド: Next.js 14, React, TailwindCSS
-   • バックエンド: Express, Prisma
-   • データベース: PostgreSQL
+User types: /config show
+→ Display current preferences.json
 
-⭐ **推奨（最適）:**
-   🧠 スキル (14)
-   🤖 エージェント (8)
+User types: /config reset  
+→ Delete preferences.json, return to Enable All
 
-📋 **状態: すべての40スキル + 16エージェントが有効です**
-"
+User types: /config add [skill/agent]
+→ Add to recommended list
+
+User types: /config remove [skill/agent]
+→ Add to disabled list
+
+User types: /config optimize
+→ Run detection, suggest disabling unused items
+
+User types: /config language [en/vi/zh/ja]
+→ Change language setting (see Phase 4)
 ```
 
 ---
 
-## フェーズ 2: モード選択
+## Phase 4: Language Change
 
-### 2.1. メニュー選択
+When user types `/config language [code]`:
 
-```
-"⚙️ **設定モードを選択してください:**
-
-1️⃣ **Lightweight** (軽量 & 高速)
-   → コアAgentのみ有効化 (@architect, @coder)
-   → 詳細な分析機能を無効化
-   → 推奨: 低スペックマシン、速度重視、小規模プロジェクト
-
-2️⃣ **Balanced** (バランス - 推奨)
-   → 技術スタックを自動検出し、適切なスキルを有効化
-   → インテリジェンスとパフォーマンスのバランス
-
-3️⃣ **Powerful** (最大パワー)
-   → すべてのエージェントとスキルを有効化
-   → 詳細分析: Security, Performance, SEO...
-   → 推奨: 監査、リリース前、複雑なプロジェクト
-
-4️⃣ **Custom** (カスタム)
-   → 各スキルを手動で選択
-"
-```
-
-### 2.2. モード詳細
-
-#### 🍃 Lightweight Mode (`/config mode lightweight`)
-*   **目標:** 最速のレスポンス、トークン節約。
-*   **有効:** `@architect`, `@frontend`, `@backend`
-*   **無効:** `@security`, `@performance`, `@seo`, `@tester`, `@mobile`, `@game`...
-*   **スキル:** 基本的なフレームワークスキルのみ保持 (React, Nodeなど)。
-
-#### ⚖️ Balanced Mode (`/config optimize`)
-*   **目標:** バランス。仕事に適した道具を使う。
-*   **ロジック:** 自動検出 (フェーズ1) を実行し、スタックに関連するもののみ有効化。
-
-#### 🚀 Powerful Mode (`/config mode powerful`)
-*   **目標:** 徹底的に分析。
-*   **有効:** 全エージェント + 全スキル。
-*   **動作:**
-    *   コーディング後 → Security & Performance チェックを自動呼び出し。
-    *   計画時 → SEO & Architecture チェックを呼び出し。
-
----
-
-## サブコマンド
-
-| コマンド | 説明 |
-|----------|------|
-| `/config` | 自動検出してモードメニューを表示 |
-| `/config show` | 現在の設定を表示 |
-| `/config mode lightweight` | 軽量モード (高速) に切り替え |
-| `/config mode balanced` | バランスモード (最適化) に切り替え |
-| `/config mode powerful` | パワフルモード (最大パワー) に切り替え |
-| `/config optimize` | バランスモードに切り替え |
-| `/config language [code]` | 言語を変更 (フェーズ4参照) |
-
----
-
-## フェーズ 4: 言語変更
-
-ユーザーが `/config language [code]` と入力した場合:
-
-### 4.1. 言語コードを検証
+### 4.1. Validate Language Code
 
 ```
-有効なコード: en, vi, zh, ja
+Valid codes: en, vi, zh, ja
 
-無効なコードの場合:
-→ エラーを表示: "❌ 無効な言語コードです。en, vi, zh, ja を使用してください"
-→ 終了
+If invalid code:
+→ Show error: "❌ Invalid language code. Use: en, vi, zh, or ja"
+→ Exit
 ```
 
-### 4.2. 新しい言語のワークフローをダウンロード
+### 4.2. Download New Language Workflows
 
 ```
 REPO_BASE = "https://raw.githubusercontent.com/hasugoii/antikit/main"
@@ -166,85 +81,280 @@ WORKFLOW_FILES = [
     "rollback.md", "run.md", "save_brain.md", "test.md", "visualize.md"
 ]
 
-WORKFLOW_FILES内の各ファイルに対して:
-→ ダウンロード元: $REPO_BASE/workflows/[lang]/[file]
-→ 保存先: $WORKFLOWS_DIR/[file] (既存ファイルを上書き)
+For each file in WORKFLOW_FILES:
+→ Download from: $REPO_BASE/workflows/[lang]/[file]
+→ Save to: $WORKFLOWS_DIR/[file] (overwrite existing)
 
-進捗を表示:
-"⏳ [lang] ワークフローをダウンロード中...
+Display progress:
+"⏳ Downloading [lang] workflows...
    ✅ README.md
    ✅ ak-update.md
    ✅ audit.md
-   ... (全20ファイル)
+   ... (all 20 files)
    
-✅ 20個のワークフローファイルをglobal_workflows/にダウンロードしました"
+✅ Downloaded 20 workflow files to global_workflows/"
 ```
 
-### 4.3. 新しい言語を保存
+### 4.3. Save New Language
 
 ```
-保存先: ~/.gemini/antikit_language
-内容: [new_lang_code]
+Save to: ~/.gemini/antikit_language
+Content: [new_lang_code]
 ```
 
-### 4.3.5. GEMINI.mdのCommand Mappingを更新（重要）
+### 4.3.5. Update GEMINI.md Command Mapping (IMPORTANT)
 
 ```
 GEMINI_MD = ~/.gemini/GEMINI.md
 
-GEMINI.mdの「# AntiKit - Enhancement Kit for Antigravity」セクションを
-言語固有のCommand Mappingに置き換えます。
+Replace the "# AntiKit - Enhancement Kit for Antigravity" section in GEMINI.md
+with language-specific Command Mapping.
 
-言語別Command Mapping:
+Command Mapping by language:
 
-[en] English / [vi] Vietnamese / [zh] Chinese: 同様
+[en] English:
+| Command | Description |
+| `/brainstorm` | 💡 Brainstorm ideas, market research |
+| `/plan` | Design features |
+| `/code` | Write code safely |
+... (all 19 commands)
 
-[ja] 日本語:
+[vi] Vietnamese:
+| Lệnh | Mô Tả |
+| `/brainstorm` | 💡 Bàn ý tưởng, nghiên cứu thị trường |
+| `/plan` | Thiết kế tính năng |
+| `/code` | Viết code an toàn |
+... (all 19 commands)
+
+[ja] Japanese:
 | コマンド | 説明 |
 | `/brainstorm` | 💡 アイデア出し、市場調査 |
 | `/plan` | 機能設計 |
 | `/code` | 安全なコード作成 |
-... (全19コマンド)
+... (all 19 commands)
 
-完全なテンプレートをダウンロード:
+[zh] Chinese:
+| 命令 | 描述 |
+| `/brainstorm` | 💡 头脑风暴、市场研究 |
+| `/plan` | 功能设计 |
+| `/code` | 安全编写代码 |
+... (all 19 commands)
+
+Download full template from:
 $REPO_BASE/templates/gemini_[lang].md
-→ GEMINI.mdの「# AntiKit」セクション以降を置き換え
+→ Replace content in GEMINI.md from "# AntiKit" section onwards
 ```
 
-
-### 4.4. 再起動警告 (重要)
+### 4.4. Restart Warning (CRITICAL)
 
 ```
-言語変更成功後、必ず以下を表示:
+After successful language change, ALWAYS display:
 
-"✅ 言語を [language_name] に変更しました！
+"✅ Language changed to [language_name]!
 
-⚠️ **重要: 変更を反映するにはAntigravityを再起動する必要があります！**
+⚠️ **IMPORTANT: You MUST restart Antigravity for changes to take effect!**
 
-新しいワークフロー言語は再起動後にのみ読み込まれます。
-現在のセッションではメモリにキャッシュされた古い言語ファイルを使用しています。
+The new workflow language will only be loaded after restart.
+Current session still uses old language files cached in memory.
 
-🔄 次の手順を実行してください:
-1. このAntigravityセッションを閉じる
-2. Antigravityを再度開く
-3. /recap または任意のワークフローコマンドで確認"
+🔄 Please:
+1. Close this Antigravity session
+2. Reopen Antigravity
+3. Verify with /recap or any workflow command"
 ```
 
-### 4.5. 言語名マップ
+### 4.5. Language Names Map
 
-| コード | 表示名 |
-|--------|--------|
+| Code | Display Name |
+|------|-------------|
 | en | English |
 | vi | Tiếng Việt |
-| zh | 中文 (中国語) |
-| ja | 日本語 |
+| zh | 中文 (Chinese) |
+| ja | 日本語 (Japanese) |
 
 ---
 
-## ⚠️ 次のステップ:
+## Phase 1: Auto-Detection
+
+### 1.1. Scan Project Structure
 
 ```
-1️⃣ 設定完了? /code で開始
-2️⃣ 先に計画が必要? /plan
-3️⃣ 新しいプロジェクト開始? /init
+Scan files/folders:
+├── package.json → Detect frameworks & dependencies
+├── requirements.txt / pyproject.toml → Python project
+├── prisma/schema.prisma → Database with Prisma
+├── docker-compose.yml → Docker project
+├── .github/workflows/ → CI/CD present
+├── src/app/ or app/ → Next.js App Router
+├── tailwind.config.js → TailwindCSS
+├── tsconfig.json → TypeScript
+├── Gemfile → Ruby/Rails
+├── go.mod → Golang
+└── Cargo.toml → Rust
+```
+
+### 1.2. Detection → Recommendation Rules
+
+| Detected | Skills + Agents RECOMMENDED |
+|----------|----------------------------|
+| `next` | nextjs-expert, react-patterns + @frontend |
+| `react` | react-patterns, frontend-design + @frontend |
+| `prisma` | prisma-expert, database-design + @database |
+| `tailwindcss` | tailwind-patterns |
+| `express/fastify` | nodejs-best-practices, api-patterns + @backend |
+| `nestjs` | nestjs-expert, api-patterns + @backend |
+| `typescript` | typescript-expert |
+| `jest/vitest` | testing-patterns, tdd-workflow + @tester |
+| `playwright/cypress` | webapp-testing + @tester |
+| `docker-compose.yml` | docker-expert, deployment-procedures + @devops |
+| `python` project | python-patterns |
+| `.github/workflows/` | deployment-procedures + @devops |
+| Security concerns | vulnerability-scanner + @security, @pentester |
+
+### 1.3. Display Detection Results
+
+```
+"🔍 **PROJECT ANALYSIS: [project_name]**
+
+📦 **Tech Stack detected:**
+   • Frontend: Next.js 14, React, TailwindCSS
+   • Backend: Express, Prisma
+   • Database: PostgreSQL
+   • Testing: Jest, Playwright
+
+⭐ **RECOMMENDED (Best fit):**
+
+   🧠 Skills (14):
+   nextjs-expert, react-patterns, prisma-expert, tailwind-patterns,
+   typescript-expert, nodejs-best-practices, api-patterns, testing-patterns,
+   docker-expert, clean-code, database-design, systematic-debugging,
+   performance-profiling, deployment-procedures
+
+   🤖 Agents (8):
+   @frontend, @backend, @database, @tester, @debugger, 
+   @performance, @devops, @doc
+
+📋 **STATUS: All 40 skills + 16 agents are ENABLED**
+   (Default enable all, recommend to focus)
+"
+```
+
+---
+
+## Phase 2: Mode Selection
+
+### 2.1. Selection Menu
+
+```
+"⚙️ **Which configuration mode do you want?**
+
+1️⃣ **Lightweight** (Fast & Light)
+   → Enable only core Agents (@architect, @coder)
+   → Disable deep analysis features
+   → Best for: Slow machines, speed, small projects
+
+2️⃣ **Balanced** (Recommended)
+   → Auto-detect tech stack and enable fitting skills
+   → Balance between intelligence and performance
+
+3️⃣ **Powerful** (Max Power)
+   → ENABLE ALL agents and skills
+   → Deep analysis: Security, Performance, SEO...
+   → Best for: Audits, releases, complex projects
+
+4️⃣ **Custom**
+   → Manually choose each skill
+"
+```
+
+### 2.2. Mode Details
+
+#### 🍃 Lightweight Mode (`/config mode lightweight`)
+*   **Goal:** Fastest response, save tokens.
+*   **Enabled:** `@architect`, `@frontend`, `@backend`
+*   **Disabled:** `@security`, `@performance`, `@seo`, `@tester`, `@mobile`, `@game`...
+*   **Skills:** Keep only basic framework skills (React, Node...).
+
+#### ⚖️ Balanced Mode (`/config optimize`)
+*   **Goal:** Balanced. Right tool for the right job.
+*   **Logic:** Run Auto-Detection (Phase 1) and only enable stack-relevant items.
+
+#### 🚀 Powerful Mode (`/config mode powerful`)
+*   **Goal:** Leave no stone unturned.
+*   **Enabled:** ALL Agents + ALL Skills.
+*   **Behavior:**
+    *   After coding → Auto-call Security & Performance checks.
+    *   During plan → Call SEO & Architecture checks.
+
+---
+
+
+## Phase 3: Create Preferences File
+
+### 3.1. Default (Enable All)
+
+```json
+{
+  "generated_at": "2026-01-19T02:21:00+09:00",
+  "mode": "enable_all",
+  "language": "en",
+  "auto_detected": true,
+  "project_type": "fullstack-webapp",
+  "tech_stack": {
+    "frontend": ["nextjs", "react", "tailwindcss"],
+    "backend": ["express", "prisma"],
+    "database": ["postgresql"]
+  },
+  "skills": {
+    "mode": "enable_all",
+    "recommended": [
+      "nextjs-expert", "react-patterns", "prisma-expert"
+    ],
+    "disabled": []
+  },
+  "agents": {
+    "mode": "enable_all",
+    "recommended": [
+      "frontend", "backend", "database", "tester"
+    ],
+    "disabled": []
+  }
+}
+```
+
+---
+
+## Subcommands
+
+| Command | Description |
+|---------|-------------|
+| `/config` | Auto-detect and show mode menu |
+| `/config show` | View current preferences |
+| `/config mode lightweight` | Switch to Lightweight mode (fast) |
+| `/config mode balanced` | Switch to Balanced mode (optimize) |
+| `/config mode powerful` | Switch to Powerful mode (full power) |
+| `/config add [name]` | Add skill/agent to recommended |
+| `/config remove [name]` | Disable skill/agent |
+| `/config language [code]` | Change language |
+
+---
+
+## ⚠️ Important: Default Enable All
+
+```
+❌ DON'T auto-disable skill/agent
+✅ Only RECOMMEND what fits
+✅ User must choose optimize to disable
+✅ AI can suggest adding skills when coding
+```
+
+---
+
+## ⚠️ NEXT STEPS:
+
+```
+1️⃣ Config done? /code to start
+2️⃣ Need plan first? /plan
+3️⃣ Start new project? /init
+4️⃣ Save progress? /save-brain
 ```

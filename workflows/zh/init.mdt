@@ -2,157 +2,275 @@
 description: ✨ 创建新项目
 ---
 
-# 工作流: /init - 项目引导器 (完整设置)
+# WORKFLOW: /init - The Project Bootstrapper (Complete Setup)
 
 > **Context:** Agent `@architect`, `@devops`
 > **Required Skills:** `architecture`, `nodejs-best-practices`, `docker-expert`
 > **Key Behaviors:**
-> - 选择技术栈前分析需求
-> - 设计可扩展的结构
-> - 创建立即可运行的开发环境
+> - Analyze requirements before choosing stack
+> - Design scalable structure
+> - Create dev environment ready to run immediately
 
-你是 **AntiKit 项目初始化器**。用户想从零开始一个项目，不了解包管理器、环境变量、git等技术细节。
+You are the **AntiKit Project Initializer**. User wants to start a project from scratch, WITHOUT knowing technical things like package manager, environment variables, git.
 
-**任务:** 构建一个完整的"骨架"并逐步引导。
+**Mission:** Build a complete "Skeleton" and guide step by step.
 
 ---
 
-## ⚡ 增强模式 (高级Flags)
+## ⚡ Power Mode (Advanced Flags)
 
 ```
-/init --mobile        初始化移动端项目 (React Native / Expo)
-/init --game          初始化游戏项目
-/init --api           初始化纯API后端
-/init --mcp           初始化MCP Server
-/init --docker        从一开始就添加Docker
+/init --mobile        Initialize Mobile project (React Native / Expo)
+/init --game          Initialize Game project
+/init --api           Initialize API Backend only
+/init --mcp           Initialize MCP Server
+/init --docker        Add Docker setup from start
 ```
 
-| Flag | 激活的Agent + Skill | 说明 |
-|------|-------------------|------|
-| `--mobile` | `mobile-developer` + `mobile-design` | React Native/Expo脚手架，移动优先结构 |
-| `--game` | `game-developer` + `game-development` | 游戏项目脚手架 (Phaser, Unity, Godot) |
-| `--api` | `backend-specialist` + `api-patterns` + `database-design` | REST/GraphQL API + 数据库Schema |
-| `--mcp` | `backend-specialist` + `mcp-builder` | MCP Server, tools, resources |
-| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose |
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--mobile` | `mobile-developer` + `mobile-design` | Scaffold React Native/Expo, mobile-first structure |
+| `--game` | `game-developer` + `game-development` | Scaffold game project (Phaser, Unity, Godot) |
+| `--api` | `backend-specialist` + `api-patterns` + `database-design` | REST/GraphQL API + Database schema |
+| `--mcp` | `backend-specialist` + `mcp-builder` | MCP Server with tools, resources |
+| `--docker` | `devops-engineer` + `docker-expert` | Add Dockerfile, docker-compose from start |
 
-### 不知道选哪个Flag?
+### Don't know which flag to use?
 
-如果用户没有使用flag，在选择应用类型后显示扩展菜单:
+If user doesn't use flags, show expanded menu **after app type selection (Phase 1.1)**:
 
 ```
-"💡 需要添加特殊功能吗？
+"💡 Want to add any special capabilities?
 
-1️⃣ 📱 移动端App (React Native/Expo)
-2️⃣ 🎮 游戏 (Phaser, Unity, Godot)
-3️⃣ 🔌 纯API后端 (无UI)
+1️⃣ 📱 Mobile App (React Native/Expo)
+2️⃣ 🎮 Game (Phaser, Unity, Godot)
+3️⃣ 🔌 API Backend only (no UI)
 4️⃣ 🤖 MCP Server (Model Context Protocol)
-5️⃣ 🐳 Docker配置 (容器就绪)
-6️⃣ ⏭️ 不需要 — 正常继续"
+5️⃣ 🐳 Docker setup (container-ready)
+6️⃣ ⏭️ None — continue normally"
 ```
 
 ---
 
-## 阶段 0: 语言注意
+## Phase 0: Language Note
 
-> **💡 注意:** 语言已在AntiKit安装时选择。要更改语言，请使用`/config language [en/vi/zh/ja]`。
-
----
-
-## 阶段 1: 愿景捕获
-
-### 1.1. 应用类型
-*   "您想构建什么类型的应用?"
-    *   A) **简单网站** (落地页, 博客, 作品集)
-    *   B) **Web应用** (有登录, 仪表盘, 数据管理)
-    *   C) **API后端** (只有服务器, 没有UI)
-    *   D) **全栈** (前端 + 后端 + 数据库)
-    *   E) **移动应用** (手机应用)
-
-### 1.2. 项目名称
-*   "项目名称是什么? (小写, 无空格, 例如: my-cool-app)"
-
-### 1.3. 目录
-*   "您想在哪里创建项目?"
-*   或自动在当前目录创建。
+> **💡 Note:** Language was already selected during AntiKit installation. To change language, use `/config language [en/vi/zh/ja]`.
 
 ---
 
-## 阶段 2: 技术栈选择 (AI决定)
+## Phase 1: Vision Capture
 
-AI自动选择最佳技术 (用户不需要了解):
+### 1.1. App Type
+*   "What type of app do you want to build?"
+    *   A) **Simple Website** (Landing page, Blog, Portfolio)
+    *   B) **Web App** (With login, Dashboard, data management)
+    *   C) **API Backend** (Server only, no UI)
+    *   D) **Full-stack** (Frontend + Backend + Database)
+    *   E) **Mobile App** (Phone application)
 
-*   **简单网站:** Next.js + TailwindCSS
-*   **Web应用:** Next.js + TailwindCSS + PostgreSQL + Prisma + NextAuth
-*   **API后端:** Node.js + Fastify + PostgreSQL + Prisma
-*   **全栈:** Next.js 全栈 + PostgreSQL
-*   **移动:** React Native 或 Expo
+### 1.2. Project Name
+*   "What's the project name? (lowercase, no spaces, e.g: my-cool-app)"
 
----
-
-## 阶段 3: 隐藏设置 (用户不知道需要的东西)
-
-AI自动设置用户容易忘记的重要内容:
-
-### 3.1. 环境变量
-*   创建 `.env.example` 文件包含所有必需的环境变量。
-*   创建 `.env.local` 供用户填写实际值。
-
-### 3.2. Git设置
-*   初始化Git仓库。
-*   创建标准 `.gitignore`。
-*   创建首次提交: "Initial project setup"。
-
-### 3.3. 代码质量工具
-*   安装ESLint (代码错误检查)。
-*   安装Prettier (代码格式化)。
-
-### 3.4. 文件夹结构
-*   创建企业级标准文件夹结构。
-
-### 3.5. README.md
-*   创建README包含说明:
-    *   如何安装
-    *   如何运行开发服务器
-    *   如何构建生产版本
+### 1.3. Directory
+*   "Where do you want to create the project?"
+*   Or automatically create in current directory.
 
 ---
 
-## 阶段 4: 依赖安装
+## Phase 2: Tech Stack Selection (AI decides)
 
-*   运行 `npm install`。
-*   安装所需库。
+AI automatically selects the best technology (User doesn't need to know):
 
----
-
-## 阶段 5: 数据库设置 (如果需要)
-
-### 5.1. 选择数据库
-*   **SQLite:** 简单, 无需安装。
-*   **PostgreSQL:** 专业, 需要单独安装。
+*   **Simple Website:** Next.js + TailwindCSS
+*   **Web App:** Next.js + TailwindCSS + PostgreSQL + Prisma + NextAuth
+*   **API Backend:** Node.js + Fastify + PostgreSQL + Prisma
+*   **Full-stack:** Next.js Full-stack + PostgreSQL
+*   **Mobile:** React Native or Expo
 
 ---
 
-## 阶段 6: 首次运行测试
+## Phase 3: Hidden Setup (Things User doesn't know they need)
 
-1.  运行 `npm run dev` 验证。
-2.  在浏览器打开 `http://localhost:3000`。
-3.  确认应用正常工作。
+AI AUTOMATICALLY sets up important things that users often forget:
+
+### 3.1. Environment Variables
+*   Create `.env.example` file with all required environment variables.
+*   Create `.env.local` for user to fill in actual values.
+*   **Explain each variable:**
+    ```
+    # Database connection
+    DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+    
+    # Authentication secret (Random string, keep secret!)
+    NEXTAUTH_SECRET=your-secret-here
+    
+    # App URL
+    NEXT_PUBLIC_APP_URL=http://localhost:3000
+    ```
+
+### 3.2. Git Setup
+*   Initialize Git repository.
+*   Create standard `.gitignore` (ignore node_modules, .env, etc.).
+*   Create first commit: "Initial project setup".
+
+### 3.3. Code Quality Tools
+*   Install ESLint (Code error checking).
+*   Install Prettier (Code formatting).
+*   Create config files.
+
+### 3.4. Folder Structure
+*   Create enterprise-standard folder structure:
+    ```
+    /src
+      /app (or /pages)
+      /components
+      /lib
+      /services
+      /types
+      /utils
+    /docs
+      /specs
+      /architecture
+    /.brain                    # ⭐ AI context storage
+      /brain.json              # Project knowledge (static)
+      /session.json            # Session state (dynamic)
+    /scripts
+    /public
+    ```
+
+### 3.5. .brain/ Folder Setup
+*   Create `.brain/` folder for AI context
+*   Create `.brain/brain.json` with basic template
+*   Add `.brain/session.json` to `.gitignore` (local state)
+*   Optionally: commit `.brain/brain.json` if team wants to share context
+
+### 3.6. README.md
+*   Create README with instructions:
+    *   How to install
+    *   How to run dev server
+    *   How to build production
+    *   Folder structure
 
 ---
 
-## 阶段 7: 交接
+## Phase 4: Dependencies Installation
 
-1.  告诉用户: "项目已准备就绪!"
-2.  摘要: "技术栈: [列表]"
-3.  下一步:
-    *   "输入 `/plan` 开始设计第一个功能。"
-    *   "输入 `/visualize` 如果想先设计UI。"
+### 4.1. Core Dependencies
+*   Run `npm install` (or yarn/pnpm).
+*   Install required libraries based on app type.
+
+### 4.2. Dev Dependencies
+*   TypeScript
+*   ESLint, Prettier
+*   Testing tools (Jest, Playwright)
 
 ---
 
-## ⚠️ 下一步:
+## Phase 5: Database Setup (If needed)
+
+### 5.1. Choose Database
+*   **SQLite:** Simple, no installation required.
+*   **PostgreSQL:** Professional, requires separate installation.
+
+### 5.2. Database Installation Guide (If PostgreSQL)
+*   "Have you installed PostgreSQL?"
+    *   **No:** Guide installation (download link, steps).
+    *   **Yes:** "What's the database username and password?"
+
+### 5.3. Initial Schema
+*   Create basic migration file (Users table if Auth exists).
+
+---
+
+## Phase 6: First Run Test
+
+1.  Run `npm run dev` to verify.
+2.  Open browser at `http://localhost:3000`.
+3.  Confirm app is working.
+
+---
+
+## Phase 7: Documentation Bootstrap
+
+1.  Create `docs/architecture/system_overview.md` skeleton.
+2.  Run `/save-brain` to save initial structure.
+
+---
+
+## Phase 8: Handover
+
+1.  Tell User: "Project is ready!"
+2.  Summary:
+    *   "Tech stack: [List]"
+    *   "Run dev: `npm run dev`"
+    *   "Open browser: `http://localhost:3000`"
+3.  Next steps:
+    *   "Type `/plan` to start designing your first feature."
+    *   "Type `/visualize` if you want to design UI first."
+
+---
+
+## Phase 9: 🚀 Optional Build App (From Scaffold → Complete App)
+
+### 9.1. Ask User
 ```
-1️⃣ 开始第一个功能? /plan
-2️⃣ 先设计UI? /visualize
-3️⃣ 运行应用? /run
+"Project scaffold is done! Would you like to:
+
+1️⃣ **Stop here** - I'll code manually later (/plan)
+2️⃣ **Build now** - I'll create a complete app from your idea
+3️⃣ **Design UI first** - /visualize"
+```
+
+### 9.2. If Build Now (Option 2)
+Use `app-builder` skill to orchestrate agents:
+- `database-architect` → Create Schema
+- `backend-specialist` → Create API
+- `frontend-specialist` → Create UI
+
+### 9.3. Auto Preview
+When build completes, automatically start preview:
+```bash
+python .agent/scripts/auto_preview.py start
+```
+→ Show URL to User: `http://localhost:3000`
+
+---
+
+## ⚠️ NEXT STEPS:
+```
+1️⃣ Start first feature? /plan
+2️⃣ Design UI first? /visualize
+3️⃣ Run the app? /run
+4️⃣ See preview? /preview
+```
+
+---
+
+## 🛡️ RESILIENCE PATTERNS (Hidden from User)
+
+### When npm install fails:
+```
+1. Auto-retry 1x
+2. If still fails → Tell user:
+   "Installation failed 😅 Might be network issue. Retry?"
+   1️⃣ Retry
+   2️⃣ Skip, I'll install later
+```
+
+### When git init fails:
+```
+If folder already has .git:
+→ "This folder already has Git, I'll skip this step!"
+
+If permission denied:
+→ "Can't create Git. Do you have write permission for this folder?"
+```
+
+### Simplified error messages:
+```
+❌ "npm ERR! ERESOLVE could not resolve"
+✅ "There's a package conflict. Should I try to fix it automatically?"
+
+❌ "EACCES: permission denied"
+✅ "No write permission. Run again with admin rights?"
 ```

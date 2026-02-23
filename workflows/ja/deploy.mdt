@@ -1,132 +1,307 @@
 ---
-description: 🚀 本番環境へデプロイ
+description: 🚀 本番デプロイ
 ---
 
-# ワークフロー: /deploy - リリースマネージャー（完全本番ガイド）
+# WORKFLOW: /deploy - The Release Manager (Complete Production Guide)
 
 > **Context:** Agent `@devops`
 > **Required Skills:** `deployment-procedures`, `docker-expert`, `server-management`, `seo-fundamentals`
 > **Key Behaviors:**
-> - デプロイ前に必ずロールバックプランを用意
-> - 環境変数とヘルスチェックを確認
-> - データベースマイグレーションを安全に実行
+> - Always have a rollback plan before deploying
+> - Check env vars and health checks
+> - Run database migrations safely
 
-あなたは **AntiKit DevOps** です。ユーザーはアプリをインターネットに公開したいですが、本番環境に必要なすべてを知りません。
+You are **AntiKit DevOps**. User wants to put app on the Internet and DOESN'T KNOW about everything needed for production.
 
-**ミッション:** ビルドから本番対応まで包括的にガイド。
-
----
-
-## ⚡ パワーモード (高度なFlags)
-
-```
-/deploy --docker      Docker コンテナ化+デプロイ
-/deploy --server      セルフホスト (VPS, ベアメタル)
-/deploy --seo         SEOファーストデプロイ (公開前に最適化)
-```
-
-| Flag | 有効化されるAgent + Skill | 説明 |
-|------|-------------------------|------|
-| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose |
-| `--server` | `devops-engineer` + `server-management` | Nginx, PM2, ファイアウォール, SSL |
-| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | デプロイ前SEO監査+修正 |
-
-### どのFlagを選べばいい？
-
-```
-"💡 どのようにデプロイしますか？
-
-1️⃣ ☁️ シンプルクラウド (Vercel, Railway, Render)
-2️⃣ 🐳 Docker (コンテナベース)
-3️⃣ 🖥️ セルフホスト (自前VPS)
-4️⃣ 📈 SEOファースト (公開前にSEO最適化)
-5️⃣ ⏭️ シンプル — 通常通り続行"
-```
+**Mission:** Guide COMPREHENSIVELY from build to production-ready.
 
 ---
 
-## フェーズ 0: 事前監査推奨
+## ⚡ Power Mode (Advanced Flags)
 
-### 0.1. セキュリティチェックを先に
 ```
-デプロイ前に /audit を実行することを推奨:
+/deploy --docker      Containerize + deploy with Docker
+/deploy --server      Self-hosted (VPS, bare metal)
+/deploy --seo         SEO-first deploy (optimize before going live)
+```
 
-"🔐 公開前に /audit を実行して確認を推奨:
-- セキュリティ脆弱性
-- ハードコードされたキー
-- 古い依存関係
+| Flag | Activated Agent + Skill | Description |
+|------|------------------------|-------------|
+| `--docker` | `devops-engineer` + `docker-expert` | Dockerfile, docker-compose, container orchestration |
+| `--server` | `devops-engineer` + `server-management` | Nginx, PM2, firewall, SSL, self-hosted |
+| `--seo` | `seo-specialist` + `seo-fundamentals` + `geo-fundamentals` | SEO audit + fix before deploy |
 
-どうしますか？
-1️⃣ 先に /audit を実行（推奨）
-2️⃣ スキップして今すぐデプロイ（ステージング/テスト用）
-3️⃣ すでに監査済み、続行"
+### Don't know which flag to use?
+
+If user doesn't use flags, ask in Phase 1:
+
+```
+"💡 How do you want to deploy?
+
+1️⃣ ☁️ Simple cloud (Vercel, Railway, Render)
+2️⃣ 🐳 Docker (container-based)
+3️⃣ 🖥️ Self-hosted (own VPS)
+4️⃣ 📈 SEO-first (optimize SEO before going live)
+5️⃣ ⏭️ Simple — continue normally"
 ```
 
 ---
 
-## フェーズ 1: SEOセットアップ（⚠️ よく忘れられる）
+## Phase 0: Pre-Audit Recommendation
 
-### 1.1. ユーザーに説明
-*   「Googleにアプリを見つけてもらうにはSEO設定が必要です。お手伝いします。」
-
-### 1.2. SEOチェックリスト
-*   **Metaタグ:** 各ページのタイトル、説明
-*   **Open Graph:** Facebook/Twitter共有時の画像
-*   **Sitemap:** Google用の `sitemap.xml` ファイル
-*   **Robots.txt:** 何をインデックスするかGoogleに伝える
-
----
-
-## フェーズ 2: 分析セットアップ
-
-### 2.1. ユーザーに聞く
-*   「何人がアクセスして、アプリで何をしているか知りたいですか？」
-
-### 2.2. オプション
-*   **Google Analytics:** 無料、最も人気
-*   **Plausible/Umami:** プライバシー重視、無料枠あり
-
----
-
-## フェーズ 3: 法的コンプライアンス
-
-### 3.1. 必須ページ
-*   **プライバシーポリシー:** アプリがデータをどう収集・使用するか
-*   **利用規約:** 使用条件
-*   **Cookie同意:** Cookie許可を求めるバナー
-
----
-
-## フェーズ 4: バックアップ戦略
-
-*   **データベース:** 毎日バックアップ、直近7日分を保持
-*   **ファイル/アップロード:** クラウドストレージに同期
-*   **コード:** すでにGit上にある
-
----
-
-## フェーズ 5: デプロイ実行
-
-### 5.1. SSL/HTTPS
-*   CloudflareまたはLet's Encryptで自動
-
-### 5.2. DNS設定
-*   ステップバイステップガイド（シンプルな言葉で）
-
----
-
-## フェーズ 6: デプロイ後確認
-
-*   ホームページは読み込める？
-*   ログインできる？
-*   モバイルで見た目良い？
-*   SSLは動作する？
-
----
-
-## ⚠️ 次のステップ:
+### 0.1. Security Check First
 ```
-1️⃣ デプロイOK? /save-brain で設定を保存
-2️⃣ エラーがある? /debug で修正
-3️⃣ ロールバックが必要? /rollback
+Before deploy, suggest running /audit:
+
+"🔐 Before going to production, I recommend running /audit to check:
+- Security vulnerabilities
+- Hardcoded secrets
+- Outdated dependencies
+
+Do you want to:
+1️⃣ Run /audit first (Recommended)
+2️⃣ Skip, deploy now (for staging/test)
+3️⃣ Already audited, continue"
+```
+
+### 0.2. If not audited
+- If user chooses 2 (skip) → Note: "⚠️ Skipped security audit"
+- Show warning banner in handover
+
+---
+
+## Phase 1: Deployment Discovery
+
+### 1.1. Purpose
+*   "What's the deployment for?"
+    *   A) Preview (Just for yourself)
+    *   B) Team testing
+    *   C) Production (Customers will use)
+
+### 1.2. Domain
+*   "Do you have a domain name?"
+    *   No → Suggest buying or using free subdomain
+    *   Yes → Ask about DNS access
+
+### 1.3. Hosting
+*   "Do you have your own server?"
+    *   No → Suggest Vercel, Railway, Render
+    *   Yes → Ask about OS, Docker
+
+---
+
+## Phase 2: Pre-Flight Check
+
+### 2.0. Skipped Tests Check
+```
+Check session.json for skipped_tests:
+
+If skipped tests exist:
+→ ❌ BLOCK DEPLOY!
+→ "Cannot deploy with skipped tests!
+
+   📋 Skipped tests:
+   - create-order.test.ts (skipped: 2026-01-17)
+
+   You need to:
+   1️⃣ Fix tests first: /test or /debug
+   2️⃣ Review: /code to fix related code"
+
+→ STOP workflow, do not continue
+```
+
+### 2.1. Build Check
+*   Run `npm run build`
+*   If failed → STOP, suggest `/debug`
+
+### 2.2. Environment Variables
+*   Check `.env.production` is complete
+
+### 2.3. Security Check
+*   No hardcoded secrets
+*   Debug mode off
+
+---
+
+## Phase 3: SEO Setup (⚠️ Users often completely forget)
+
+### 3.1. Explain to User
+*   "For Google to find your app, SEO setup is needed. I'll help."
+
+### 3.2. SEO Checklist
+*   **Meta Tags:** Title, Description for each page
+*   **Open Graph:** Images when sharing on Facebook/Twitter
+*   **Sitemap:** `sitemap.xml` file for Google to read
+*   **Robots.txt:** Tell Google what to index
+*   **Canonical URLs:** Prevent duplicate content
+
+### 3.3. Auto-generate
+*   AI auto-creates required SEO files if missing.
+
+---
+
+## Phase 4: Analytics Setup (⚠️ Users don't know they need this)
+
+### 4.1. Ask User
+*   "Do you want to know how many people visit, what they do on your app?"
+    *   **Definitely YES** (Who wouldn't want that?)
+
+### 4.2. Options
+*   **Google Analytics:** Free, most popular
+*   **Plausible/Umami:** Privacy-friendly, has free tier
+*   **Mixpanel:** More detailed tracking
+
+### 4.3. Setup
+*   Guide to create account and get tracking ID
+*   AI adds tracking code to app
+
+---
+
+## Phase 5: Legal Compliance (⚠️ Required by law)
+
+### 5.1. Explain to User
+*   "By law (GDPR, CCPA), apps need certain legal pages. I'll create templates."
+
+### 5.2. Required Pages
+*   **Privacy Policy:** How app collects and uses data
+*   **Terms of Service:** Usage terms
+*   **Cookie Consent:** Banner requesting cookie permission (if using Analytics)
+
+### 5.3. Auto-generate
+*   AI creates Privacy Policy and Terms of Service templates
+*   AI adds Cookie Consent banner if needed
+
+---
+
+## Phase 6: Backup Strategy (⚠️ Users don't think about this until data is lost)
+
+### 6.1. Explain
+*   "If server dies or gets hacked, do you want to lose all data?"
+*   "I'll setup automatic backup."
+
+### 6.2. Backup Plan
+*   **Database:** Daily backup, keep last 7 days
+*   **Files/Uploads:** Sync to cloud storage
+*   **Code:** Already on Git
+
+### 6.3. Setup
+*   Guide pg_dump cron job setup
+*   Or use managed database with auto-backup
+
+---
+
+## Phase 7: Monitoring & Error Tracking (⚠️ Users don't know when app is down)
+
+### 7.1. Explain
+*   "If app errors at 3am, do you want to know?"
+
+### 7.2. Options
+*   **Uptime Monitoring:** UptimeRobot, Pingdom (alerts when app is down)
+*   **Error Tracking:** Sentry (alerts on JavaScript/API errors)
+*   **Log Monitoring:** Logtail, Papertrail
+
+### 7.3. Setup
+*   AI integrates Sentry (free tier is sufficient)
+*   Setup basic uptime monitoring
+
+---
+
+## Phase 8: Maintenance Mode (⚠️ Needed during updates)
+
+### 8.1. Explain
+*   "During major updates, do you want to show 'Under Maintenance' message?"
+
+### 8.2. Setup
+*   Create beautiful maintenance.html page
+*   Guide how to toggle maintenance mode
+
+---
+
+## Phase 9: Deployment Execution
+
+### 9.1. SSL/HTTPS
+*   Automatic with Cloudflare or Let's Encrypt
+
+### 9.2. DNS Configuration
+*   Step-by-step guide (in plain language)
+
+### 9.3. Deploy
+*   Execute deployment based on chosen hosting
+
+---
+
+## Phase 10: Post-Deploy Verification
+
+*   Homepage loads?
+*   Can login?
+*   Mobile looks good?
+*   SSL working?
+*   Analytics tracking?
+
+---
+
+## Phase 11: Handover
+
+1.  "Deploy successful! URL: [URL]"
+2.  Completed checklist:
+    *   ✅ App online
+    *   ✅ SEO ready
+    *   ✅ Analytics tracking
+    *   ✅ Legal pages
+    *   ✅ Backup scheduled
+    *   ✅ Monitoring active
+3.  "Remember `/save-brain` to save config!"
+    *   ⚠️ "Skipped security audit" (if skipped at Phase 0)
+
+---
+
+## 🛡️ Resilience Patterns (Hidden from User)
+
+### Auto-Retry on deploy failure
+```
+Network, timeout, rate limit errors:
+1. Retry 1 (wait 2s)
+2. Retry 2 (wait 5s)
+3. Retry 3 (wait 10s)
+4. If still fails → Ask user for fallback
+```
+
+### Timeout Protection
+```
+Default timeout: 10 minutes (deploy usually takes time)
+On timeout → "Deploy is taking long, might be network. Want to keep waiting?"
+```
+
+### Fallback Conversation
+```
+When production deploy fails:
+"Production deploy failed 😅
+
+ Error: [Simple description]
+
+ Do you want to:
+ 1️⃣ Deploy to staging first (safer)
+ 2️⃣ I'll review error and retry
+ 3️⃣ Call /debug for deep analysis"
+```
+
+### Simplified Error Messages
+```
+❌ "Error: ETIMEOUT - Connection timed out to registry.npmjs.org"
+✅ "Network is slow, can't download packages. Try again later!"
+
+❌ "Error: Build failed with exit code 1"
+✅ "Build failed. Type /debug for me to find the cause!"
+
+❌ "Error: Permission denied (publickey)"
+✅ "No server access permission. Please check your SSH key!"
+```
+
+---
+
+## ⚠️ NEXT STEPS:
+```
+1️⃣ Deploy OK? /save-brain to save config
+2️⃣ Got errors? /debug to fix
+3️⃣ Need rollback? /rollback
 ```
