@@ -118,7 +118,7 @@ curl -f -s "https://raw.githubusercontent.com/hasugoii/antikit/main/VERSION" -o 
 对于每个选定的工作流，AI必须执行:
 ```bash
 # 检测用户语言
-LANG=$(cat "$HOME/.gemini/antikit_lang" 2>/dev/null || echo "en")
+LANG=$(cat "$HOME/.gemini/antikit_language" 2>/dev/null || echo "en")
 
 # 下载工作流（将{name}替换为实际名称）
 curl -f -s "https://raw.githubusercontent.com/hasugoii/antikit/main/workflows/$LANG/{name}.mdt" \
@@ -180,7 +180,7 @@ curl -f -s "https://raw.githubusercontent.com/hasugoii/antikit/main/src/agents/{
 
 ### 9.1. 检测语言
 ```bash
-LANG_FLAG=$(cat "$HOME/.gemini/antikit_lang" 2>/dev/null || echo "en")
+LANG_FLAG=$(cat "$HOME/.gemini/antikit_language" 2>/dev/null || echo "en")
 echo "检测到的语言: $LANG_FLAG"
 ```
 

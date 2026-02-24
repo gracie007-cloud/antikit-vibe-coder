@@ -118,7 +118,7 @@ curl -f -s "https://raw.githubusercontent.com/hasugoii/antikit/main/VERSION" -o 
 選択された各ワークフローに対して、AIは必ず実行:
 ```bash
 # ユーザー言語を検出
-LANG=$(cat "$HOME/.gemini/antikit_lang" 2>/dev/null || echo "en")
+LANG=$(cat "$HOME/.gemini/antikit_language" 2>/dev/null || echo "en")
 
 # ワークフローをダウンロード（{name}を実際の名前に置換）
 curl -f -s "https://raw.githubusercontent.com/hasugoii/antikit/main/workflows/$LANG/{name}.mdt" \
@@ -180,7 +180,7 @@ curl -f -s "https://raw.githubusercontent.com/hasugoii/antikit/main/src/agents/{
 
 ### 9.1. 言語検出
 ```bash
-LANG_FLAG=$(cat "$HOME/.gemini/antikit_lang" 2>/dev/null || echo "en")
+LANG_FLAG=$(cat "$HOME/.gemini/antikit_language" 2>/dev/null || echo "en")
 echo "検出された言語: $LANG_FLAG"
 ```
 
