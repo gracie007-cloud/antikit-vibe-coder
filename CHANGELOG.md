@@ -4,6 +4,46 @@ All notable changes to AntiKit will be documented in this file.
 
 ---
 
+## [1.15.0] - 2026-02-25
+
+### 📦 Manifest-Based Installer — Single Source of Truth
+
+The installer now fetches `manifest.json` from the repo to determine which files to download, replacing hardcoded arrays. Also includes automatic orphan cleanup, macOS bash 3.2 compatibility fix, and several quality-of-life improvements.
+
+### Added
+- **`manifest.json`** — Single source of truth for all official AntiKit files (agents, skills, workflows, schemas, templates, scripts, pillars)
+- **Orphan Cleanup** — Installer scans local files vs manifest, removes files not in manifest (respects `antikit_custom.json`)
+- **Custom File Preservation** — `antikit_custom.json` lets users protect custom files from orphan cleanup
+- **Frontmatter Strip** — Installer strips YAML frontmatter from `rules/` files before concatenating into GEMINI.md
+
+### Fixed
+- **macOS Bash 3.2 Compatibility** — Replaced `mapfile` + process substitution `< <()` with `eval "$(python3 -c ...)"` for full macOS compatibility (bash 3.2.57 ships without `mapfile`)
+- **Process Substitution in Piped Bash** — `curl | bash` breaks `< <()` syntax; now uses python3 to output bash array assignments
+- **Orphan Safety Check** — Added fallback to hardcoded lists if manifest parsing returns empty arrays (prevents deleting all 125 files)
+- **Unified Agent Display Format** — All 3 locations (instructions, core rules, protocol) now use consistent `PRIMARY + SUPPORT` format
+- **`antikit_lang` → `antikit_language`** — Unified filename across all 4 ak-update workflows; installer writes both for backward compat
+- **Frontmatter Leak** — YAML frontmatter from `rules/instructions_{lang}.md` no longer leaks into installed GEMINI.md
+
+### Changed
+- **`install.sh`** — Manifest-based download + orphan cleanup + eval+python3 parsing + frontmatter strip
+- **`install.ps1`** — Same manifest-based changes mirrored for PowerShell
+- **`workflows/*/ak-update.mdt`** — Unified `antikit_language` filename (4 languages)
+
+---
+
+## [1.14.1] - 2026-02-25
+
+### 🎨 UI/UX Skill Connection + SEO Update
+
+### Added
+- **`ui-ux-pro-max` Skill Connection** — Connected to 4 agents: `frontend-specialist`, `mobile-developer`, `game-developer`, `growth-hacker`
+
+### Changed
+- **READMEs (4 languages)** — Added "Antigravity IDE" subtitle for SEO keyword targeting + updated pain points section
+- **README redesign** — Improved shareability and visual structure across all languages
+
+---
+
 ## [1.14.0] - 2026-02-25
 
 ### 🕸️ Skill Mesh Network + Learning System

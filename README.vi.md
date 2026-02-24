@@ -7,7 +7,7 @@
 ### **21 chuyên gia AI. 1 khung chat. Từ ý tưởng đến doanh thu.**
 *Ngừng vibe coding mù quáng. Bắt đầu vibe coding thông minh.*
 
-[![Version](https://img.shields.io/badge/v1.14.0-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.15.0-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -115,7 +115,7 @@ Gõ lệnh. Triệu hồi chuyên gia. Đơn giản vậy thôi.
 
 ---
 
-## 🧠 91 Skills — Không chỉ code, MỌI THỨ
+## 🧠 83 Skills — Không chỉ code, MỌI THỨ
 
 <table>
 <tr>
@@ -273,10 +273,10 @@ Sáng hôm sau: /recap      → "Em nhớ hết. Anh/chị đang làm X."
 
 | Ngôn ngữ | Workflows |
 |:---------|:----------|
-| 🇬🇧 English | ✅ Đầy đủ 20 lệnh |
-| 🇻🇳 Tiếng Việt | ✅ Đầy đủ 20 lệnh |
-| 🇯🇵 日本語 | ✅ Đầy đủ 20 lệnh |
-| 🇨🇳 中文 | ✅ Đầy đủ 20 lệnh |
+| 🇬🇧 English | ✅ Đầy đủ 19 lệnh |
+| 🇻🇳 Tiếng Việt | ✅ Đầy đủ 19 lệnh |
+| 🇯🇵 日本語 | ✅ Đầy đủ 19 lệnh |
+| 🇨🇳 中文 | ✅ Đầy đủ 19 lệnh |
 
 ---
 
@@ -285,7 +285,7 @@ Sáng hôm sau: /recap      → "Em nhớ hết. Anh/chị đang làm X."
 | Thành phần | Số lượng | Highlights |
 |:-----------|:---------|:-----------|
 | 🤖 Agents | 21 | Multi-agent trên mọi task |
-| 🧠 Skills | 91 | Kỹ thuật + Marketing + Bảo mật + Growth |
+| 🧠 Skills | 83 | Kỹ thuật + Marketing + Bảo mật + Growth |
 | 🕸️ Skill Mesh | 20 kết nối | T1-T4 tiers, tự động load phụ thuộc |
 | ⚡ Workflows | 19 | Từ brainstorm đến doanh thu |
 | 🌍 Ngôn ngữ | 4 | EN, VI, JA, ZH |
@@ -300,7 +300,7 @@ Sáng hôm sau: /recap      → "Em nhớ hết. Anh/chị đang làm X."
 |:-----------|:-------------------|
 | 🌱 **Người mới** | Code an toàn, không sợ phá hỏng, có workflow hướng dẫn |
 | 💻 **Indie Hacker** | Build → Launch → Marketing → Grow **trong 1 tool** |
-| 👨‍💻 **Senior Dev** | 21 agent + 91 skills = năng suất ×10 |
+| 👨‍💻 **Senior Dev** | 21 agent + 83 skills = năng suất ×10 |
 | 🏢 **Startup** | Full-stack + marketing + SEO + growth — từ ngày đầu |
 
 ---

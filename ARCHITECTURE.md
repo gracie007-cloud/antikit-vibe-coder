@@ -8,9 +8,9 @@
 
 Antigravity Kit is a modular system consisting of:
 
-- **20 Specialist Agents** - Role-based AI personas
-- **45 Skills** - Domain-specific knowledge modules
-- **29 Workflows** - Slash command procedures
+- **21 Specialist Agents** - Role-based AI personas
+- **83 Skills** - Domain-specific knowledge modules
+- **19 Workflows** - Slash command procedures (×4 languages)
 
 ---
 
@@ -20,16 +20,16 @@ Antigravity Kit is a modular system consisting of:
 .agent/
 ├── ARCHITECTURE.md          # This file
 ├── src/
-│   ├── agents/              # 20 Specialist Agents
-│   └── skills/              # 45 Skills
-├── workflows/               # 29 Slash Commands
+│   ├── agents/              # 21 Specialist Agents
+│   └── skills/              # 83 Skills
+├── workflows/               # 19 Slash Commands (×4 languages)
 ├── rules/                   # Global Rules
 └── scripts/                 # Master Validation Scripts
 ```
 
 ---
 
-## 🤖 Agents (20)
+## 🤖 Agents (21)
 
 Specialist AI personas for different domains.
 
@@ -40,8 +40,9 @@ Specialist AI personas for different domains.
 | `frontend-specialist`    | Web UI/UX                  | frontend-design, react-best-practices, tailwind-patterns |
 | `backend-specialist`     | API, business logic        | api-patterns, nodejs-best-practices, database-design     |
 | `database-architect`     | Schema, SQL                | database-design, prisma-expert                           |
-| `mobile-developer`       | iOS, Android, RN           | mobile-design                                            |
-| `game-developer`         | Game logic, mechanics      | game-development                                         |
+| `mobile-developer`       | iOS, Android, RN           | mobile-design, ui-ux-pro-max                             |
+| `game-developer`         | Game logic, mechanics      | game-development, ui-ux-pro-max                          |
+| `growth-hacker`          | Marketing, launch, growth  | growth-marketing, ui-ux-pro-max                          |
 | `devops-engineer`        | CI/CD, Docker              | deployment-procedures, docker-expert                     |
 | `security-auditor`       | Security compliance        | vulnerability-scanner, red-team-tactics                  |
 | `penetration-tester`     | Offensive security         | red-team-tactics                                         |
@@ -58,7 +59,7 @@ Specialist AI personas for different domains.
 
 ---
 
-## 🧩 Skills (45)
+## 🧩 Skills (83)
 
 Modular knowledge domains that agents can load on-demand. based on task context.
 
@@ -187,9 +188,9 @@ T1 Orchestrators → call → T2 Hubs → call → T3 Utilities
 
 ---
 
-## 🔄 Workflows (29)
+## 🔄 Workflows (19)
 
-Slash command procedures. Invoke with `/command`.
+Slash command procedures. Invoke with `/command`. All available in 4 languages (EN, VI, JA, ZH).
 
 ### Core Development
 
@@ -200,7 +201,6 @@ Slash command procedures. Invoke with `/command`.
 | `/plan` | Task breakdown | - |
 | `/visualize` | UI/UX design | `--mobile` `--game` `--audit` |
 | `/brainstorm` | Socratic discovery | - |
-| `/enhance` | Improve existing code | - |
 
 ### Quality & Testing
 
@@ -210,7 +210,6 @@ Slash command procedures. Invoke with `/command`.
 | `/audit` | Code & security audit | `--seo` `--perf` `--pentest` `--docs` `--i18n` `--deps` `--full` |
 | `/debug` | Debug issues | - |
 | `/refactor` | Clean up & optimize | `--perf` `--types` `--arch` `--review` |
-| `/scan` | Security scan | - |
 
 ### Deployment & Ops
 
@@ -218,8 +217,13 @@ Slash command procedures. Invoke with `/command`.
 | ------- | ----------- | ---------------- |
 | `/deploy` | Deploy to production | `--docker` `--server` `--seo` |
 | `/run` | Run application | - |
-| `/rollback` | Rollback to previous | - |
-| `/cloudflare-tunnel` | Manage CF tunnels | - |
+
+### Growth & Marketing
+
+| Command | Description | Power Mode Flags |
+| ------- | ----------- | ---------------- |
+| `/launch` | Go-to-market | `--landing` `--content` `--pricing` `--ads` |
+| `/grow` | Product flywheel | - |
 
 ### Knowledge & Config
 
@@ -229,21 +233,13 @@ Slash command procedures. Invoke with `/command`.
 | `/recap` | Summarize project |
 | `/config` | Configure settings |
 | `/next` | What to do next |
-| `/report` | Generate report |
 
 ### AntiKit Management
 
 | Command | Description |
 | ------- | ----------- |
 | `/ak-update` | Update AntiKit |
-| `/browse` | Browse AntiKit Library |
-| `/contribute` | Contribute to library |
-| `/customize` | Customize AI experience |
-| `/history` | AntiKit changelog |
-| `/install` | Install AntiKit |
 | `/uninstall` | Uninstall AntiKit |
-| `/moderate` | Moderate contributions |
-| `/orchestrate` | Multi-agent coordination |
 
 ---
 
@@ -276,16 +272,18 @@ skill-name/
 
 ---
 
-## � Scripts (2)
+## 🛠 Scripts (4)
 
 Master validation scripts that orchestrate skill-level scripts.
 
 ### Master Scripts
 
-| Script          | Purpose                                 | When to Use              |
-| --------------- | --------------------------------------- | ------------------------ |
-| `checklist.py`  | Priority-based validation (Core checks) | Development, pre-commit  |
-| `verify_all.py` | Comprehensive verification (All checks) | Pre-deployment, releases |
+| Script               | Purpose                                 | When to Use              |
+| -------------------- | --------------------------------------- | ------------------------ |
+| `checklist.py`       | Priority-based validation (Core checks) | Development, pre-commit  |
+| `verify_all.py`      | Comprehensive verification (All checks) | Pre-deployment, releases |
+| `auto_preview.py`    | Auto-preview server management          | During development       |
+| `session_manager.py` | Session state tracking                  | Session start/end        |
 
 ### Usage
 
@@ -323,14 +321,16 @@ For details, see [scripts/README.md](scripts/README.md)
 
 ## 📊 Statistics
 
-| Metric              | Value                         |
-| ------------------- | ----------------------------- |
-| **Total Agents**    | 20                            |
-| **Total Skills**    | 45                            |
-| **Total Workflows** | 29                            |
-| **Total Scripts**   | 2 (master) + 18 (skill-level) |
-| **Power Mode Flags**| 25+ across 7 workflows        |
-| **Coverage**        | ~95% web/mobile development   |
+| Metric              | Value                           |
+| ------------------- | ------------------------------- |
+| **Total Agents**    | 21                              |
+| **Total Skills**    | 83                              |
+| **Total Workflows** | 19 (×4 languages = 76 files)    |
+| **Total Scripts**   | 4 (master)                      |
+| **Schemas**         | 3                               |
+| **Templates**       | 4                               |
+| **Power Mode Flags**| 25+ across 7 workflows          |
+| **Coverage**        | ~95% web/mobile development     |
 
 ---
 

@@ -7,7 +7,7 @@
 ### **21 AI experts. 1 chat. From idea to income.**
 *Stop vibe coding blind. Start vibe coding smart.*
 
-[![Version](https://img.shields.io/badge/v1.14.0-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.15.0-83_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -115,7 +115,7 @@ Type a command. Get an expert. It's that simple.
 
 ---
 
-## 🧠 91 Skills — Not Just Code, Everything
+## 🧠 83 Skills — Not Just Code, Everything
 
 <table>
 <tr>
@@ -302,10 +302,10 @@ AntiKit speaks your language natively:
 
 | Language | Status | Workflows |
 |:---------|:-------|:----------|
-| 🇬🇧 English | Full | All 30+ commands |
-| 🇻🇳 Tiếng Việt | Full | All 30+ commands |
-| 🇯🇵 日本語 | Full | All 30+ commands |
-| 🇨🇳 中文 | Full | All 30+ commands |
+| 🇬🇧 English | Full | All 19 commands |
+| 🇻🇳 Tiếng Việt | Full | All 19 commands |
+| 🇯🇵 日本語 | Full | All 19 commands |
+| 🇨🇳 中文 | Full | All 19 commands |
 
 ---
 
@@ -314,7 +314,7 @@ AntiKit speaks your language natively:
 | Component | Count | Highlights |
 |:----------|:------|:-----------|
 | 🤖 Agents | 21 | Multi-agent collaboration on every task |
-| 🧠 Skills | 91 | Engineering + Marketing + Security + Growth |
+| 🧠 Skills | 83 | Engineering + Marketing + Security + Growth |
 | 🕸️ Skill Mesh | 20 connected | T1-T4 tiers, auto-loading dependencies |
 | ⚡ Workflows | 19 | From brainstorm to revenue |
 | 🌍 Languages | 4 | EN, VI, JA, ZH |
