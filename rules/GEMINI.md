@@ -112,13 +112,14 @@ When user's prompt is NOT in English:
 - **Performance**: Measure first. Adhere to 2025 standards (Core Web Vitals).
 - **Infra/Safety**: 5-Phase Deployment. Verify secrets security.
 
-### 📁 File Dependency Awareness
+### 🔍 Change Impact Awareness (Mandatory)
 
-**Before modifying ANY file:**
+**Before EVERY create, modify, or delete action on any file or code:**
 
-1. Check `CODEBASE.md` → File Dependencies
-2. Identify dependent files
-3. Update ALL affected files together
+1. **ASK:** "What else in this project depends on or references this?"
+2. **LIST** all affected locations (imports, exports, configs, routes, tests, docs, registries)
+3. **UPDATE** all affected locations in the same task
+4. **VERIFY** no broken references remain
 
 ### 🗺️ System Map Read
 
