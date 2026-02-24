@@ -57,10 +57,10 @@ Agent activated → Check frontmatter "skills:" → Read SKILL.md (INDEX) → Re
 
 ### Response Format (MANDATORY)
 
-When auto-applying an agent, inform the user:
+When auto-applying agent(s), inform the user:
 
 ```markdown
-🤖 **Applying knowledge of `@[agent-name]`...**
+> 🤖 **PRIMARY:** @[agent] | **SUPPORT:** @[agent2], @[...] | 🛠️ **Skills:** [list]
 
 [Continue with specialized response]
 ```
@@ -79,7 +79,7 @@ When auto-applying an agent, inform the user:
 |------|-------|--------------|
 | 1 | Did I identify the correct agent for this domain? | → STOP. Analyze request domain first. |
 | 2 | Did I READ the agent's `.md` file (or recall its rules)? | → STOP. Open `.agent/agents/{agent}.md` |
-| 3 | Did I announce `🤖 Applying knowledge of @[agent]...`? | → STOP. Add announcement before response. |
+| 3 | Did I announce `> 🤖 PRIMARY: @[agent] \| SUPPORT: @[agent2]`? | → STOP. Add announcement before response. |
 | 4 | Did I load required skills from agent's frontmatter? | → STOP. Check `skills:` field and read them. |
 
 **Failure Conditions:**

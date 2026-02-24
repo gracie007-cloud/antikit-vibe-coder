@@ -372,15 +372,24 @@ curl -f -s -o "$RULES_DIR/GEMINI.md" "$REPO_BASE/rules/GEMINI.md" && \
     echo -e "   ${GREEN}✅ GEMINI.md (core rules)${NC}" || \
     echo -e "   ${RED}❌ GEMINI.md (core rules)${NC}"
 
-# Assemble ANTIKIT_INSTRUCTIONS from downloaded files
+# Assemble ANTIKIT_INSTRUCTIONS from downloaded files (strip YAML frontmatter)
+strip_frontmatter() {
+    local file="$1"
+    if head -1 "$file" | grep -q "^---$"; then
+        sed -n '/^---$/,/^---$/d; p' "$file"
+    else
+        cat "$file"
+    fi
+}
+
 ANTIKIT_INSTRUCTIONS=""
 if [ -f "$RULES_DIR/instructions.md" ]; then
-    ANTIKIT_INSTRUCTIONS="$(cat "$RULES_DIR/instructions.md")"
+    ANTIKIT_INSTRUCTIONS="$(strip_frontmatter "$RULES_DIR/instructions.md")"
 fi
 if [ -f "$RULES_DIR/GEMINI.md" ]; then
     ANTIKIT_INSTRUCTIONS="$ANTIKIT_INSTRUCTIONS
 
-$(cat "$RULES_DIR/GEMINI.md")"
+$(strip_frontmatter "$RULES_DIR/GEMINI.md")"
 fi
 
 # ── GENERATE AGENT INDEX ────────────────────────────────────

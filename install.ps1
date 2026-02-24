@@ -373,13 +373,27 @@ try {
     Write-Host "   [X] GEMINI.md (core rules)" -ForegroundColor Red
 }
 
-# Assemble AntiKitInstructions from downloaded files
+# Assemble AntiKitInstructions from downloaded files (strip YAML frontmatter)
+function Strip-Frontmatter($filePath) {
+    $lines = Get-Content $filePath
+    if ($lines.Count -gt 0 -and $lines[0] -eq "---") {
+        $endIdx = -1
+        for ($i = 1; $i -lt $lines.Count; $i++) {
+            if ($lines[$i] -eq "---") { $endIdx = $i; break }
+        }
+        if ($endIdx -ge 0) {
+            return ($lines[($endIdx+1)..($lines.Count-1)] | Where-Object { $_ -ne $null }) -join "`n"
+        }
+    }
+    return Get-Content $filePath -Raw
+}
+
 $AntiKitInstructions = ""
 if (Test-Path "$RulesDir\instructions.md") {
-    $AntiKitInstructions = Get-Content "$RulesDir\instructions.md" -Raw
+    $AntiKitInstructions = Strip-Frontmatter "$RulesDir\instructions.md"
 }
 if (Test-Path "$RulesDir\GEMINI.md") {
-    $AntiKitInstructions = $AntiKitInstructions + "`n`n" + (Get-Content "$RulesDir\GEMINI.md" -Raw)
+    $AntiKitInstructions = $AntiKitInstructions + "`n`n" + (Strip-Frontmatter "$RulesDir\GEMINI.md")
 }
 
 # 8.5 Generate AGENT INDEX from downloaded agents
