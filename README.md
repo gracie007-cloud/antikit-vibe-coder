@@ -5,7 +5,7 @@
 ### Turn Antigravity into a **money-printing machine.**
 *From "I have an idea" → deployed, marketed, and making money — in one toolkit.*
 
-[![Version](https://img.shields.io/badge/v1.13.6-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.14.0-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -210,6 +210,57 @@ AntiKit:
 
 ---
 
+## 🕸️ Skill Mesh Network — Skills That Talk to Each Other
+
+> *New in v1.14.0*
+
+Skills aren't isolated anymore. They form a **mesh network** — knowing which other skills they need and which skills need them.
+
+```
+                    ┌─────────────┐
+              ┌────►│ clean-code  │◄────┐
+              │     └─────────────┘     │
+     ┌────────┴───┐              ┌─────┴────────┐
+     │ app-builder │              │ evidence-    │
+     │             │              │ discipline   │
+     └────────┬───┘              └─────┬────────┘
+              │     ┌─────────────┐     │
+              └────►│ plan-writing │◄────┘
+                    └─────────────┘
+```
+
+| Tier | Role | Skills |
+|:-----|:-----|:-------|
+| 🎯 **T1 Orchestrators** | Drive the workflow | `app-builder`, `intelligent-routing`, `parallel-agents` |
+| 🔗 **T2 Hubs** | Connect many skills | `clean-code`, `brainstorming`, `evidence-discipline` |
+| 🔧 **T3 Utilities** | Specialized expertise | `react-best-practices`, `tailwind-patterns`, `seo-fundamentals` |
+| 📦 **T4 Standalone** | Independent skills | `cold-email`, `ad-creative`, `schema-markup` |
+
+**Why it matters:** When AI loads `app-builder`, it automatically knows to also load `clean-code`, `plan-writing`, and `brainstorming` — **smarter context, better output.**
+
+---
+
+## 📚 AI That Learns From Mistakes
+
+> *New in v1.14.0*
+
+| Feature | What it does |
+|:--------|:-------------|
+| 📝 **Lessons System** | AI saves what went wrong (and right) after every workflow |
+| 🔍 **Change Impact Awareness** | Before ANY change, AI must check ripple effects — **mandatory** |
+| 🏁 **Definition of Done Gate** | AI self-checks 6 quality points before reporting "done" |
+
+```
+/code  → AI writes code → DoD Gate: "Did tests pass? Is console clean? Would a senior approve?" → ✅ Done
+/debug → AI fixes bug   → Lesson saved: "Don't modify X without updating Y"
+/recap → AI loads lessons from .brain/lessons.md → Never makes same mistake twice
+```
+
+**The Change Impact Awareness rule prevents the #1 AI coding mistake:**
+> *Creating a new file but forgetting to register it in router/config/index.*
+
+Now AI asks **before every change:** *"What else depends on this?"*
+
 ## 🧠 Permanent Memory (AI Never Forgets Again)
 
 > *"I explained the whole architecture yesterday... and today it acts like we never talked."*
@@ -251,9 +302,11 @@ AntiKit speaks your language natively:
 |:----------|:------|:-----------|
 | 🤖 Agents | 21 | Multi-agent collaboration on every task |
 | 🧠 Skills | 91 | Engineering + Marketing + Security + Growth |
+| 🕸️ Skill Mesh | 20 connected | T1-T4 tiers, auto-loading dependencies |
 | ⚡ Workflows | 19 | From brainstorm to revenue |
 | 🌍 Languages | 4 | EN, VI, JA, ZH |
 | 🛡️ Safety | 7 layers | Sandbox + backup + destructive blocks + supervisor |
+| 📚 Learning | 3 systems | Lessons + DoD Gate + Change Impact Awareness |
 
 ---
 

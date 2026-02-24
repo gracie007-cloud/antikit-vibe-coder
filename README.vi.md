@@ -5,7 +5,7 @@
 ### Biến Antigravity thành **cỗ máy in tiền.**
 *Từ "anh có ý tưởng" → code xong, marketing xong, và kiếm tiền — trong một bộ công cụ.*
 
-[![Version](https://img.shields.io/badge/v1.13.6-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.14.0-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -196,6 +196,44 @@ AntiKit:
 
 ---
 
+## 🕸️ Skill Mesh Network — Các Skill Tự Nói Chuyện Với Nhau
+
+> *Mới trong v1.14.0*
+
+Các skill không còn biệt lập. Chúng tạo thành **mạng lưới** — tự biết skill nào cần nó và nó cần skill nào.
+
+| Tầng | Vai trò | Ví dụ |
+|:-----|:--------|:------|
+| 🎯 **T1 Điều phối** | Dẫn dắt workflow | `app-builder`, `intelligent-routing` |
+| 🔗 **T2 Kết nối** | Liên kết nhiều skill | `clean-code`, `brainstorming`, `evidence-discipline` |
+| 🔧 **T3 Chuyên môn** | Kiến thức cụ thể | `react-best-practices`, `seo-fundamentals` |
+| 📦 **T4 Độc lập** | Hoạt động riêng | `cold-email`, `ad-creative` |
+
+**Tại sao quan trọng:** Khi AI load `app-builder`, nó tự biết cần load thêm `clean-code`, `plan-writing` — **context thông minh hơn, output tốt hơn.**
+
+---
+
+## 📚 AI Tự Học Từ Sai Lầm
+
+> *Mới trong v1.14.0*
+
+| Tính năng | Làm gì |
+|:---------|:-------|
+| 📝 **Hệ thống Bài học** | AI ghi lại sai/đúng sau mỗi workflow |
+| 🔍 **Kiểm tra Tác động** | Trước MỌI thay đổi, AI phải kiểm tra ảnh hưởng — **bắt buộc** |
+| 🏁 **Definition of Done** | AI tự kiểm tra 6 điểm chất lượng trước khi báo "xong" |
+
+```
+/code  → AI viết code → DoD: "Test pass? Console sạch? Senior có duyệt?" → ✅ Xong
+/debug → AI fix bug   → Bài học: "Đừng sửa X mà quên update Y"
+/recap → AI đọc bài học từ .brain/lessons.md → Không lặp lại sai lầm
+```
+
+**Rule Kiểm tra Tác động ngăn lỗi #1 của AI:**
+> *Tạo file mới nhưng quên đăng ký vào router/config/index.*
+
+Giờ AI hỏi **trước mọi thay đổi:** *"Còn gì phụ thuộc vào cái này không?"*
+
 ## 🧠 Trí Nhớ Vĩnh Viễn (AI Không Bao Giờ Quên Nữa)
 
 > *"Hôm qua giải thích cả kiến trúc... hôm nay nó làm như chưa từng nói chuyện."*
@@ -235,9 +273,11 @@ Sáng hôm sau: /recap      → "Em nhớ hết. Anh/chị đang làm X."
 |:-----------|:---------|:-----------|
 | 🤖 Agents | 21 | Multi-agent trên mọi task |
 | 🧠 Skills | 91 | Kỹ thuật + Marketing + Bảo mật + Growth |
+| 🕸️ Skill Mesh | 20 kết nối | T1-T4 tiers, tự động load phụ thuộc |
 | ⚡ Workflows | 19 | Từ brainstorm đến doanh thu |
 | 🌍 Ngôn ngữ | 4 | EN, VI, JA, ZH |
 | 🛡️ Bảo mật | 6 lớp | Sandbox + chặn lệnh + giám sát |
+| 📚 Học tập | 3 hệ thống | Bài học + DoD Gate + Kiểm tra Tác động |
 
 ---
 

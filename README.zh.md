@@ -5,7 +5,7 @@
 ### 把Antigravity变成**赚钱机器。**
 *从"我有个想法" → 开发完成、营销完成、开始赚钱 — 一套工具搞定。*
 
-[![Version](https://img.shields.io/badge/v1.13.6-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.14.0-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/文档-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -183,6 +183,44 @@ AntiKit:
 
 ---
 
+## 🕸️ Skill Mesh Network — 技能互相通信
+
+> *v1.14.0新功能*
+
+技能不再孤立。它们形成一个**网状网络**—自动知道哪些技能需要它，它需要哪些技能。
+
+| 层级 | 角色 | 示例 |
+|:-----|:-----|:-----|
+| 🎯 **T1 编排器** | 驱动工作流 | `app-builder`, `intelligent-routing` |
+| 🔗 **T2 枢纽** | 连接多个技能 | `clean-code`, `brainstorming`, `evidence-discipline` |
+| 🔧 **T3 工具** | 专业知识 | `react-best-practices`, `seo-fundamentals` |
+| 📦 **T4 独立** | 独立运作 | `cold-email`, `ad-creative` |
+
+**为什么重要：** 当AI加载`app-builder`时，自动知道还需加载`clean-code`和`plan-writing`—**更智能的上下文，更好的输出。**
+
+---
+
+## 📚 AI从错误中学习
+
+> *v1.14.0新功能*
+
+| 功能 | 作用 |
+|:-----|:-----|
+| 📝 **课程系统** | AI在每个工作流后记录失败/成功 |
+| 🔍 **变更影响分析** | 每次变更前检查波及效果—**强制执行** |
+| 🏁 **Definition of Done** | AI在报告“完成”前自检查6个质量点 |
+
+```
+/code  → AI写代码 → DoD: "测试通过？控制台干净？高级开发会批准？" → ✅ 完成
+/debug → AI修复缺陷 → 课程: "修改X时别忘了更新Y"
+/recap → AI从.brain/lessons.md加载课程 → 不再重复同样的错误
+```
+
+**变更影响分析规则防止AI编码#1的错误：**
+> *创建了新文件但忘记在router/config/index中注册。*
+
+现在AI在每次变更前问：*“还有什么依赖于这个？”*
+
 ## 🧠 永久记忆（AI再也不会忘记）
 
 > *"昨天解释了整个架构...今天它表现得好像从没聊过一样。"*
@@ -211,9 +249,11 @@ AntiKit:
 |:-----|:-----|:-----|
 | 🤖 Agent | 21 | 每个任务多Agent协作 |
 | 🧠 技能 | 91 | 技术 + 营销 + 安全 + 增长 |
+| 🕸️ Skill Mesh | 20连接 | T1-T4层级，自动加载依赖 |
 | ⚡ 工作流 | 19 | 从头脑风暴到收入 |
 | 🌍 语言 | 4 | EN, VI, JA, ZH |
 | 🛡️ 安全 | 6层 | 沙盒 + 阻止 + 监督 |
+| 📚 学习 | 3个系统 | 课程 + DoD门禁 + 变更影响分析 |
 
 ---
 

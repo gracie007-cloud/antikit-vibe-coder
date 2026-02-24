@@ -5,7 +5,7 @@
 ### Antigravityを**マネーマシン**に変える。
 *「アイデアがある」→ 開発、マーケティング、収益化 — ひとつのツールキットで。*
 
-[![Version](https://img.shields.io/badge/v1.13.6-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
+[![Version](https://img.shields.io/badge/v1.14.0-91_Skills-00C853?style=for-the-badge)](https://github.com/hasugoii/antikit/releases)
 [![Stars](https://img.shields.io/github/stars/hasugoii/antikit?style=for-the-badge&color=FFD700)](https://github.com/hasugoii/antikit)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/Docs-antikit.pages.dev-FF6D00?style=for-the-badge)](https://antikit.pages.dev/docs)
@@ -183,6 +183,44 @@ AntiKit:
 
 ---
 
+## 🕸️ Skill Mesh Network — スキルが互いに会話する
+
+> *v1.14.0で新登場*
+
+スキルはもう孤立していない。**メッシュネットワーク**を形成—どのスキルが必要で、どのスキルに必要とされているかを自動把握。
+
+| ティア | 役割 | 例 |
+|:-----|:-----|:---|
+| 🎯 **T1 オーケストレータ** | ワークフローを駆動 | `app-builder`, `intelligent-routing` |
+| 🔗 **T2 ハブ** | 多くのスキルを接続 | `clean-code`, `brainstorming`, `evidence-discipline` |
+| 🔧 **T3 ユーティリティ** | 専門知識 | `react-best-practices`, `seo-fundamentals` |
+| 📦 **T4 スタンドアロン** | 独立動作 | `cold-email`, `ad-creative` |
+
+**なぜ重要か：** AIが`app-builder`をロードすると、自動的に`clean-code`や`plan-writing`もロード—**より賢いコンテキスト、より良い出力。**
+
+---
+
+## 📚 AIが失敗から学ぶ
+
+> *v1.14.0で新登場*
+
+| 機能 | 何をするか |
+|:-----|:---------|
+| 📝 **レッスンシステム** | AIが各ワークフロー後に失敗/成功を記録 |
+| 🔍 **変更影響分析** | すべての変更前に波及効果をチェック—**必須** |
+| 🏁 **Definition of Done** | AIが「完了」を報告する前に6つの品質チェック |
+
+```
+/code  → AIがコード作成 → DoD: "テスト通過？コンソールOK？シニアが承認？" → ✅ 完了
+/debug → AIがバグ修正 → レッスン: "Xを修正する時はYの更新も忘れずに"
+/recap → AIが.brain/lessons.mdからレッスンを読み込み → 同じ失敗を繰り返さない
+```
+
+**変更影響分析ルールがAIコーディングの#1のミスを防止：**
+> *新ファイルを作成したが、router/config/indexへの登録を忘れた。*
+
+AIはすべての変更前に聞く：*「他にこれに依存しているものは？」*
+
 ## 🧠 永久記憶（AIはもう忘れない）
 
 > *「昨日アーキテクチャを全部説明したのに...今日はまるで話してないかのように振る舞う。」*
@@ -211,9 +249,11 @@ AntiKit:
 |:--------------|:-----|:-----------|
 | 🤖 エージェント | 21 | 全タスクでマルチエージェント |
 | 🧠 スキル | 91 | 技術 + マーケ + セキュリティ + グロース |
+| 🕸️ Skill Mesh | 20接続 | T1-T4ティア、依存関係自動ロード |
 | ⚡ ワークフロー | 19 | ブレストから収益まで |
 | 🌍 言語 | 4 | EN, VI, JA, ZH |
 | 🛡️ セキュリティ | 6層 | サンドボックス + ブロック + 監視 |
+| 📚 学習 | 3システム | レッスン + DoDゲート + 変更影響分析 |
 
 ---
 
