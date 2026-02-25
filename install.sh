@@ -271,8 +271,15 @@ for script in "${SCRIPTS[@]}"; do
         echo -e "   ${GREEN}✅ $script${NC}"
         ((success++))
     else
-        echo -e "   ${RED}❌ $script${NC}"
-        ((failed++))
+        # Retry once after 2s (CDN cache may cause transient 404)
+        sleep 2
+        if curl -f -s -o "$SCRIPTS_DIR/$script" "$REPO_BASE/scripts/$script"; then
+            chmod +x "$SCRIPTS_DIR/$script"
+            echo -e "   ${GREEN}✅ $script (retry)${NC}"
+            ((success++))
+        else
+            echo -e "   ${YELLOW}⚠️  $script (optional — will retry next update)${NC}"
+        fi
     fi
 done
 

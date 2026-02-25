@@ -267,15 +267,26 @@ if (-not (Test-Path $ScriptsDir)) { New-Item -ItemType Directory -Force -Path $S
 Write-Host ""
 Write-Host "[...] Downloading scripts..." -ForegroundColor Cyan
 foreach ($script in $Scripts) {
+    $url = "$RepoBase/scripts/$script"
+    $downloaded = $false
     try {
-        $url = "$RepoBase/scripts/$script"
         Invoke-WebRequest -Uri $url -OutFile "$ScriptsDir\$script" -UseBasicParsing -ErrorAction Stop
         Write-Host "   [OK] $script" -ForegroundColor Green
         $success++
+        $downloaded = $true
     }
     catch {
-        Write-Host "   [X] $script" -ForegroundColor Red
-        $failed++
+        # Retry once after 2s (CDN cache may cause transient 404)
+        Start-Sleep -Seconds 2
+        try {
+            Invoke-WebRequest -Uri $url -OutFile "$ScriptsDir\$script" -UseBasicParsing -ErrorAction Stop
+            Write-Host "   [OK] $script (retry)" -ForegroundColor Green
+            $success++
+            $downloaded = $true
+        }
+        catch {
+            Write-Host "   [!!] $script (optional - will retry next update)" -ForegroundColor Yellow
+        }
     }
 }
 
