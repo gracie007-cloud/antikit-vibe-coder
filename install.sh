@@ -142,13 +142,13 @@ for key in ['workflows','agents','skills','scripts','schemas','templates']:
 else
     # Fallback: hardcoded (keep for backward compat)
     WORKFLOWS=(
-        "ak-update" "audit" "brainstorm" "code" "config"
+        "ak-update" "auto-ship" "audit" "brainstorm" "code" "config"
         "debug" "deploy" "grow" "init" "launch" "next"
         "plan" "recap" "refactor" "run" "save_brain" "test"
         "uninstall" "visualize"
     )
     AGENTS=(
-        "backend-specialist" "code-archaeologist" "database-architect"
+        "backend-specialist" "chief-engineer" "code-archaeologist" "database-architect"
         "debugger" "devops-engineer" "documentation-writer"
         "explorer-agent" "frontend-specialist" "game-developer"
         "growth-hacker" "mobile-developer" "orchestrator"
@@ -279,83 +279,89 @@ for script in "${SCRIPTS[@]}"; do
             ((success++))
         else
             echo -e "   ${YELLOW}⚠️  $script (optional — will retry next update)${NC}"
+            ((failed++))
         fi
     fi
 done
 
-# ── ORPHAN CLEANUP ──────────────────────────────────────────
-echo ""
-echo -e "${CYAN}🧹 Scanning for orphan files...${NC}"
-orphan_count=0
+# ── ORPHAN CLEANUP (ONLY if all downloads succeeded) ───────
+if [ $failed -gt 0 ]; then
+    echo ""
+    echo -e "${YELLOW}⚠️  Skipping orphan cleanup ($failed download(s) failed — files may be valid)${NC}"
+else
+    echo ""
+    echo -e "${CYAN}🧹 Scanning for orphan files...${NC}"
+    orphan_count=0
 
-# Load custom files list (user-created workflows/agents/skills)
-custom_workflows=()
-custom_agents=()
-custom_skills=()
-if [ -f "$CUSTOM_FILE" ]; then
-    while IFS= read -r line; do custom_workflows+=("$line"); done < <(python3 -c "
+    # Load custom files list (user-created workflows/agents/skills)
+    custom_workflows=()
+    custom_agents=()
+    custom_skills=()
+    if [ -f "$CUSTOM_FILE" ]; then
+        while IFS= read -r line; do custom_workflows+=("$line"); done < <(python3 -c "
 import json
 data = json.load(open('$CUSTOM_FILE'))
 for w in data.get('custom_workflows', []): print(w)
 " 2>/dev/null)
-    while IFS= read -r line; do custom_agents+=("$line"); done < <(python3 -c "
+        while IFS= read -r line; do custom_agents+=("$line"); done < <(python3 -c "
 import json
 data = json.load(open('$CUSTOM_FILE'))
 for a in data.get('custom_agents', []): print(a)
 " 2>/dev/null)
-    while IFS= read -r line; do custom_skills+=("$line"); done < <(python3 -c "
+        while IFS= read -r line; do custom_skills+=("$line"); done < <(python3 -c "
 import json
 data = json.load(open('$CUSTOM_FILE'))
 for s in data.get('custom_skills', []): print(s)
 " 2>/dev/null)
-fi
+    fi
 
-# Helper: check if value is in array
-in_array() {
-    local needle="$1"; shift
-    for item in "$@"; do
-        [ "$item" = "$needle" ] && return 0
+    # Helper: check if value is in array
+    in_array() {
+        local needle="$1"; shift
+        for item in "$@"; do
+            [ "$item" = "$needle" ] && return 0
+        done
+        return 1
+    }
+
+    # Scan workflows for orphans
+    for file in "$GLOBAL_WORKFLOWS"/*.md; do
+        [ -f "$file" ] || continue
+        name=$(basename "$file" .md)
+        if ! in_array "$name" "${WORKFLOWS[@]}" && ! in_array "$name" "${custom_workflows[@]}"; then
+            echo -e "   ${YELLOW}🗑️  Removing orphan workflow: ${name}.md${NC}"
+            rm -f "$file"
+            ((orphan_count++))
+        fi
     done
-    return 1
-}
 
-# Scan workflows for orphans
-for file in "$GLOBAL_WORKFLOWS"/*.md; do
-    [ -f "$file" ] || continue
-    name=$(basename "$file" .md)
-    if ! in_array "$name" "${WORKFLOWS[@]}" && ! in_array "$name" "${custom_workflows[@]}"; then
-        echo -e "   ${YELLOW}🗑️  Removing orphan workflow: ${name}.md${NC}"
-        rm -f "$file"
-        ((orphan_count++))
+    # Scan agents for orphans
+    for file in "$AGENTS_DIR"/*.md; do
+        [ -f "$file" ] || continue
+        name=$(basename "$file" .md)
+        if ! in_array "$name" "${AGENTS[@]}" && ! in_array "$name" "${custom_agents[@]}"; then
+            echo -e "   ${YELLOW}🗑️  Removing orphan agent: ${name}.md${NC}"
+            rm -f "$file"
+            ((orphan_count++))
+        fi
+    done
+
+    # Scan skills for orphans
+    for dir in "$SKILLS_DIR"/*/; do
+        [ -d "$dir" ] || continue
+        name=$(basename "$dir")
+        if ! in_array "$name" "${SKILLS[@]}" && ! in_array "$name" "${custom_skills[@]}"; then
+            echo -e "   ${YELLOW}🗑️  Removing orphan skill: $name/${NC}"
+            rm -rf "$dir"
+            ((orphan_count++))
+        fi
+    done
+
+    if [ $orphan_count -eq 0 ]; then
+        echo -e "   ${GREEN}✅ No orphan files found${NC}"
+    else
+        echo -e "   ${GREEN}✅ Cleaned $orphan_count orphan file(s)${NC}"
     fi
-done
-
-# Scan agents for orphans
-for file in "$AGENTS_DIR"/*.md; do
-    [ -f "$file" ] || continue
-    name=$(basename "$file" .md)
-    if ! in_array "$name" "${AGENTS[@]}" && ! in_array "$name" "${custom_agents[@]}"; then
-        echo -e "   ${YELLOW}🗑️  Removing orphan agent: ${name}.md${NC}"
-        rm -f "$file"
-        ((orphan_count++))
-    fi
-done
-
-# Scan skills for orphans
-for dir in "$SKILLS_DIR"/*/; do
-    [ -d "$dir" ] || continue
-    name=$(basename "$dir")
-    if ! in_array "$name" "${SKILLS[@]}" && ! in_array "$name" "${custom_skills[@]}"; then
-        echo -e "   ${YELLOW}🗑️  Removing orphan skill: $name/${NC}"
-        rm -rf "$dir"
-        ((orphan_count++))
-    fi
-done
-
-if [ $orphan_count -eq 0 ]; then
-    echo -e "   ${GREEN}✅ No orphan files found${NC}"
-else
-    echo -e "   ${GREEN}✅ Cleaned $orphan_count orphan file(s)${NC}"
 fi
 
 # ── SAVE VERSION + LANGUAGE ─────────────────────────────────
