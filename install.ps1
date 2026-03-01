@@ -110,11 +110,16 @@ if (Test-Path $VersionFile) {
 $LangFile = "$env:USERPROFILE\.gemini\antikit_language"
 $lang = "en" # Default
 
-# 1. Try to load from config if exists
+# 1. Try to load from config if exists (new format first, then old)
 if (Test-Path $LangFile) {
     $lang = Get-Content $LangFile -ErrorAction SilentlyContinue
     if ([string]::IsNullOrWhiteSpace($lang)) { $lang = "en" }
     Write-Host "[OK] Auto-detected language: $lang" -ForegroundColor Green
+}
+elseif (Test-Path "$env:USERPROFILE\.gemini\antikit_lang") {
+    $lang = Get-Content "$env:USERPROFILE\.gemini\antikit_lang" -ErrorAction SilentlyContinue
+    if ([string]::IsNullOrWhiteSpace($lang)) { $lang = "en" }
+    Write-Host "[OK] Auto-detected language (legacy): $lang" -ForegroundColor Green
 }
 # 2. Override with param if provided
 if (-not [string]::IsNullOrWhiteSpace($Language)) {
@@ -180,12 +185,15 @@ Write-Host "[...] Downloading workflows ($lang)..." -ForegroundColor Cyan
 foreach ($wf in $WorkflowsEn) {
     try {
         $outName = "${wf}.md"
+        $tmpName = "${wf}.md.tmp"
         $url = "$RepoBase/workflows/$lang/${wf}.mdt"
-        Invoke-WebRequest -Uri $url -OutFile "$GlobalWorkflows\$outName" -UseBasicParsing -ErrorAction Stop
+        Invoke-WebRequest -Uri $url -OutFile "$GlobalWorkflows\$tmpName" -UseBasicParsing -ErrorAction Stop
+        Move-Item -Path "$GlobalWorkflows\$tmpName" -Destination "$GlobalWorkflows\$outName" -Force
         Write-Host "   [OK] $outName" -ForegroundColor Green
         $success++
     }
     catch {
+        Remove-Item -Path "$GlobalWorkflows\${wf}.md.tmp" -ErrorAction SilentlyContinue
         $outName = "${wf}.md"
         Write-Host "   [X] $outName" -ForegroundColor Red
         $failed++
@@ -198,12 +206,15 @@ Write-Host "[...] Downloading agents..." -ForegroundColor Cyan
 foreach ($agent in $Agents) {
     try {
         $outName = "${agent}.md"
+        $tmpName = "${agent}.md.tmp"
         $url = "$RepoBase/src/agents/${agent}.mdt"
-        Invoke-WebRequest -Uri $url -OutFile "$AgentsDir\$outName" -UseBasicParsing -ErrorAction Stop
+        Invoke-WebRequest -Uri $url -OutFile "$AgentsDir\$tmpName" -UseBasicParsing -ErrorAction Stop
+        Move-Item -Path "$AgentsDir\$tmpName" -Destination "$AgentsDir\$outName" -Force
         Write-Host "   [OK] $outName" -ForegroundColor Green
         $success++
     }
     catch {
+        Remove-Item -Path "$AgentsDir\${agent}.md.tmp" -ErrorAction SilentlyContinue
         $outName = "${agent}.md"
         Write-Host "   [X] $outName" -ForegroundColor Red
         $failed++
@@ -216,11 +227,13 @@ Write-Host "[...] Downloading schemas..." -ForegroundColor Cyan
 foreach ($schema in $Schemas) {
     try {
         $url = "$RepoBase/schemas/$schema"
-        Invoke-WebRequest -Uri $url -OutFile "$SchemasDir\$schema" -UseBasicParsing -ErrorAction Stop
+        Invoke-WebRequest -Uri $url -OutFile "$SchemasDir\$schema.tmp" -UseBasicParsing -ErrorAction Stop
+        Move-Item -Path "$SchemasDir\$schema.tmp" -Destination "$SchemasDir\$schema" -Force
         Write-Host "   [OK] $schema" -ForegroundColor Green
         $success++
     }
     catch {
+        Remove-Item -Path "$SchemasDir\$schema.tmp" -ErrorAction SilentlyContinue
         Write-Host "   [X] $schema" -ForegroundColor Red
         $failed++
     }
@@ -232,11 +245,13 @@ Write-Host "[...] Downloading templates..." -ForegroundColor Cyan
 foreach ($template in $Templates) {
     try {
         $url = "$RepoBase/templates/$template"
-        Invoke-WebRequest -Uri $url -OutFile "$TemplatesDir\$template" -UseBasicParsing -ErrorAction Stop
+        Invoke-WebRequest -Uri $url -OutFile "$TemplatesDir\$template.tmp" -UseBasicParsing -ErrorAction Stop
+        Move-Item -Path "$TemplatesDir\$template.tmp" -Destination "$TemplatesDir\$template" -Force
         Write-Host "   [OK] $template" -ForegroundColor Green
         $success++
     }
     catch {
+        Remove-Item -Path "$TemplatesDir\$template.tmp" -ErrorAction SilentlyContinue
         Write-Host "   [X] $template" -ForegroundColor Red
         $failed++
     }
@@ -252,18 +267,19 @@ foreach ($skill in $Skills) {
             New-Item -ItemType Directory -Force -Path $skillDir | Out-Null
         }
         $url = "$RepoBase/src/skills/$skill/SKILL.mdt"
-        Invoke-WebRequest -Uri $url -OutFile "$skillDir\SKILL.md" -UseBasicParsing -ErrorAction Stop
+        Invoke-WebRequest -Uri $url -OutFile "$skillDir\SKILL.md.tmp" -UseBasicParsing -ErrorAction Stop
+        Move-Item -Path "$skillDir\SKILL.md.tmp" -Destination "$skillDir\SKILL.md" -Force
         Write-Host "   [OK] $skill" -ForegroundColor Green
         $success++
     }
     catch {
+        Remove-Item -Path "$SkillsDir\$skill\SKILL.md.tmp" -ErrorAction SilentlyContinue
         Write-Host "   [X] $skill" -ForegroundColor Red
         $failed++
     }
 }
 
 # 6.5 Download Scripts
-$ScriptsDir = "$AntigravityDir\scripts"
 if (-not (Test-Path $ScriptsDir)) { New-Item -ItemType Directory -Force -Path $ScriptsDir | Out-Null }
 Write-Host ""
 Write-Host "[...] Downloading scripts..." -ForegroundColor Cyan
@@ -271,7 +287,8 @@ foreach ($script in $Scripts) {
     $url = "$RepoBase/scripts/$script"
     $downloaded = $false
     try {
-        Invoke-WebRequest -Uri $url -OutFile "$ScriptsDir\$script" -UseBasicParsing -ErrorAction Stop
+        Invoke-WebRequest -Uri $url -OutFile "$ScriptsDir\$script.tmp" -UseBasicParsing -ErrorAction Stop
+        Move-Item -Path "$ScriptsDir\$script.tmp" -Destination "$ScriptsDir\$script" -Force
         Write-Host "   [OK] $script" -ForegroundColor Green
         $success++
         $downloaded = $true
@@ -280,12 +297,14 @@ foreach ($script in $Scripts) {
         # Retry once after 2s (CDN cache may cause transient 404)
         Start-Sleep -Seconds 2
         try {
-            Invoke-WebRequest -Uri $url -OutFile "$ScriptsDir\$script" -UseBasicParsing -ErrorAction Stop
+            Invoke-WebRequest -Uri $url -OutFile "$ScriptsDir\$script.tmp" -UseBasicParsing -ErrorAction Stop
+            Move-Item -Path "$ScriptsDir\$script.tmp" -Destination "$ScriptsDir\$script" -Force
             Write-Host "   [OK] $script (retry)" -ForegroundColor Green
             $success++
             $downloaded = $true
         }
         catch {
+            Remove-Item -Path "$ScriptsDir\$script.tmp" -ErrorAction SilentlyContinue
             Write-Host "   [!!] $script (optional - will retry next update)" -ForegroundColor Yellow
         }
     }

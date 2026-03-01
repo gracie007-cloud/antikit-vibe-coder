@@ -124,15 +124,28 @@ for item in items:
 
 if [ -n "$MANIFEST_TMP" ] && [ -f "$MANIFEST_TMP" ]; then
     # Read arrays from manifest using python3 (fully POSIX-compatible, no mapfile/process substitution)
-    eval "$(python3 -c "
+    MANIFEST_EVAL="$(python3 -c "
 import json
 data = json.load(open('$MANIFEST_TMP'))
 for key in ['workflows','agents','skills','scripts','schemas','templates']:
     items = data.get(key, [])
     bash_key = key.upper()
-    quoted = ' '.join(['\"' + i + '\"' for i in items])
+    # Strip dangerous characters from values
+    safe = []
+    for i in items:
+        s = i.replace('\"','').replace(';','').replace('&','').replace('|','')
+        safe.append('\"' + s + '\"')
+    quoted = ' '.join(safe)
     print(f'{bash_key}=({quoted})')
 " 2>/dev/null)"
+
+    # Validate: only eval if output contains expected array assignment patterns
+    if [ -n "$MANIFEST_EVAL" ] && echo "$MANIFEST_EVAL" | head -1 | grep -qE '^[A-Z]+=\('; then
+        eval "$MANIFEST_EVAL"
+    else
+        echo -e "${YELLOW}⚠️  Manifest output suspicious. Using fallback lists.${NC}"
+        MANIFEST_TMP=""
+    fi
 
     # Verify manifest parsed correctly (safety check)
     if [ ${#WORKFLOWS[@]} -eq 0 ] || [ ${#AGENTS[@]} -eq 0 ]; then
@@ -200,10 +213,12 @@ echo -e "${GREEN}📂 Directories ready: $ANTIGRAVITY_DIR${NC}"
 echo ""
 echo -e "${CYAN}⏳ Downloading workflows ($LANG)...${NC}"
 for wf in "${WORKFLOWS[@]}"; do
-    if curl -f -s -o "$GLOBAL_WORKFLOWS/${wf}.md" "$REPO_BASE/workflows/$LANG/${wf}.mdt"; then
+    if curl -f -s -o "$GLOBAL_WORKFLOWS/${wf}.md.tmp" "$REPO_BASE/workflows/$LANG/${wf}.mdt"; then
+        mv -f "$GLOBAL_WORKFLOWS/${wf}.md.tmp" "$GLOBAL_WORKFLOWS/${wf}.md"
         echo -e "   ${GREEN}✅ ${wf}.md${NC}"
         ((success++))
     else
+        rm -f "$GLOBAL_WORKFLOWS/${wf}.md.tmp"
         echo -e "   ${RED}❌ ${wf}.md${NC}"
         ((failed++))
     fi
@@ -213,10 +228,12 @@ done
 echo ""
 echo -e "${CYAN}⏳ Downloading agents...${NC}"
 for agent in "${AGENTS[@]}"; do
-    if curl -f -s -o "$AGENTS_DIR/${agent}.md" "$REPO_BASE/src/agents/${agent}.mdt"; then
+    if curl -f -s -o "$AGENTS_DIR/${agent}.md.tmp" "$REPO_BASE/src/agents/${agent}.mdt"; then
+        mv -f "$AGENTS_DIR/${agent}.md.tmp" "$AGENTS_DIR/${agent}.md"
         echo -e "   ${GREEN}✅ ${agent}.md${NC}"
         ((success++))
     else
+        rm -f "$AGENTS_DIR/${agent}.md.tmp"
         echo -e "   ${RED}❌ ${agent}.md${NC}"
         ((failed++))
     fi
@@ -226,10 +243,12 @@ done
 echo ""
 echo -e "${CYAN}⏳ Downloading schemas...${NC}"
 for schema in "${SCHEMAS[@]}"; do
-    if curl -f -s -o "$SCHEMAS_DIR/$schema" "$REPO_BASE/schemas/$schema"; then
+    if curl -f -s -o "$SCHEMAS_DIR/$schema.tmp" "$REPO_BASE/schemas/$schema"; then
+        mv -f "$SCHEMAS_DIR/$schema.tmp" "$SCHEMAS_DIR/$schema"
         echo -e "   ${GREEN}✅ $schema${NC}"
         ((success++))
     else
+        rm -f "$SCHEMAS_DIR/$schema.tmp"
         echo -e "   ${RED}❌ $schema${NC}"
         ((failed++))
     fi
@@ -239,10 +258,12 @@ done
 echo ""
 echo -e "${CYAN}⏳ Downloading templates...${NC}"
 for template in "${TEMPLATES[@]}"; do
-    if curl -f -s -o "$TEMPLATES_DIR/$template" "$REPO_BASE/templates/$template"; then
+    if curl -f -s -o "$TEMPLATES_DIR/$template.tmp" "$REPO_BASE/templates/$template"; then
+        mv -f "$TEMPLATES_DIR/$template.tmp" "$TEMPLATES_DIR/$template"
         echo -e "   ${GREEN}✅ $template${NC}"
         ((success++))
     else
+        rm -f "$TEMPLATES_DIR/$template.tmp"
         echo -e "   ${RED}❌ $template${NC}"
         ((failed++))
     fi
@@ -253,10 +274,12 @@ echo ""
 echo -e "${CYAN}⏳ Downloading skills...${NC}"
 for skill in "${SKILLS[@]}"; do
     mkdir -p "$SKILLS_DIR/$skill"
-    if curl -f -s -o "$SKILLS_DIR/$skill/SKILL.md" "$REPO_BASE/src/skills/$skill/SKILL.mdt"; then
+    if curl -f -s -o "$SKILLS_DIR/$skill/SKILL.md.tmp" "$REPO_BASE/src/skills/$skill/SKILL.mdt"; then
+        mv -f "$SKILLS_DIR/$skill/SKILL.md.tmp" "$SKILLS_DIR/$skill/SKILL.md"
         echo -e "   ${GREEN}✅ $skill${NC}"
         ((success++))
     else
+        rm -f "$SKILLS_DIR/$skill/SKILL.md.tmp"
         echo -e "   ${RED}❌ $skill${NC}"
         ((failed++))
     fi
@@ -266,18 +289,21 @@ done
 echo ""
 echo -e "${CYAN}⏳ Downloading scripts...${NC}"
 for script in "${SCRIPTS[@]}"; do
-    if curl -f -s -o "$SCRIPTS_DIR/$script" "$REPO_BASE/scripts/$script"; then
+    if curl -f -s -o "$SCRIPTS_DIR/$script.tmp" "$REPO_BASE/scripts/$script"; then
+        mv -f "$SCRIPTS_DIR/$script.tmp" "$SCRIPTS_DIR/$script"
         chmod +x "$SCRIPTS_DIR/$script"
         echo -e "   ${GREEN}✅ $script${NC}"
         ((success++))
     else
         # Retry once after 2s (CDN cache may cause transient 404)
         sleep 2
-        if curl -f -s -o "$SCRIPTS_DIR/$script" "$REPO_BASE/scripts/$script"; then
+        if curl -f -s -o "$SCRIPTS_DIR/$script.tmp" "$REPO_BASE/scripts/$script"; then
+            mv -f "$SCRIPTS_DIR/$script.tmp" "$SCRIPTS_DIR/$script"
             chmod +x "$SCRIPTS_DIR/$script"
             echo -e "   ${GREEN}✅ $script (retry)${NC}"
             ((success++))
         else
+            rm -f "$SCRIPTS_DIR/$script.tmp"
             echo -e "   ${YELLOW}⚠️  $script (optional — will retry next update)${NC}"
             ((failed++))
         fi
